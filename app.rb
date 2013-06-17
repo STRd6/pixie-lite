@@ -94,7 +94,8 @@ __END__
       url = "data:image/png;base64,\#{imgData}"
     else
       n = Math.floor(parseInt(sha.substring(0, 1), 16) / 4)
-      url = "http://a\#{n}.pixiecdn.com/\#{sha}"
+      # url = "http://a\#{n}.pixiecdn.com/\#{sha}?\#{escape(location.origin)}"
+      url = "https://s3.amazonaws.com/addressable/\#{sha}"
 
     $.gritter.add
       title: ''
@@ -112,13 +113,18 @@ __END__
   catch e
     appData = []
 
+  _canvas = null
+
   $ ->
+    $(document).on "click", ".gritter-item", ->
+      src = $(this).find("img").attr("src")
+      _canvas.fromDataURL(src)
+
     pixelEditor = Pixie.Editor.Pixel.create
       width: 32
       height: 32
       initializer: (canvas) ->
-        # TODO: Load
-        canvas.fromDataURL("https://s3.amazonaws.com/addressable/86619e0a82cd663339cf92601ee2dac4b0125dfa")
+        _canvas = canvas
 
         canvas.addAction
           name: "download"

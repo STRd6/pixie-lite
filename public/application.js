@@ -3146,16 +3146,16 @@ Checks whether an object is an array.
 
   /**
   Checks whether an object is a string.
-  
+
       Object.isString("a string")
       # => true
-  
+
       Object.isString([1, 2, 4])
       # => false
-  
+
       Object.isString({key: "value"})
       # => false
-  
+
   @name isString
   @methodOf Object
   @param {Object} object The object to check for string-ness.
@@ -3170,18 +3170,18 @@ Checks whether an object is an array.
   /**
   Merges properties from objects into target without overiding.
   First come, first served.
-  
+
         I =
           a: 1
           b: 2
           c: 3
-  
+
         Object.reverseMerge I,
           c: 6
           d: 4
-  
+
         I # => {a: 1, b:2, c:3, d: 4}
-  
+
   @name reverseMerge
   @methodOf Object
   @param {Object} target The object to merge the properties into.
@@ -3206,18 +3206,18 @@ Checks whether an object is an array.
   /**
   Merges properties from sources into target with overiding.
   Last in covers earlier properties.
-  
+
         I =
           a: 1
           b: 2
           c: 3
-  
+
         Object.extend I,
           c: 6
           d: 4
-  
+
         I # => {a: 1, b:2, c:6, d: 4}
-  
+
   @name extend
   @methodOf Object
   @param {Object} target The object to merge the properties into.
@@ -3239,12 +3239,12 @@ Checks whether an object is an array.
 
   /**
   Helper method that tells you if something is an object.
-  
+
       object = {a: 1}
-  
+
       Object.isObject(object)
       # => true
-  
+
   @name isObject
   @methodOf Object
   @param {Object} object Maybe this guy is an object.
@@ -3281,10 +3281,10 @@ are not numbers.
 
   /**
   Returns a copy of the array without null and undefined values.
-  
+
       [null, undefined, 3, 3, undefined, 5].compact()
       # => [3, 3, 5]
-  
+
   @name compact
   @methodOf Array#
   @returns {Array} A new array that contains only the non-null values.
@@ -3300,18 +3300,18 @@ are not numbers.
   /**
   Creates and returns a copy of the array. The copy contains
   the same objects.
-  
+
       a = ["a", "b", "c"]
       b = a.copy()
-      
+
       # their elements are equal
       a[0] == b[0] && a[1] == b[1] && a[2] == b[2]
       # => true
-      
+
       # but they aren't the same object in memory
       a === b
       # => false
-  
+
   @name copy
   @methodOf Array#
   @returns {Array} A new array that is a copy of the array
@@ -3324,12 +3324,12 @@ are not numbers.
 
   /**
   Empties the array of its contents. It is modified in place.
-  
+
       fullArray = [1, 2, 3]
       fullArray.clear()
       fullArray
       # => []
-  
+
   @name clear
   @methodOf Array#
   @returns {Array} this, now emptied.
@@ -3343,15 +3343,15 @@ are not numbers.
 
   /**
   Flatten out an array of arrays into a single array of elements.
-  
+
       [[1, 2], [3, 4], 5].flatten()
       # => [1, 2, 3, 4, 5]
-      
+
       # won't flatten twice nested arrays. call
       # flatten twice if that is what you want
       [[1, 2], [3, [4, 5]], 6].flatten()
       # => [1, 2, 3, [4, 5], 6]
-  
+
   @name flatten
   @methodOf Array#
   @returns {Array} A new array with all the sub-arrays flattened to the top.
@@ -3367,13 +3367,13 @@ are not numbers.
   /**
   Invoke the named method on each element in the array
   and return a new array containing the results of the invocation.
-  
+
       [1.1, 2.2, 3.3, 4.4].invoke("floor")
       # => [1, 2, 3, 4]
-      
+
       ['hello', 'world', 'cool!'].invoke('substring', 0, 3)
       # => ['hel', 'wor', 'coo']
-  
+
   @param {String} method The name of the method to invoke.
   @param [arg...] Optional arguments to pass to the method being invoked.
   @name invoke
@@ -3392,10 +3392,10 @@ are not numbers.
 
   /**
   Randomly select an element from the array.
-  
+
       [1, 2, 3].rand()
       # => 2
-  
+
   @name rand
   @methodOf Array#
   @returns {Object} A random element from an array
@@ -3409,14 +3409,14 @@ are not numbers.
   /**
   Remove the first occurrence of the given object from the array if it is
   present. The array is modified in place.
-  
+
       a = [1, 1, "a", "b"]
       a.remove(1)
       # => 1
-      
+
       a
       # => [1, "a", "b"]
-  
+
   @name remove
   @methodOf Array#
   @param {Object} object The object to remove from the array if present.
@@ -3436,13 +3436,13 @@ are not numbers.
 
   /**
   Returns true if the element is present in the array.
-  
+
       ["a", "b", "c"].include("c")
       # => true
-      
+
       [40, "a"].include(700)
       # => false
-  
+
   @name include
   @methodOf Array#
   @param {Object} element The element to check if present.
@@ -3456,24 +3456,24 @@ are not numbers.
 
   /**
   Call the given iterator once for each element in the array,
-  passing in the element as the first argument, the index of 
+  passing in the element as the first argument, the index of
   the element as the second argument, and <code>this</code> array as the
   third argument.
-  
+
       word = ""
       indices = []
       ["r", "a", "d"].each (letter, index) ->
         word += letter
         indices.push(index)
-      
+
       # => ["r", "a", "d"]
-      
+
       word
       # => "rad"
-      
+
       indices
       # => [0, 1, 2]
-  
+
   @name each
   @methodOf Array#
   @param {Function} iterator Function to be called once for each element in the array.
@@ -3496,15 +3496,15 @@ are not numbers.
   };
 
   /**
-  Call the given iterator once for each element in the array, 
-  passing in the element as the first argument, the index of 
+  Call the given iterator once for each element in the array,
+  passing in the element as the first argument, the index of
   the element as the second argument, and `this` array as the
   third argument.
-  
+
       [1, 2, 3].map (number) ->
         number * number
       # => [1, 4, 9]
-  
+
   @name map
   @methodOf Array#
   @param {Function} iterator Function to be called once for each element in the array.
@@ -3525,7 +3525,7 @@ are not numbers.
 
   /**
   Call the given iterator once for each pair of objects in the array.
-  
+
       [1, 2, 3, 4].eachPair (a, b) ->
         # 1, 2
         # 1, 3
@@ -3533,7 +3533,7 @@ are not numbers.
         # 2, 3
         # 2, 4
         # 3, 4
-  
+
   @name eachPair
   @methodOf Array#
   @param {Function} iterator Function to be called once for each pair of elements in the array.
@@ -3569,7 +3569,7 @@ are not numbers.
   passing in the element as the first argument and the given object
   as the second argument. Additional arguments are passed similar to
   <code>each</code>.
-  
+
   @see Array#each
   @name eachWithObject
   @methodOf Array#
@@ -3591,15 +3591,15 @@ are not numbers.
   Call the given iterator once for each group of elements in the array,
   passing in the elements in groups of n. Additional argumens are
   passed as in each.
-  
+
       results = []
       [1, 2, 3, 4].eachSlice 2, (slice) ->
         results.push(slice)
       # => [1, 2, 3, 4]
-      
+
       results
       # => [[1, 2], [3, 4]]
-  
+
   @see Array#each
   @name eachSlice
   @methodOf Array#
@@ -3628,10 +3628,10 @@ are not numbers.
   methods and then receive the processed list. This array must contain functions that
   accept a single input and return the processed input. The output of the first function
   is fed to the input of the second and so on until the final processed output is returned.
-  
+
   @name pipeline
   @methodOf Array#
-  
+
   @param {Object} input The initial input to pass to the first function in the pipeline.
   @returns {Object} The result of processing the input by each function in the array.
   */
@@ -3648,14 +3648,14 @@ are not numbers.
 
   /**
   Returns a new array with the elements all shuffled up.
-  
+
       a = [1, 2, 3]
-      
+
       a.shuffle()
       # => [2, 3, 1]
-      
+
       a # => [1, 2, 3]
-  
+
   @name shuffle
   @methodOf Array#
   @returns {Array} A new array that is randomly shuffled.
@@ -3673,10 +3673,10 @@ are not numbers.
 
   /**
   Returns the first element of the array, undefined if the array is empty.
-  
+
       ["first", "second", "third"].first()
       # => "first"
-  
+
   @name first
   @methodOf Array#
   @returns {Object} The first element, or undefined if the array is empty.
@@ -3689,10 +3689,10 @@ are not numbers.
 
   /**
   Returns the last element of the array, undefined if the array is empty.
-  
+
       ["first", "second", "third"].last()
       # => "third"
-  
+
   @name last
   @methodOf Array#
   @returns {Object} The last element, or undefined if the array is empty.
@@ -3705,10 +3705,10 @@ are not numbers.
 
   /**
   Returns an object containing the extremes of this array.
-  
+
       [-1, 3, 0].extremes()
       # => {min: -1, max: 3}
-  
+
   @name extremes
   @methodOf Array#
   @param {Function} [fn] An optional funtion used to evaluate each element to calculate its value for determining extremes.
@@ -3752,19 +3752,19 @@ are not numbers.
   };
 
   /**
-  Pretend the array is a circle and grab a new array containing length elements. 
-  If length is not given return the element at start, again assuming the array 
+  Pretend the array is a circle and grab a new array containing length elements.
+  If length is not given return the element at start, again assuming the array
   is a circle.
-  
+
       [1, 2, 3].wrap(-1)
       # => 3
-      
+
       [1, 2, 3].wrap(6)
       # => 1
-      
+
       ["l", "o", "o", "p"].wrap(0, 16)
       # => ["l", "o", "o", "p", "l", "o", "o", "p", "l", "o", "o", "p", "l", "o", "o", "p"]
-  
+
   @name wrap
   @methodOf Array#
   @param {Number} start The index to start wrapping at, or the index of the sole element to return if no length is given.
@@ -3791,16 +3791,16 @@ are not numbers.
   /**
   Partitions the elements into two groups: those for which the iterator returns
   true, and those for which it returns false.
-  
+
       [evens, odds] = [1, 2, 3, 4].partition (n) ->
         n.even()
-      
+
       evens
       # => [2, 4]
-      
+
       odds
       # => [1, 3]
-  
+
   @name partition
   @methodOf Array#
   @param {Function} iterator
@@ -3825,7 +3825,7 @@ are not numbers.
 
   /**
   Return the group of elements for which the return value of the iterator is true.
-  
+
   @name select
   @methodOf Array#
   @param {Function} iterator The iterator receives each element in turn as the first agument.
@@ -3840,10 +3840,10 @@ are not numbers.
 
   /**
   Return the group of elements that are not in the passed in set.
-  
+
       [1, 2, 3, 4].without ([2, 3])
       # => [1, 4]
-  
+
   @name without
   @methodOf Array#
   @param {Array} values List of elements to exclude.
@@ -3859,7 +3859,7 @@ are not numbers.
 
   /**
   Return the group of elements for which the return value of the iterator is false.
-  
+
   @name reject
   @methodOf Array#
   @param {Function} iterator The iterator receives each element in turn as the first agument.
@@ -3874,9 +3874,9 @@ are not numbers.
 
   /**
   Combines all elements of the array by applying a binary operation.
-  for each element in the arra the iterator is passed an accumulator 
+  for each element in the arra the iterator is passed an accumulator
   value (memo) and the element.
-  
+
   @name inject
   @methodOf Array#
   @returns {Object} The result of a
@@ -3892,10 +3892,10 @@ are not numbers.
 
   /**
   Add all the elements in the array.
-  
+
       [1, 2, 3, 4].sum()
       # => 10
-  
+
   @name sum
   @methodOf Array#
   @returns {Number} The sum of the elements in the array.
@@ -3910,10 +3910,10 @@ are not numbers.
 
   /**
   Multiply all the elements in the array.
-  
+
       [1, 2, 3, 4].product()
       # => 24
-  
+
   @name product
   @methodOf Array#
   @returns {Number} The product of the elements in the array.
@@ -3928,10 +3928,10 @@ are not numbers.
 
   /**
   Merges together the values of each of the arrays with the values at the corresponding position.
-  
+
       ['a', 'b', 'c'].zip([1, 2, 3])
       # => [['a', 1], ['b', 2], ['c', 3]]
-  
+
   @name zip
   @methodOf Array#
   @returns {Array} Array groupings whose values are arranged by their positions in the original input arrays.
@@ -3959,13 +3959,13 @@ Bindable module.
     player = Core
       x: 5
       y: 10
-    
+
     player.bind "update", ->
       updatePlayer()
     # => Uncaught TypeError: Object has no method 'bind'
-    
+
     player.include(Bindable)
-    
+
     player.bind "update", ->
       updatePlayer()
     # => this will call updatePlayer each time through the main loop
@@ -3999,15 +3999,15 @@ Bindable module.
       },
       /**
       Adds a function as an event listener.
-      
+
           # this will call coolEventHandler after
           # yourObject.trigger "someCustomEvent" is called.
           yourObject.on "someCustomEvent", coolEventHandler
-        
+
           #or
           yourObject.on "anotherCustomEvent", ->
             doSomething()
-      
+
       @name on
       @methodOf Bindable#
       @param {String} event The event to listen to.
@@ -4029,14 +4029,14 @@ Bindable module.
       /**
       Removes a specific event listener, or all event listeners if
       no specific listener is given.
-      
+
           #  removes the handler coolEventHandler from the event
           # "someCustomEvent" while leaving the other events intact.
           yourObject.off "someCustomEvent", coolEventHandler
-        
-          # removes all handlers attached to "anotherCustomEvent" 
+
+          # removes all handlers attached to "anotherCustomEvent"
           yourObject.off "anotherCustomEvent"
-      
+
       @name off
       @methodOf Bindable#
       @param {String} event The event to remove the listener from.
@@ -4073,10 +4073,10 @@ Bindable module.
       },
       /**
       Calls all listeners attached to the specified event.
-      
+
           # calls each event handler bound to "someCustomEvent"
           yourObject.trigger "someCustomEvent"
-      
+
       @name trigger
       @methodOf Bindable#
       @param {String} event The event to trigger.
@@ -4177,46 +4177,46 @@ methods.
         /**
         External access to instance variables. Use of this property should be avoided
         in general, but can come in handy from time to time.
-          
+
             I =
               r: 255
               g: 0
               b: 100
-        
+
             myObject = Core(I)
-        
-            # a bad idea most of the time, but it's 
+
+            # a bad idea most of the time, but it's
             # pretty convenient to have available.
             myObject.I.r
             # => 255
-        
+
             myObject.I.g
             # => 0
-        
+
             myObject.I.b
             # => 100
-          
+
         @name I
         @fieldOf Core#
         */
 
         I: I,
         /**
-        Generates a public jQuery style getter / setter method for each 
+        Generates a public jQuery style getter / setter method for each
         String argument.
-          
+
             myObject = Core
               r: 255
               g: 0
               b: 100
-        
+
             myObject.attrAccessor "r", "g", "b"
-        
+
             myObject.r(254)
             myObject.r()
-        
+
             => 254
-          
+
         @name attrAccessor
         @methodOf Core#
         */
@@ -4237,23 +4237,23 @@ methods.
         },
         /**
         Generates a public jQuery style getter method for each String argument.
-          
+
             myObject = Core
               r: 255
               g: 0
               b: 100
-        
+
             myObject.attrReader "r", "g", "b"
-        
+
             myObject.r()
             => 255
-        
+
             myObject.g()
             => 0
-        
+
             myObject.b()
             => 100
-          
+
         @name attrReader
         @methodOf Core#
         */
@@ -4269,26 +4269,26 @@ methods.
         },
         /**
         Extends this object with methods from the passed in object. A shortcut for Object.extend(self, methods)
-          
+
             I =
               x: 30
               y: 40
               maxSpeed: 5
-        
+
             # we are using extend to give player
             # additional methods that Core doesn't have
             player = Core(I).extend
               increaseSpeed: ->
                 I.maxSpeed += 1
-        
+
             player.I.maxSpeed
             => 5
-        
+
             player.increaseSpeed()
-        
+
             player.I.maxSpeed
             => 6
-          
+
         @name extend
         @methodOf Core#
         @see Object.extend
@@ -4301,14 +4301,14 @@ methods.
         },
         /**
         Includes a module in this object.
-          
+
             myObject = Core()
             myObject.include(Bindable)
-        
+
             # now you can bind handlers to functions
             myObject.bind "someEvent", ->
               alert("wow. that was easy.")
-          
+
         @name include
         @methodOf Core#
         @param {String} Module the module to include. A module is a constructor that takes two parameters, I and self, and returns an object containing the public methods to extend the including object with.
@@ -4380,16 +4380,16 @@ methods.
   };
 
   /**
-  Calling a debounced function will postpone its execution until after 
-  wait milliseconds have elapsed since the last time the function was 
-  invoked. Useful for implementing behavior that should only happen after 
-  the input has stopped arriving. For example: rendering a preview of a 
-  Markdown comment, recalculating a layout after the window has stopped 
+  Calling a debounced function will postpone its execution until after
+  wait milliseconds have elapsed since the last time the function was
+  invoked. Useful for implementing behavior that should only happen after
+  the input has stopped arriving. For example: rendering a preview of a
+  Markdown comment, recalculating a layout after the window has stopped
   being resized...
-  
+
       lazyLayout = calculateLayout.debounce(300)
       $(window).resize(lazyLayout)
-  
+
   @name debounce
   @methodOf Function#
   @returns {Function} The debounced version of this function.
@@ -4443,7 +4443,7 @@ methods.
 @name Logging
 @namespace
 
-Gives you some convenience methods for outputting data while developing. 
+Gives you some convenience methods for outputting data while developing.
 
       log "Testing123"
       info "Hey, this is happening"
@@ -4473,7 +4473,7 @@ Gives you some convenience methods for outputting data while developing.
 
 /**
 * Matrix.js v1.3.0pre
-* 
+*
 * Copyright (c) 2010 STRd6
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -4510,12 +4510,12 @@ Gives you some convenience methods for outputting data while developing.
       |_0  0  1 _|
     </pre>
     Creates a matrix for 2d affine transformations.
-    
+
     concat, inverse, rotate, scale and translate return new matrices with the
     transformations applied. The matrix is not modified in place.
-    
+
     Returns the identity matrix when called with no arguments.
-    
+
     @name Matrix
     @param {Number} [a]
     @param {Number} [b]
@@ -4575,7 +4575,7 @@ Gives you some convenience methods for outputting data while developing.
     Matrix.prototype = {
       /**
       Returns the result of this matrix multiplied by another matrix
-      combining the geometric effects of the two. In mathematical terms, 
+      combining the geometric effects of the two. In mathematical terms,
       concatenating two matrixes is the same as combining them using matrix multiplication.
       If this matrix is A and the matrix passed in is B, the resulting matrix is A x B
       http://mathworld.wolfram.com/MatrixMultiplication.html
@@ -4599,9 +4599,9 @@ Gives you some convenience methods for outputting data while developing.
         return Matrix(this.a, this.b, this.c, this.d, this.tx, this.ty);
       },
       /**
-      Given a point in the pretransform coordinate space, returns the coordinates of 
-      that point after the transformation occurs. Unlike the standard transformation 
-      applied using the transformPoint() method, the deltaTransformPoint() method 
+      Given a point in the pretransform coordinate space, returns the coordinates of
+      that point after the transformation occurs. Unlike the standard transformation
+      applied using the transformPoint() method, the deltaTransformPoint() method
       does not consider the translation parameters tx and ty.
       @name deltaTransformPoint
       @methodOf Matrix#
@@ -4657,7 +4657,7 @@ Gives you some convenience methods for outputting data while developing.
       /**
       Returns a new matrix that corresponds this matrix multiplied by a
       a skewing matrix.
-      
+
       @name skew
       @methodOf Matrix#
       @see Matrix.skew
@@ -4670,7 +4670,7 @@ Gives you some convenience methods for outputting data while developing.
       },
       /**
       Returns a string representation of this matrix.
-      
+
       @name toString
       @methodOf Matrix#
       @returns {String} A string reperesentation of this matrix.
@@ -4680,7 +4680,7 @@ Gives you some convenience methods for outputting data while developing.
         return "Matrix(" + this.a + ", " + this.b + ", " + this.c + ", " + this.d + ", " + this.tx + ", " + this.ty + ")";
       },
       /**
-      Returns the result of applying the geometric transformation represented by the 
+      Returns the result of applying the geometric transformation represented by the
       Matrix object to the specified point.
       @name transformPoint
       @methodOf Matrix#
@@ -4746,7 +4746,7 @@ Gives you some convenience methods for outputting data while developing.
     };
     /**
     Returns a matrix that corresponds to a skew of skewX, skewY.
-    
+
     @see Matrix#skew
     @param {Number} skewX The angle of skew in the x dimension.
     @param {Number} skewY The angle of skew in the y dimension.
@@ -4798,7 +4798,7 @@ Gives you some convenience methods for outputting data while developing.
 
 }).call(this);
 
-/** 
+/**
 Returns the absolute value of this number.
 
     (-4).abs()
@@ -4818,16 +4818,16 @@ Returns the absolute value of this number.
 
   /**
   Returns the mathematical ceiling of this number.
-  
-      4.9.ceil() 
+
+      4.9.ceil()
       # => 5
-      
+
       4.2.ceil()
       # => 5
-      
+
       (-1.2).ceil()
       # => -1
-  
+
   @name ceil
   @methodOf Number#
   @returns {Number} The number truncated to the nearest integer of greater than or equal value.
@@ -4840,16 +4840,16 @@ Returns the absolute value of this number.
 
   /**
   Returns the mathematical floor of this number.
-  
+
       4.9.floor()
       # => 4
-      
+
       4.2.floor()
       # => 4
-      
+
       (-1.2).floor()
       # => -2
-  
+
   @name floor
   @methodOf Number#
   @returns {Number} The number truncated to the nearest integer of less than or equal value.
@@ -4862,13 +4862,13 @@ Returns the absolute value of this number.
 
   /**
   Returns this number rounded to the nearest integer.
-  
+
       4.5.round()
       # => 5
-      
+
       4.4.round()
       # => 4
-  
+
   @name round
   @methodOf Number#
   @returns {Number} The number rounded to the nearest integer.
@@ -4881,11 +4881,11 @@ Returns the absolute value of this number.
 
   /**
   Get a bunch of points equally spaced around the unit circle.
-  
+
       4.circularPoints (p) ->
-      
+
       # p gets Point(1, 0), Point(0, 1), Point(-1, 0), Point(0, -1)
-  
+
   @name circularPoint
   @methodOf Number#
   */
@@ -4901,11 +4901,11 @@ Returns the absolute value of this number.
 
   /**
   Returns a number whose value is limited to the given range.
-  
+
       # limit the output of this computation to between 0 and 255
       (2 * 255).clamp(0, 255)
       # => 255
-  
+
   @name clamp
   @methodOf Number#
   @param {Number} min The lower boundary of the output range
@@ -4929,10 +4929,10 @@ Returns the absolute value of this number.
   /**
   A mod method useful for array wrapping. The range of the function is
   constrained to remain in bounds of array indices.
-  
+
       (-1).mod(5)
       # => 4
-  
+
   @name mod
   @methodOf Number#
   @param {Number} base
@@ -4951,16 +4951,16 @@ Returns the absolute value of this number.
 
   /**
   Get the sign of this number as an integer (1, -1, or 0).
-  
+
       (-5).sign()
       # => -1
-      
+
       0.sign()
       # => 0
-      
+
       5.sign()
       # => 1
-  
+
   @name sign
   @methodOf Number#
   @returns {Number} The sign of this number, 0 if the number is 0.
@@ -4979,16 +4979,16 @@ Returns the absolute value of this number.
 
   /**
   Returns true if this number is even (evenly divisible by 2).
-  
+
       2.even()
       # => true
-      
+
       3.even()
       # => false
-      
+
       0.even()
-      # => true      
-  
+      # => true
+
   @name even
   @methodOf Number#
   @returns {Boolean} true if this number is an even integer, false otherwise.
@@ -5001,16 +5001,16 @@ Returns the absolute value of this number.
 
   /**
   Returns true if this number is odd (has remainder of 1 when divided by 2).
-  
+
       2.odd()
       # => false
-      
+
       3.odd()
       # => true
-      
+
       0.odd()
-      # => false     
-  
+      # => false
+
   @name odd
   @methodOf Number#
   @returns {Boolean} true if this number is an odd integer, false otherwise.
@@ -5026,17 +5026,17 @@ Returns the absolute value of this number.
   };
 
   /**
-  Calls iterator the specified number of times, passing in the number of the 
-  current iteration as a parameter: 0 on first call, 1 on the second call, etc. 
-  
+  Calls iterator the specified number of times, passing in the number of the
+  current iteration as a parameter: 0 on first call, 1 on the second call, etc.
+
       output = []
-      
+
       5.times (n) ->
         output.push(n)
-      
+
       output
       # => [0, 1, 2, 3, 4]
-  
+
   @name times
   @methodOf Number#
   @param {Function} iterator The iterator takes a single parameter, the number of the current iteration.
@@ -5055,17 +5055,17 @@ Returns the absolute value of this number.
   };
 
   /**
-  Returns the the nearest grid resolution less than or equal to the number. 
-  
-      7.snap(8) 
+  Returns the the nearest grid resolution less than or equal to the number.
+
+      7.snap(8)
       # => 0
-      
-      4.snap(8) 
+
+      4.snap(8)
       # => 0
-      
-      12.snap(8) 
+
+      12.snap(8)
       # => 8
-  
+
   @name snap
   @methodOf Number#
   @param {Number} resolution The grid resolution to snap to.
@@ -5084,15 +5084,15 @@ Returns the absolute value of this number.
   In number theory, integer factorization or prime factorization is the
   breaking down of a composite number into smaller non-trivial divisors,
   which when multiplied together equal the original integer.
-  
+
   Floors the number for purposes of factorization.
-  
+
       60.primeFactors()
       # => [2, 2, 3, 5]
-      
+
       37.primeFactors()
       # => [37]
-  
+
   @name primeFactors
   @methodOf Number#
   @returns {Array} An array containing the factorization of this number.
@@ -5127,18 +5127,18 @@ Returns the absolute value of this number.
   };
 
   /**
-  Returns the two character hexidecimal 
+  Returns the two character hexidecimal
   representation of numbers 0 through 255.
-  
+
       255.toColorPart()
       # => "ff"
-      
+
       0.toColorPart()
       # => "00"
-      
+
       200.toColorPart()
       # => "c8"
-  
+
   @name toColorPart
   @methodOf Number#
   @returns {String} Hexidecimal representation of the number
@@ -5156,13 +5156,13 @@ Returns the absolute value of this number.
 
   /**
   Returns a number that is maxDelta closer to target.
-  
+
       255.approach(0, 5)
       # => 250
-      
+
       5.approach(0, 10)
       # => 0
-  
+
   @name approach
   @methodOf Number#
   @returns {Number} A number maxDelta toward target
@@ -5175,10 +5175,10 @@ Returns the absolute value of this number.
 
   /**
   Returns a number that is closer to the target by the ratio.
-  
+
       255.approachByRatio(0, 0.1)
       # => 229.5
-  
+
   @name approachByRatio
   @methodOf Number#
   @returns {Number} A number toward target by the ratio
@@ -5191,10 +5191,10 @@ Returns the absolute value of this number.
 
   /**
   Returns a number that is closer to the target angle by the delta.
-  
+
       Math.PI.approachRotation(0, Math.PI/4)
       # => 2.356194490192345 # this is (3/4) * Math.PI, which is (1/4) * Math.PI closer to 0 from Math.PI
-  
+
   @name approachRotation
   @methodOf Number#
   @returns {Number} A number toward the target angle by maxDelta
@@ -5213,10 +5213,10 @@ Returns the absolute value of this number.
 
   /**
   Constrains a rotation to between -PI and PI.
-  
-      (9/4 * Math.PI).constrainRotation() 
+
+      (9/4 * Math.PI).constrainRotation()
       # => 0.7853981633974483 # this is (1/4) * Math.PI
-  
+
   @name constrainRotation
   @methodOf Number#
   @returns {Number} This number constrained between -PI and PI.
@@ -5237,7 +5237,7 @@ Returns the absolute value of this number.
 
   /**
   The mathematical d operator. Useful for simulating dice rolls.
-  
+
   @name d
   @methodOf Number#
   @returns {Number} The sum of rolling <code>this</code> many <code>sides</code>-sided dice
@@ -5255,12 +5255,12 @@ Returns the absolute value of this number.
 
   /**
   Utility method to convert a number to a duration of seconds.
-  
+
       3.seconds
       # => 3000
-      
+
       setTimout doSometing, 3.seconds
-  
+
   @name seconds
   @propertyOf Number#
   @returns {Number} This number as a duration of seconds
@@ -5285,12 +5285,12 @@ Returns the absolute value of this number.
 
   /**
   Utility method to convert a number to an amount of rotations.
-  
+
       0.5.rotations
       # => 3.141592653589793
-      
+
       I.rotation = 0.25.rotations
-  
+
   @name rotations
   @propertyOf Number#
   @returns {Number} This number as an amount of rotations
@@ -5315,14 +5315,14 @@ Returns the absolute value of this number.
 
   /**
   Utility method to convert a number to an amount of rotations.
-  
+
       0.5.turns
       # => 3.141592653589793
-      
+
       I.rotation = 0.25.turns
-      
+
       1.turn # => Math.TAU (aka 2 * Math.PI)
-  
+
   @name turns
   @propertyOf Number#
   @returns {Number} This number as an amount of rotation.
@@ -5348,12 +5348,12 @@ Returns the absolute value of this number.
 
   /**
   Utility method to convert a number to an amount of degrees.
-  
+
       180.degrees
       # => 3.141592653589793
-      
+
       I.rotation = 90.degrees
-  
+
   @name degrees
   @propertyOf Number#
   @returns {Number} This number as an amount of degrees
@@ -5376,9 +5376,9 @@ Returns the absolute value of this number.
     });
   }
 
-  /** 
+  /**
   The mathematical circle constant of 1 turn.
-  
+
   @name TAU
   @fieldOf Math
   */
@@ -5394,23 +5394,23 @@ Returns the absolute value of this number.
     /**
     Create a new point with given x and y coordinates. If no arguments are given
     defaults to (0, 0).
-    
+
         point = Point()
-      
+
         p.x
         # => 0
-      
+
         p.y
         # => 0
-      
+
         point = Point(-2, 5)
-      
+
         p.x
         # => -2
-      
+
         p.y
         # => 5
-    
+
     @name Point
     @param {Number} [x]
     @param {Number} [y]
@@ -5444,7 +5444,7 @@ Returns the absolute value of this number.
     Point.prototype = {
       /**
       Constrain the magnitude of a vector.
-      
+
       @name clamp
       @methodOf Point#
       @param {Number} n Maximum value for magnitude.
@@ -5463,17 +5463,17 @@ Returns the absolute value of this number.
       },
       /**
       Creates a copy of this point.
-      
+
       @name copy
       @methodOf Point#
       @returns {Point} A new point with the same x and y value as this point.
-      
+
           point = Point(1, 1)
           pointCopy = point.copy()
-      
+
           point.equal(pointCopy)
           # => true
-      
+
           point == pointCopy
           # => false
       */
@@ -5485,23 +5485,23 @@ Returns the absolute value of this number.
       Adds a point to this one and returns the new point. You may
       also use a two argument call like <code>point.add(x, y)</code>
       to add x and y values without a second point object.
-      
+
           point = Point(2, 3).add(Point(3, 4))
-      
+
           point.x
           # => 5
-      
+
           point.y
           # => 7
-      
+
           anotherPoint = Point(2, 3).add(3, 4)
-      
+
           anotherPoint.x
           # => 5
-      
+
           anotherPoint.y
           # => 7
-      
+
       @name add
       @methodOf Point#
       @param {Point} other The point to add this point to.
@@ -5515,32 +5515,32 @@ Returns the absolute value of this number.
       Adds a point to this one, returning a modified point. You may
       also use a two argument call like <code>point.add(x, y)</code>
       to add x and y values without a second point object.
-      
+
           point = Point(2, 3)
-      
+
           point.x
           # => 2
-      
+
           point.y
           # => 3
-      
+
           point.add$(Point(3, 4))
-      
+
           point.x
           # => 5
-      
+
           point.y
           # => 7
-      
+
           anotherPoint = Point(2, 3)
           anotherPoint.add$(3, 4)
-      
+
           anotherPoint.x
           # => 5
-      
+
           anotherPoint.y
           # => 7
-      
+
       @name add$
       @methodOf Point#
       @param {Point} other The point to add this point to.
@@ -5559,23 +5559,23 @@ Returns the absolute value of this number.
       },
       /**
       Subtracts a point to this one and returns the new point.
-      
+
           point = Point(1, 2).subtract(Point(2, 0))
-      
+
           point.x
           # => -1
-      
+
           point.y
           # => 2
-      
+
           anotherPoint = Point(1, 2).subtract(2, 0)
-      
+
           anotherPoint.x
           # => -1
-      
+
           anotherPoint.y
           # => 2
-      
+
       @name subtract
       @methodOf Point#
       @param {Point} other The point to subtract from this point.
@@ -5587,32 +5587,32 @@ Returns the absolute value of this number.
       },
       /**
       Subtracts a point to this one and returns the new point.
-      
+
           point = Point(1, 2)
-      
+
           point.x
           # => 1
-      
+
           point.y
           # => 2
-      
+
           point.subtract$(Point(2, 0))
-      
+
           point.x
           # => -1
-      
+
           point.y
           # => 2
-      
+
           anotherPoint = Point(1, 2)
           anotherPoint.subtract$(2, 0)
-      
+
           anotherPoint.x
           # => -1
-      
+
           anotherPoint.y
           # => 2
-      
+
       @name subtract$
       @methodOf Point#
       @param {Point} other The point to subtract from this point.
@@ -5631,15 +5631,15 @@ Returns the absolute value of this number.
       },
       /**
       Scale this Point (Vector) by a constant amount.
-      
+
           point = Point(5, 6).scale(2)
-      
+
           point.x
           # => 10
-      
+
           point.y
           # => 12
-      
+
       @name scale
       @methodOf Point#
       @param {Number} scalar The amount to scale this point by.
@@ -5651,23 +5651,23 @@ Returns the absolute value of this number.
       },
       /**
       Scale this Point (Vector) by a constant amount. Modifies the point in place.
-      
+
           point = Point(5, 6)
-      
+
           point.x
           # => 5
-      
+
           point.y
           # => 6
-      
+
           point.scale$(2)
-      
+
           point.x
           # => 10
-      
+
           point.y
           # => 12
-      
+
       @name scale$
       @methodOf Point#
       @param {Number} scalar The amount to scale this point by.
@@ -5682,23 +5682,23 @@ Returns the absolute value of this number.
       /**
       The norm of a vector is the unit vector pointing in the same direction. This method
       treats the point as though it is a vector from the origin to (x, y).
-      
+
           point = Point(2, 3).norm()
-      
+
           point.x
           # => 0.5547001962252291
-      
-          point.y  
+
+          point.y
           # => 0.8320502943378437
-      
+
           anotherPoint = Point(2, 3).norm(2)
-      
+
           anotherPoint.x
           # => 1.1094003924504583
-      
-          anotherPoint.y   
-          # => 1.6641005886756874    
-      
+
+          anotherPoint.y
+          # => 1.6641005886756874
+
       @name norm
       @methodOf Point#
       @returns {Point} The unit vector pointing in the same direction as this vector.
@@ -5713,23 +5713,23 @@ Returns the absolute value of this number.
       /**
       The norm of a vector is the unit vector pointing in the same direction. This method
       treats the point as though it is a vector from the origin to (x, y). Modifies the point in place.
-      
+
           point = Point(2, 3).norm$()
-      
+
           point.x
           # => 0.5547001962252291
-      
-          point.y  
+
+          point.y
           # => 0.8320502943378437
-      
+
           anotherPoint = Point(2, 3).norm$(2)
-      
+
           anotherPoint.x
           # => 1.1094003924504583
-      
-          anotherPoint.y   
-          # => 1.6641005886756874    
-      
+
+          anotherPoint.y
+          # => 1.6641005886756874
+
       @name norm$
       @methodOf Point#
       @returns {Point} The unit vector pointing in the same direction as this vector.
@@ -5748,15 +5748,15 @@ Returns the absolute value of this number.
       },
       /**
       Floor the x and y values, returning a new point.
-      
+
           point = Point(3.4, 5.8).floor()
-      
+
           point.x
           # => 3
-      
+
           point.y
           # => 5
-      
+
       @name floor
       @methodOf Point#
       @returns {Point} A new point, with x and y values each floored to the largest previous integer.
@@ -5767,16 +5767,16 @@ Returns the absolute value of this number.
       },
       /**
       Floor the x and y values, returning a modified point.
-      
+
           point = Point(3.4, 5.8)
           point.floor$()
-      
+
           point.x
           # => 3
-      
+
           point.y
           # => 5
-      
+
       @name floor$
       @methodOf Point#
       @returns {Point} A modified point, with x and y values each floored to the largest previous integer.
@@ -5789,17 +5789,17 @@ Returns the absolute value of this number.
       },
       /**
       Determine whether this point is equal to another point.
-      
+
           pointA = Point(2, 3)
           pointB = Point(2, 3)
           pointC = Point(4, 5)
-      
+
           pointA.equal(pointB)
           # => true
-      
+
           pointA.equal(pointC)
           # => false
-      
+
       @name equal
       @methodOf Point#
       @param {Point} other The point to check for equality.
@@ -5811,12 +5811,12 @@ Returns the absolute value of this number.
       },
       /**
       Computed the length of this point as though it were a vector from (0,0) to (x,y).
-      
+
           point = Point(5, 7)
-      
+
           point.length()
           # => 8.602325267042627
-      
+
       @name length
       @methodOf Point#
       @returns {Number} The length of the vector from the origin to this point.
@@ -5827,12 +5827,12 @@ Returns the absolute value of this number.
       },
       /**
       Calculate the magnitude of this Point (Vector).
-      
+
           point = Point(5, 7)
-      
+
           point.magnitude()
           # => 8.602325267042627
-      
+
       @name magnitude
       @methodOf Point#
       @returns {Number} The magnitude of this point as if it were a vector from (0, 0) -> (x, y).
@@ -5843,12 +5843,12 @@ Returns the absolute value of this number.
       },
       /**
       Returns the direction in radians of this point from the origin.
-      
+
           point = Point(0, 1)
-      
+
           point.direction()
           # => 1.5707963267948966 # Math.PI / 2
-      
+
       @name direction
       @methodOf Point#
       @returns {Number} The direction in radians of this point from the origin
@@ -5869,12 +5869,12 @@ Returns the absolute value of this number.
         return this.x * other.x + this.y * other.y;
       },
       /**
-      Calculate the cross product of this point and another point (Vector). 
+      Calculate the cross product of this point and another point (Vector).
       Usually cross products are thought of as only applying to three dimensional vectors,
-      but z can be treated as zero. The result of this method is interpreted as the magnitude 
+      but z can be treated as zero. The result of this method is interpreted as the magnitude
       of the vector result of the cross product between [x1, y1, 0] x [x2, y2, 0]
       perpendicular to the xy plane.
-      
+
       @name cross
       @methodOf Point#
       @param {Point} other The point to cross with this point.
@@ -5886,13 +5886,13 @@ Returns the absolute value of this number.
       },
       /**
       Compute the Euclidean distance between this point and another point.
-      
+
           pointA = Point(2, 3)
           pointB = Point(9, 2)
-      
+
           pointA.distance(pointB)
           # => 7.0710678118654755 # Math.sqrt(50)
-      
+
       @name distance
       @methodOf Point#
       @param {Point} other The point to compute the distance to.
@@ -5914,13 +5914,13 @@ Returns the absolute value of this number.
     };
     /**
     Compute the Euclidean distance between two points.
-    
+
         pointA = Point(2, 3)
         pointB = Point(9, 2)
-      
+
         Point.distance(pointA, pointB)
         # => 7.0710678118654755 # Math.sqrt(50)
-    
+
     @name distance
     @fieldOf Point
     @param {Point} p1
@@ -5934,10 +5934,10 @@ Returns the absolute value of this number.
     /**
         pointA = Point(2, 3)
         pointB = Point(9, 2)
-      
+
         Point.distanceSquared(pointA, pointB)
         # => 50
-    
+
     @name distanceSquared
     @fieldOf Point
     @param {Point} p1
@@ -5951,7 +5951,7 @@ Returns the absolute value of this number.
     /**
     @name interpolate
     @fieldOf Point
-    
+
     @param {Point} p1
     @param {Point} p2
     @param {Number} t
@@ -5963,15 +5963,15 @@ Returns the absolute value of this number.
     };
     /**
     Construct a point on the unit circle for the given angle.
-    
+
         point = Point.fromAngle(Math.PI / 2)
-      
+
         point.x
         # => 0
-      
+
         point.y
         # => 1
-    
+
     @name fromAngle
     @fieldOf Point
     @param {Number} angle The angle in radians
@@ -5985,13 +5985,13 @@ Returns the absolute value of this number.
     If you have two dudes, one standing at point p1, and the other
     standing at point p2, then this method will return the direction
     that the dude standing at p1 will need to face to look at p2.
-    
+
         p1 = Point(0, 0)
         p2 = Point(7, 3)
-      
+
         Point.direction(p1, p2)
         # => 0.40489178628508343
-    
+
     @name direction
     @fieldOf Point
     @param {Point} p1 The starting point.
@@ -6004,7 +6004,7 @@ Returns the absolute value of this number.
     };
     /**
     The centroid of a set of points is their arithmetic mean.
-    
+
     @name centroid
     @methodOf Point
     @param points... The points to find the centroid of.
@@ -6019,7 +6019,7 @@ Returns the absolute value of this number.
     };
     /**
     Generate a random point on the unit circle.
-    
+
     @returns {Point} A random point on the unit circle.
     */
 
@@ -6082,7 +6082,7 @@ Returns the absolute value of this number.
     (typeof exports !== "undefined" && exports !== null ? exports : this)["Random"] = {
       /**
       Returns a random angle, uniformly distributed, between 0 and 2pi.
-      
+
       @name angle
       @methodOf Random
       @returns {Number} A random angle between 0 and 2pi
@@ -6093,7 +6093,7 @@ Returns the absolute value of this number.
       },
       /**
       Returns a random angle between the given angles.
-      
+
       @name angleBetween
       @methodOf Random
       @returns {Number} A random angle between the angles given.
@@ -6104,7 +6104,7 @@ Returns the absolute value of this number.
       },
       /**
       Returns a random color.
-      
+
       @name color
       @methodOf Random
       @returns {Color} A random color
@@ -6115,7 +6115,7 @@ Returns the absolute value of this number.
       },
       /**
       Happens often.
-      
+
       @name often
       @methodOf Random
       */
@@ -6125,7 +6125,7 @@ Returns the absolute value of this number.
       },
       /**
       Happens sometimes.
-      
+
       @name sometimes
       @methodOf Random
       */
@@ -6137,7 +6137,7 @@ Returns the absolute value of this number.
     /**
     Returns random integers from [0, n) if n is given.
     Otherwise returns random float between 0 and 1.
-    
+
     @name rand
     @methodOf window
     @param {Number} n
@@ -6154,7 +6154,7 @@ Returns the absolute value of this number.
     /**
     Returns random float from [-n / 2, n / 2] if n is given.
     Otherwise returns random float between -0.5 and 0.5.
-    
+
     @name signedRand
     @methodOf window
     @param {Number} n
@@ -6216,10 +6216,10 @@ Returns true if this string only contains whitespace characters.
 
     "".blank()
     # => true
-    
+
     "hello".blank()
     # => false
-    
+
     "   ".blank()
     # => true
 
@@ -6237,13 +6237,13 @@ Returns true if this string only contains whitespace characters.
 
   /**
   Returns a new string that is a camelCase version.
-  
+
       "camel_case".camelize()
       "camel-case".camelize()
       "camel case".camelize()
-      
+
       # => "camelCase"
-  
+
   @name camelize
   @methodOf String#
   @returns {String} A new string. camelCase version of `this`.
@@ -6262,14 +6262,14 @@ Returns true if this string only contains whitespace characters.
 
   /**
   Returns a new string with the first letter capitalized and the rest lower cased.
-  
+
       "capital".capitalize()
       "cAPITAL".capitalize()
       "cApItAl".capitalize()
       "CAPITAL".capitalize()
-      
+
       # => "Capital"
-  
+
   @name capitalize
   @methodOf String#
   @returns {String} A new string. Capitalized version of `this`
@@ -6282,12 +6282,12 @@ Returns true if this string only contains whitespace characters.
 
   /**
   Return the class or constant named in this string.
-  
-      
+
+
       "Constant".constantize()
       # => Constant
       # notice this isn't a string. Useful for calling methods on class with the same name as `this`.
-  
+
   @name constantize
   @methodOf String#
   @returns {Object} The class or constant named in this string.
@@ -6307,10 +6307,10 @@ Returns true if this string only contains whitespace characters.
 
   /**
   Get the file extension of a string.
-  
+
       "README.md".extension() # => "md"
       "README".extension() # => ""
-  
+
   @name extension
   @methodOf String#
   @returns {String} File extension
@@ -6328,13 +6328,13 @@ Returns true if this string only contains whitespace characters.
 
   /**
   Returns a new string that is a more human readable version.
-  
+
       "player_id".humanize()
       # => "Player"
-      
+
       "player_ammo".humanize()
       # => "Player ammo"
-  
+
   @name humanize
   @methodOf String#
   @returns {String} A new string. Replaces _id and _ with "" and capitalizes the word.
@@ -6347,7 +6347,7 @@ Returns true if this string only contains whitespace characters.
 
   /**
   Returns true.
-  
+
   @name isString
   @methodOf String#
   @returns {Boolean} true
@@ -6361,16 +6361,16 @@ Returns true if this string only contains whitespace characters.
   /**
   Parse this string as though it is JSON and return the object it represents. If it
   is not valid JSON returns the string itself.
-  
+
       # this is valid json, so an object is returned
       '{"a": 3}'.parse()
       # => {a: 3}
-      
+
       # double quoting instead isn't valid JSON so a string is returned
       "{'a': 3}".parse()
       # => "{'a': 3}"
-      
-  
+
+
   @name parse
   @methodOf String#
   @returns {Object} Returns an object from the JSON this string contains. If it is not valid JSON returns the string itself.
@@ -6387,11 +6387,11 @@ Returns true if this string only contains whitespace characters.
 
   /**
   Returns true if this string starts with the given string.
-  
+
   @name startsWith
   @methodOf String#
   @param {String} str The string to check.
-  
+
   @returns {Boolean} True if this string starts with the given string, false otherwise.
   */
 
@@ -6402,13 +6402,13 @@ Returns true if this string only contains whitespace characters.
 
   /**
   Returns a new string in Title Case.
-  
+
       "title-case".titleize()
       # => "Title Case"
-      
+
       "title case".titleize()
       # => "Title Case"
-  
+
   @name titleize
   @methodOf String#
   @returns {String} A new string. Title Cased.
@@ -6423,16 +6423,16 @@ Returns true if this string only contains whitespace characters.
 
   /**
   Underscore a word, changing camelCased with under_scored.
-  
+
       "UNDERScore".underscore()
       # => "under_score"
-      
+
       "UNDER-SCORE".underscore()
       # => "under_score"
-      
+
       "UnDEr-SCorE".underscore()
       # => "un_d_er_s_cor_e"
-  
+
   @name underscore
   @methodOf String#
   @returns {String} A new string. Separated by _.
@@ -6444,12 +6444,12 @@ Returns true if this string only contains whitespace characters.
   };
 
   /**
-  Assumes the string is something like a file name and returns the 
+  Assumes the string is something like a file name and returns the
   contents of the string without the extension.
-  
-      "neat.png".witouthExtension() 
+
+      "neat.png".witouthExtension()
       # => "neat"
-  
+
   @name withoutExtension
   @methodOf String#
   @returns {String} A new string without the extension name.
@@ -6559,7 +6559,7 @@ number.toLocaleString();
 
 
 /**
-Returns a string representing the Number object to the specified precision. 
+Returns a string representing the Number object to the specified precision.
 
 <code><em>number</em>.toPrecision( [ <em>precision</em> ] )</code>
 @param precision An integer specifying the number of significant digits.
@@ -6689,12 +6689,12 @@ a string as a parameter" section below.
 place of the substring received from parameter #1). The arguments supplied to
 this function are described in the "Specifying a function as a parameter"
 section below.
-@param flags gimy 
+@param flags gimy
 
 Non-standardThe use of the flags parameter in the String.replace method is
 non-standard. For cross-browser compatibility, use a RegExp object with
 corresponding flags.A string containing any combination of the RegExp flags: g
-global match i ignore case m match over multiple lines y Non-standard     
+global match i ignore case m match over multiple lines y Non-standard
 sticky global matchignore casematch over multiple linesNon-standard     sticky
 @name replace
 @methodOf String#
@@ -7459,8 +7459,8 @@ Sets the hours for a specified date according to local time.
 <code>
 setHours(<i>hoursValue</i>[, <i>minutesValue</i>[, <i>secondsValue</i>[, <em>msValue</em>]]])
 </code>
-@param  hoursValue   An integer between 0 and 23, representing the hour. 
-@param  minutesValue   An integer between 0 and 59, representing the minutes. 
+@param  hoursValue   An integer between 0 and 23, representing the hour.
+@param  minutesValue   An integer between 0 and 59, representing the minutes.
 @param  secondsValue   An integer between 0 and 59, representing the seconds. If
 you specify the secondsValue parameter, you must also specify the minutesValue.
 @param  msValue   A number between 0 and 999, representing the milliseconds. If
@@ -7490,7 +7490,7 @@ Sets the minutes for a specified date according to local time.
 <code>
 setMinutes(<i>minutesValue</i>[, <i>secondsValue</i>[, <em>msValue</em>]])
 </code>
-@param  minutesValue   An integer between 0 and 59, representing the minutes. 
+@param  minutesValue   An integer between 0 and 59, representing the minutes.
 @param  secondsValue   An integer between 0 and 59, representing the seconds. If
 you specify the secondsValue parameter, you must also specify the minutesValue.
 @param  msValue   A number between 0 and 999, representing the milliseconds. If
@@ -7521,7 +7521,7 @@ Sets the seconds for a specified date according to local time.
 <code>
 setSeconds(<i>secondsValue</i>[, <em>msValue</em>])
 </code>
-@param  secondsValue   An integer between 0 and 59. 
+@param  secondsValue   An integer between 0 and 59.
 @param  msValue   A number between 0 and 999, representing the milliseconds.
 @name setSeconds
 @methodOf Date#
@@ -7578,8 +7578,8 @@ Sets the hour for a specified date according to universal time.
 <code>
 setUTCHours(<i>hoursValue</i>[, <i>minutesValue</i>[, <i>secondsValue</i>[, <em>msValue</em>]]])
 </code>
-@param  hoursValue   An integer between 0 and 23, representing the hour. 
-@param  minutesValue   An integer between 0 and 59, representing the minutes. 
+@param  hoursValue   An integer between 0 and 23, representing the hour.
+@param  minutesValue   An integer between 0 and 59, representing the minutes.
 @param  secondsValue   An integer between 0 and 59, representing the seconds. If
 you specify the secondsValue parameter, you must also specify the minutesValue.
 @param  msValue   A number between 0 and 999, representing the milliseconds. If
@@ -7609,7 +7609,7 @@ Sets the minutes for a specified date according to universal time.
 <code>
 setUTCMinutes(<i>minutesValue</i>[, <i>secondsValue</i>[, <em>msValue</em>]])
 </code>
-@param  minutesValue   An integer between 0 and 59, representing the minutes. 
+@param  minutesValue   An integer between 0 and 59, representing the minutes.
 @param  secondsValue   An integer between 0 and 59, representing the seconds. If
 you specify the secondsValue parameter, you must also specify the minutesValue.
 @param  msValue   A number between 0 and 999, representing the milliseconds. If
@@ -7640,7 +7640,7 @@ Sets the seconds for a specified date according to universal time.
 <code>
 setUTCSeconds(<i>secondsValue</i>[, <em>msValue</em>])
 </code>
-@param  secondsValue   An integer between 0 and 59. 
+@param  secondsValue   An integer between 0 and 59.
 @param  msValue   A number between 0 and 999, representing the milliseconds.
 @name setUTCSeconds
 @methodOf Date#
@@ -7780,7 +7780,7 @@ Generate a random uuid.
 
 (function() {
   // Private array of chars to use
-  var CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split(''); 
+  var CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
 
   Math.uuid = function (len, radix) {
     var chars = CHARS, uuid = [];
@@ -10040,54 +10040,54 @@ Generate a random uuid.
     arrays of r, g, b values, hex strings, rgb strings, hsl strings, other Color objects,
     and even the named colors from the xkcd survey: http://blog.xkcd.com/2010/05/03/color-survey-results/.
     If no arguments are given, defaults to transparent.
-    
+
     <code><pre>
     individualRgb = Color(23, 56, 49, 0.4)
-    
+
     individualRgb.toString()
     # => 'rgba(23, 56, 49, 0.4)'
-    
+
     arrayRgb = Color([59, 100, 230])
-    
+
     arrayRgb.toString()
     # => 'rgba(59, 100, 230, 1)'
-    
+
     hex = Color('#ff0000')
-    
+
     hex.toString()
     # => 'rgba(255, 0, 0, 1)'
-    
+
     rgb = Color('rgb(0, 255, 0)')
-    
+
     rgb.toString()
     # => 'rgba(0, 255, 0, 1)'
-    
+
     hsl = Color('hsl(180, 1, 0.5)')
-    
+
     hsl.toString()
     # => 'rgba(0, 255, 255, 1)'
-    
+
     anotherColor = Color('blue')
-    
+
     Color(anotherColor)
     # => a new color with the same r, g, b, and alpha values as `anotherColor`
-    
+
     # You have access to all sorts of weird colors.
     # We give you all the named colors the browser recognizes
     # and the ones from this survey
     # http://blog.xkcd.com/2010/05/03/color-survey-results/
     namedBrown = Color('Fuzzy Wuzzy Brown')
-    
+
     namedBrown.toHex()
     # => '#c45655'
-    
+
     # Default behavior
     transparent = Color()
-    
+
     transparent.toString()
     # => 'rgba(0, 0, 0, 0)'
     </pre></code>
-    
+
     @name Color
     @param {Array|Number|String|Color} args... An Array, r, g, b values,
     a sequence of numbers defining r, g, b values, a hex or hsl string, another Color object, or a named color
@@ -10123,27 +10123,27 @@ Generate a random uuid.
     Color.prototype = {
       /**
       Returns the rgba color channels in an array.
-      
+
       <code><pre>
       transparent =  Color()
-      
+
       transparent.channels()
       # => [0, 0, 0, 0]
-      
+
       red = Color("#FF0000")
-      
+
       red.channels()
       # => [255, 0, 0, 1]
-      
+
       rgb = Color(200, 34, 2)
-      
+
       rgb.channels()
       # => [200, 34, 2, 1]
       </pre></code>
-      
+
       @name channels
       @methodOf Color#
-      
+
       @returns {Array} Array of r, g, b, and alpha values of the color
       */
 
@@ -10152,19 +10152,19 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color that is its complementary color on the color wheel.
-      
+
       <code><pre>
       red = Color(255, 0, 0)
-      
+
       cyan = red.complement()
-      
+
       cyan.toString()
       # => 'rgba(0, 255, 255, 1)'
       </pre></code>
-      
+
       @name complement
       @methodOf Color#
-      
+
       @returns {Color} new color that is a copy of the calling color with its hue shifted by 180 degrees on the color wheel
       */
 
@@ -10173,20 +10173,20 @@ Generate a random uuid.
       },
       /**
       Modifies the calling color to make it the complement of its previous value.
-      
+
       <code><pre>
       red = Color(255, 0, 0)
-      
+
       # modifies red in place to make it into cyan
       red.complement$()
-      
+
       red.toString()
       # => 'rgba(0, 255, 255, 1)'
       </pre></code>
-      
+
       @name complement$
       @methodOf Color#
-      
+
       @returns {Color} the color hue shifted by 180 degrees on the color wheel. Modifies the existing color.
       */
 
@@ -10195,22 +10195,22 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color.
-      
+
       <code><pre>
       color = Color(0, 100, 200)
-      
+
       copy = color.copy()
-      
+
       color == copy
       # => false
-      
+
       color.equal(copy)
       # => true
       </pre></code>
-      
+
       @name copy
       @methodOf Color#
-      
+
       @returns {Color} A new color. A copy of the calling color
       */
 
@@ -10219,20 +10219,20 @@ Generate a random uuid.
       },
       /**
       Returns a copy of the calling color darkened by `amount` (Lightness of the color ranges from 0 to 1).
-      
+
       <code><pre>
       green = Color(0, 255, 0)
-      
+
       darkGreen = green.darken(0.3)
-      
+
       darkGreen.toString()
       # => 'rgba(0, 102, 0, 1)'
       </pre></code>
-      
+
       @name darken
       @methodOf Color#
       @param {Number} amount Amount to darken color by (between 0 - 1)
-      
+
       @returns {Color} A new color. The lightness value is reduced by `amount` from the original.
       */
 
@@ -10241,21 +10241,21 @@ Generate a random uuid.
       },
       /**
       Modifies the color so that it is darkened by `amount` (Lightness of the color ranges from 0 to 1).
-      
+
       <code><pre>
       green = Color(0, 255, 0)
-      
+
       # Modifies green to be darkGreen
       green.darken$(0.3)
-      
+
       green.toString()
       # => 'rgba(0, 102, 0, 1)'
       </pre></code>
-      
+
       @name darken$
       @methodOf Color#
       @param {Number} amount Amount to darken color by (between 0 - 1)
-      
+
       @returns {Color} the color with the lightness value reduced by `amount`
       */
 
@@ -10268,20 +10268,20 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color with its saturation reduced by `amount`.
-      
+
       <code><pre>
       blue = Color(0, 0, 255)
-      
+
       desaturatedBlue = blue.desaturate(0.3)
-      
+
       desaturatedBlue.toString()
       # => 'rgba(38, 38, 217, 1)'
       </pre></code>
-      
+
       @name desaturate
       @methodOf Color#
       @param {Number} amount Amount to reduce color saturation by (between 0 - 1)
-      
+
       @returns {Color} A copy of the color with the saturation value reduced by `amount`
       */
 
@@ -10290,21 +10290,21 @@ Generate a random uuid.
       },
       /**
       The modified color with its saturation reduced by `amount`.
-      
+
       <code><pre>
       blue = Color(0, 0, 255)
-      
+
       # modifies blue to be desaturatedBlue
       blue.desaturate$(0.3)
-      
+
       blue.toString()
       # => 'rgba(38, 38, 217, 1)'
       </pre></code>
-      
+
       @name desaturate$
       @methodOf Color#
       @param {Number} amount Amount to reduce color saturation by (between 0 - 1)
-      
+
       @returns {Color} the color with the saturation value reduced by `amount`
       */
 
@@ -10317,22 +10317,22 @@ Generate a random uuid.
       },
       /**
       Determine whether two colors are equal. Compares their r, g, b, and alpha values.
-      
+
       <code><pre>
       hex = Color('#ffff00')
       rgb = Color(255, 255, 0)
-      
+
       hex == rgb
       # => false
-      
+
       hex.equal(rgb)
       # => true
       </pre></code>
-      
+
       @name equal
       @methodOf Color#
       @param {Color} other the color to compare to the calling color
-      
+
       @returns {Boolean} true if the r, g, b, a values of the colors agree, false otherwise
       */
 
@@ -10341,19 +10341,19 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color converted to grayscale.
-      
+
       <code><pre>
       color = Color(255, 255, 0)
-      
+
       gray = color.grayscale()
-      
+
       gray.toString()
       # => 'rgba(128, 128, 128, 1)'
       </pre></code>
-      
+
       @name grayscale
       @methodOf Color#
-      
+
       @returns {Color} A copy of the calling color converted to grayscale.
       */
 
@@ -10362,20 +10362,20 @@ Generate a random uuid.
       },
       /**
       The calling color converted to grayscale.
-      
+
       <code><pre>
       color = Color(255, 255, 0)
-      
+
       # modifies color into gray
       color.grayscale$()
-      
+
       color.toString()
       # => 'rgba(128, 128, 128, 1)'
       </pre></code>
-      
+
       @name grayscale$
       @methodOf Color#
-      
+
       @returns {Color} The calling color converted to grayscale.
       */
 
@@ -10389,20 +10389,20 @@ Generate a random uuid.
       /**
       A getter / setter for the hue value of the color. Passing no argument returns the
       current hue value. Passing a value will set the hue to that value and return the color.
-      
+
       <code><pre>
       magenta = Color(255, 0, 255)
-      
+
       yellow = magenta.hue(60)
-      
+
       yellow.toString()
       # => 'rgba(255, 255, 0, 1)'
       </pre></code>
-      
+
       @name hue
       @methodOf Color#
       @param {Number} [newVal] the new hue value
-      
+
       @returns {Color|Number} returns the color object if you pass a new hue value and returns the hue otherwise
       */
 
@@ -10420,23 +10420,23 @@ Generate a random uuid.
       /**
       A getter / setter for the lightness value of the color. Passing no argument returns the
       current lightness value. Passing a value will set the lightness to that value and return the color.
-      
+
       <code><pre>
       magenta = Color(255, 0, 255)
-      
+
       magenta.lightness()
       # => 0.9
-      
+
       darkerMagenta = magenta.lightness(0.75)
-      
+
       darkerMagenta.lightness()
       # => 0.75
       </pre></code>
-      
+
       @name lightness
       @methodOf Color#
       @param {Number} [newVal] the new lightness value
-      
+
       @returns {Color|Number} returns the color object if you pass a new lightness value and returns the lightness otherwise
       */
 
@@ -10453,28 +10453,28 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color with its hue shifted by `degrees`. This differs from the hue setter in that it adds to the existing hue value and will wrap around 0 and 360.
-      
+
       <code><pre>
       magenta = Color(255, 0, 255)
-      
+
       magenta.hue()
       # => 300
-      
+
       yellow = magenta.shiftHue(120)
-      
+
       # since magenta's hue is 300 we have wrapped
       # around 360 to end up at 60
       yellow.hue()
       # => 60
-      
+
       yellow.toString()
       # => 'rgba(255, 255, 0, 1)'
       </pre></code>
-      
+
       @name shiftHue
       @methodOf Color#
       @param {Number} degrees number of degrees to shift the hue on the color wheel.
-      
+
       @returns {Color} A copy of the color with its hue shifted by `degrees`
       */
 
@@ -10483,29 +10483,29 @@ Generate a random uuid.
       },
       /**
       The calling color with its hue shifted by `degrees`. This differs from the hue setter in that it adds to the existing hue value and will wrap around 0 and 360.
-      
+
       <code><pre>
       magenta = Color(255, 0, 255)
-      
+
       magenta.hue()
       # => 300
-      
+
       magenta.shiftHue$(120)
-      
+
       # since magenta's hue is 300 we have wrapped
       # around 360 to end up at 60. Also we have
       # modified magenta in place to become yellow
       magenta.hue()
       # => 60
-      
+
       magenta.toString()
       # => 'rgba(255, 255, 0, 1)'
       </pre></code>
-      
+
       @name shiftHue$
       @methodOf Color#
       @param {Number} degrees number of degrees to shift the hue on the color wheel.
-      
+
       @returns {Color} The color with its hue shifted by `degrees`
       */
 
@@ -10518,20 +10518,20 @@ Generate a random uuid.
       },
       /**
       Returns a copy of the calling color lightened by `amount` (Lightness of the color ranges from 0 to 1).
-      
+
       <code><pre>
       green = Color(0, 255, 0)
-      
+
       lightGreen = green.lighten(0.2)
-      
+
       lightGreen.toString()
       # => 'rgba(102, 255, 102, 1)'
       </pre></code>
-      
+
       @name lighten
       @methodOf Color#
       @param {Number} amount Amount to lighten color by (between 0 to 1)
-      
+
       @returns {Color} A new color. The lightness value is increased by `amount` from the original.
       */
 
@@ -10540,22 +10540,22 @@ Generate a random uuid.
       },
       /**
       The calling color lightened by `amount` (Lightness of the color ranges from 0 to 1).
-      
+
       <code><pre>
       green = Color(0, 255, 0)
-      
+
       green.lighten(0.2)
-      
+
       # we have modified green in place
       # to become lightGreen
       green.toString()
       # => 'rgba(102, 255, 102, 1)'
       </pre></code>
-      
+
       @name lighten$
       @methodOf Color#
       @param {Number} amount Amount to lighten color by (between 0 - 1)
-      
+
       @returns {Color} The calling color with its lightness value increased by `amount`.
       */
 
@@ -10569,29 +10569,29 @@ Generate a random uuid.
       /**
       A copy of the calling color mixed with `other` using `amount` as the
       mixing ratio. If amount is not passed, then the colors are mixed evenly.
-      
+
       <code><pre>
       red = Color(255, 0, 0)
       yellow = Color(255, 255, 0)
-      
+
       # With no amount argument the colors are mixed evenly
       orange = red.mixWith(yellow)
-      
+
       orange.toString()
       # => 'rgba(255, 128, 0, 1)'
-      
+
       # With an amount of 0.3 we are mixing the color 30% red and 70% yellow
       somethingCloseToOrange = red.mixWith(yellow, 0.3)
-      
+
       somethingCloseToOrange.toString()
       # => rgba(255, 179, 0, 1)
       </pre></code>
-      
+
       @name mixWith
       @methodOf Color#
       @param {Color} other the other color to mix
       @param {Number} [amount] the mixing ratio of the calling color to `other`
-      
+
       @returns {Color} A new color that is a mix of the calling color and `other`
       */
 
@@ -10601,32 +10601,32 @@ Generate a random uuid.
       /**
       A copy of the calling color mixed with `other` using `amount` as the
       mixing ratio. If amount is not passed, then the colors are mixed evenly.
-      
+
       <code><pre>
       red = Color(255, 0, 0)
       yellow = Color(255, 255, 0)
       anotherRed = Color(255, 0, 0)
-      
+
       # With no amount argument the colors are mixed evenly
       red.mixWith$(yellow)
-      
+
       # We have modified red in place to be orange
       red.toString()
       # => 'rgba(255, 128, 0, 1)'
-      
+
       # With an amount of 0.3 we are mixing the color 30% red and 70% yellow
       anotherRed.mixWith$(yellow, 0.3)
-      
+
       # We have modified `anotherRed` in place to be somethingCloseToOrange
       anotherRed.toString()
       # => rgba(255, 179, 0, 1)
       </pre></code>
-      
+
       @name mixWith$
       @methodOf Color#
       @param {Color} other the other color to mix
       @param {Number} [amount] the mixing ratio of the calling color to `other`
-      
+
       @returns {Color} The modified calling color after mixing it with `other`
       */
 
@@ -10643,26 +10643,26 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color with its saturation increased by `amount`.
-      
+
       <code><pre>
       color = Color(50, 50, 200)
-      
+
       color.saturation()
       # => 0.6
-      
+
       saturatedColor = color.saturate(0.2)
-      
+
       saturatedColor.saturation()
       # => 0.8
-      
+
       saturatedColor.toString()
       # => rgba(25, 25, 225, 1)
       </pre></code>
-      
+
       @name saturate
       @methodOf Color#
       @param {Number} amount the amount to increase saturation by
-      
+
       @returns {Color} A copy of the calling color with its saturation increased by `amount`
       */
 
@@ -10671,27 +10671,27 @@ Generate a random uuid.
       },
       /**
       The calling color with its saturation increased by `amount`.
-      
+
       <code><pre>
       color = Color(50, 50, 200)
-      
+
       color.saturation()
       # => 0.6
-      
+
       color.saturate$(0.2)
-      
+
       # We have modified color in place and increased its saturation to 0.8
       color.saturation()
       # => 0.8
-      
+
       color.toString()
       # => rgba(25, 25, 225, 1)
       </pre></code>
-      
+
       @name saturate$
       @methodOf Color#
       @param {Number} amount the amount to increase saturation by
-      
+
       @returns {Color} The calling color with its saturation increased by `amount`
       */
 
@@ -10705,18 +10705,18 @@ Generate a random uuid.
       /**
       A getter / setter for the saturation value of the color. Passing no argument returns the
       current saturation value. Passing a value will set the saturation to that value and return the color.
-      
+
       <code><pre>
       hslColor = Color('hsl(60, 0.5, 0.5)')
-      
+
       hslColor.saturation()
       # => 0.5
       </pre></code>
-      
+
       @name saturation
       @methodOf Color#
       @param {Number} [newVal] the new saturation value
-      
+
       @returns {Color|Number} returns the color object if you pass a new saturation value and returns the saturation otherwise
       */
 
@@ -10733,23 +10733,23 @@ Generate a random uuid.
       },
       /**
       returns the Hex representation of the color. Exclude the leading `#` by passing false.
-      
+
       <code><pre>
       color = Color('hsl(60, 1, 0.5)')
-      
+
       # passing nothing will leave the `#` intact
       color.toHex()
       # => '#ffff00'
-      
+
       # passing false will remove the `#`
       color.toHex(false)
       # => 'ffff00'
       </pre></code>
-      
+
       @name toHex
       @methodOf Color#
       @param {Boolean} [leadingHash] if passed as false excludes the leading `#` from the string
-      
+
       @returns {String} returns the Hex representation of the color
       */
 
@@ -10775,17 +10775,17 @@ Generate a random uuid.
       },
       /**
       returns an array of the hue, saturation, lightness, and alpha values of the color.
-      
+
       <code><pre>
       magenta = Color(255, 0, 255)
-      
+
       magenta.toHsl()
       # => [300, 1, 0.5, 1]
       </pre></code>
-      
+
       @name toHsl
       @methodOf Color#
-      
+
       @returns {Array} An array of the hue, saturation, lightness, and alpha values of the color.
       */
 
@@ -10825,17 +10825,17 @@ Generate a random uuid.
       },
       /**
       returns string rgba representation of the color.
-      
+
       <code><pre>
       red = Color('#ff0000')
-      
+
       red.toString()
       # => 'rgba(255, 0, 0, 1)'
       </pre></code>
-      
+
       @name toString
       @methodOf Color#
-      
+
       @returns {String} The rgba string representation of the color
       */
 
@@ -10844,22 +10844,22 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color with its alpha reduced by `amount`.
-      
+
       <code><pre>
       color = Color(0, 0, 0, 1)
-      
+
       color.a
       # => 1
-      
+
       transparentColor = color.transparentize(0.5)
-      
+
       transparentColor.a
       # => 0.5
       </pre></code>
-      
+
       @name transparentize
       @methodOf Color#
-      
+
       @returns {Color} A copy of the calling color with its alpha reduced by `amount`
       */
 
@@ -10868,23 +10868,23 @@ Generate a random uuid.
       },
       /**
       The calling color with its alpha reduced by `amount`.
-      
+
       <code><pre>
       color = Color(0, 0, 0, 1)
-      
+
       color.a
       # => 1
-      
+
       # We modify color in place
       color.transparentize$(0.5)
-      
+
       color.a
       # => 0.5
       </pre></code>
-      
+
       @name transparentize$
       @methodOf Color#
-      
+
       @returns {Color} The calling color with its alpha reduced by `amount`
       */
 
@@ -10894,22 +10894,22 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color with its alpha increased by `amount`.
-      
+
       <code><pre>
       color = Color(0, 0, 0, 0)
-      
+
       color.a
       # => 1
-      
+
       opaqueColor = color.opacify(0.25)
-      
+
       opaqueColor.a
       # => 0.25
       </pre></code>
-      
+
       @name opacify
       @methodOf Color#
-      
+
       @returns {Color} A copy of the calling color with its alpha increased by `amount`
       */
 
@@ -10918,23 +10918,23 @@ Generate a random uuid.
       },
       /**
       The calling color with its alpha increased by `amount`.
-      
+
       <code><pre>
       color = Color(0, 0, 0, 0)
-      
+
       color.a
       # => 1
-      
+
       # We modify color in place
       color.opacify$(0.25)
-      
+
       color.a
       # => 0.25
       </pre></code>
-      
+
       @name opacify$
       @methodOf Color#
-      
+
       @returns {Color} The calling color with its alpha increased by `amount`
       */
 
@@ -10950,18 +10950,18 @@ Generate a random uuid.
     });
     /**
     returns a random color.
-    
+
     <code><pre>
     Color.random().toString()
     # => 'rgba(213, 144, 202, 1)'
-    
+
     Color.random().toString()
     # => 'rgba(1, 211, 24, 1)'
     </pre></code>
-    
+
     @name random
     @methodOf Color
-    
+
     @returns {Color} A random color.
     */
 
@@ -10970,31 +10970,31 @@ Generate a random uuid.
     };
     /**
     Mix two colors. Behaves just like `#mixWith` except that you are passing two colors.
-    
+
     <code><pre>
     red = Color(255, 0, 0)
     yellow = Color(255, 255, 0)
-    
+
     # With no amount argument the colors are mixed evenly
     orange = Color.mix(red, yellow)
-    
+
     orange.toString()
     # => 'rgba(255, 128, 0, 1)'
-    
+
     # With an amount of 0.3 we are mixing the color 30% red and 70% yellow
     somethingCloseToOrange = Color.mix(red, yellow, 0.3)
-    
+
     somethingCloseToOrange.toString()
     # => rgba(255, 179, 0, 1)
     </pre></code>
-    
+
     @name mix
     @methodOf Color
     @see Color#mixWith
     @param {Color} color1 the first color to mix
     @param {Color} color2 the second color to mix
     @param {Number} amount the ratio to mix the colors
-    
+
     @returns {Color} A new color that is the two colors mixed at the ratio defined by `amount`
     */
 
@@ -11181,38 +11181,38 @@ Generate a random uuid.
     arrays of r, g, b values, hex strings, rgb strings, hsl strings, other Color objects,
     and even the named colors from the xkcd survey: http://blog.xkcd.com/2010/05/03/color-survey-results/.
     If no arguments are given, defaults to transparent.
-    
+
         individualRgb = Color(23, 56, 49, 0.4)
-    
+
         arrayRgb = Color([59, 100, 230])
-    
+
         hex = Color('#ff0000')
-    
+
         rgb = Color('rgb(0, 255, 0)')
-    
+
         hsl = Color('hsl(180, 1, 0.5)')
-    
+
         anotherColor = Color('blue')
-    
+
         Color(anotherColor)
         # => a new color with the same r, g, b, and alpha values as `anotherColor`
-    
+
         # You have access to all sorts of weird colors.
         # We give you all the named colors the browser recognizes
         # and the ones from this survey
         # http://blog.xkcd.com/2010/05/03/color-survey-results/
         namedBrown = Color('Fuzzy Wuzzy Brown')
-    
+
         # Uutput color in Hex format
         namedBrown.toHex()
         # => '#c45655'
-    
+
         # Default behavior
         transparent = Color()
-    
+
         transparent.toString()
         # => 'rgba(0, 0, 0, 0)'
-    
+
         # let's print out the colors on a canvas to see what they look like
         canvas.font('14px Helvetica')
         for color, index in ['individualRgb', 'arrayRgb', 'hex', 'rgb', 'hsl', 'anotherColor', 'namedBrown']
@@ -11220,7 +11220,7 @@ Generate a random uuid.
             color: eval(color)
             text: color
             y: 20 * (index + 1)
-    
+
     @name Color
     @param {Array|Number|String|Color} args... An Array, r, g, b values,
     a sequence of numbers defining r, g, b values, a hex or hsl string, another Color object, or a named color
@@ -11256,25 +11256,25 @@ Generate a random uuid.
     Color.prototype = {
       /**
       Returns the rgba color channels in an array.
-      
+
           transparent =  Color()
-      
+
           transparent.channels()
           # => [0, 0, 0, 0]
-      
+
           red = Color("#FF0000")
-      
+
           red.channels()
           # => [255, 0, 0, 1]
-      
+
           rgb = Color(200, 34, 2)
-      
+
           rgb.channels()
           # => [200, 34, 2, 1]
-      
+
       @name channels
       @methodOf Color#
-      
+
       @returns {Array} Array of r, g, b, and alpha values of the color
       */
 
@@ -11283,11 +11283,11 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color that is its complementary color on the color wheel.
-      
+
           red = Color(255, 0, 0)
-      
+
           cyan = red.complement()
-      
+
           # to see what they look like
           for color, index in [red, cyan]
             canvas.drawRect
@@ -11296,10 +11296,10 @@ Generate a random uuid.
               y: 20 + (60 * index)
               width: 60
               height: 60
-      
+
       @name complement
       @methodOf Color#
-      
+
       @returns {Color} new color that is a copy of the calling color with its hue shifted by 180 degrees on the color wheel
       */
 
@@ -11308,18 +11308,18 @@ Generate a random uuid.
       },
       /**
       Modifies the calling color to make it the complement of its previous value.
-      
+
           red = Color(255, 0, 0)
-      
+
           # modifies red in place to make it into cyan
           red.complement$()
-      
+
           red.toString()
           # => 'rgba(0, 255, 255, 1)'
-      
+
       @name complement$
       @methodOf Color#
-      
+
       @returns {Color} the color hue shifted by 180 degrees on the color wheel. Modifies the existing color.
       */
 
@@ -11328,20 +11328,20 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color.
-      
+
           color = Color(0, 100, 200)
-      
+
           copy = color.copy()
-      
+
           color == copy
           # => false
-      
+
           color.equal(copy)
           # => true
-      
+
       @name copy
       @methodOf Color#
-      
+
       @returns {Color} A new color. A copy of the calling color
       */
 
@@ -11350,11 +11350,11 @@ Generate a random uuid.
       },
       /**
       Returns a copy of the calling color darkened by `amount` (Lightness of the color ranges from 0 to 1).
-      
+
           green = Color(0, 255, 0)
-      
+
           darkGreen = green.darken(0.3)
-      
+
           # to see what they look like
           for color, index in [green, darkGreen]
             canvas.drawRect
@@ -11363,11 +11363,11 @@ Generate a random uuid.
               y: 20 + (60 * index)
               width: 60
               height: 60
-      
+
       @name darken
       @methodOf Color#
       @param {Number} amount Amount to darken color by (between 0 - 1)
-      
+
       @returns {Color} A new color. The lightness value is reduced by `amount` from the original.
       */
 
@@ -11376,19 +11376,19 @@ Generate a random uuid.
       },
       /**
       Modifies the color so that it is darkened by `amount` (Lightness of the color ranges from 0 to 1).
-      
+
           green = Color(0, 255, 0)
-      
+
           # Modifies green to be darkGreen
           green.darken$(0.3)
-      
+
           green.toString()
           # => 'rgba(0, 102, 0, 1)'
-      
+
       @name darken$
       @methodOf Color#
       @param {Number} amount Amount to darken color by (between 0 - 1)
-      
+
       @returns {Color} the color with the lightness value reduced by `amount`
       */
 
@@ -11401,11 +11401,11 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color with its saturation reduced by `amount`.
-      
+
           blue = Color(0, 0, 255)
-      
+
           desaturatedBlue = blue.desaturate(0.4)
-      
+
           # to see what they look like
           for color, index in [blue, desaturatedBlue]
             canvas.drawRect
@@ -11414,11 +11414,11 @@ Generate a random uuid.
               y: 20 + (60 * index)
               width: 60
               height: 60
-      
+
       @name desaturate
       @methodOf Color#
       @param {Number} amount Amount to reduce color saturation by (between 0 and 1)
-      
+
       @returns {Color} A copy of the color with the saturation value reduced by `amount`
       */
 
@@ -11427,19 +11427,19 @@ Generate a random uuid.
       },
       /**
       The modified color with its saturation reduced by `amount`.
-      
+
           blue = Color(0, 0, 255)
-      
+
           # modifies blue to be desaturatedBlue
           blue.desaturate$(0.4)
-      
+
           blue.toString()
           # => 'rgba(38, 38, 217, 1)'
-      
+
       @name desaturate$
       @methodOf Color#
       @param {Number} amount Amount to reduce color saturation by (between 0 and 1)
-      
+
       @returns {Color} the color with the saturation value reduced by `amount`
       */
 
@@ -11452,20 +11452,20 @@ Generate a random uuid.
       },
       /**
       Determine whether two colors are equal. Compares their r, g, b, and alpha values.
-      
+
           hex = Color('#ffff00')
           rgb = Color(255, 255, 0)
-      
+
           hex == rgb
           # => false
-      
+
           hex.equal(rgb)
           # => true
-      
+
       @name equal
       @methodOf Color#
       @param {Color} other the color to compare to the calling color
-      
+
       @returns {Boolean} true if the r, g, b, a values of the colors agree, false otherwise
       */
 
@@ -11474,11 +11474,11 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color converted to grayscale.
-      
+
           yellow = Color(255, 255, 0)
-      
+
           gray = yellow.grayscale()
-      
+
           # to see what they look like
           for color, index in [yellow, gray]
             canvas.drawRect
@@ -11487,10 +11487,10 @@ Generate a random uuid.
               y: 20 + (60 * index)
               width: 60
               height: 60
-      
+
       @name grayscale
       @methodOf Color#
-      
+
       @returns {Color} A copy of the calling color converted to grayscale.
       */
 
@@ -11499,18 +11499,18 @@ Generate a random uuid.
       },
       /**
       The calling color converted to grayscale.
-      
+
           color = Color(255, 255, 0)
-      
+
           # modifies color into gray
           color.grayscale$()
-      
+
           color.toString()
           # => 'rgba(128, 128, 128, 1)'
-      
+
       @name grayscale$
       @methodOf Color#
-      
+
       @returns {Color} The calling color converted to grayscale.
       */
 
@@ -11524,15 +11524,15 @@ Generate a random uuid.
       /**
       A getter / setter for the hue value of the color. Passing no argument returns the
       current hue value. Passing a value will set the hue to that value and return the color.
-      
+
           magenta = Color(255, 0, 255)
-      
+
           magenta.hue()
           # => 300
-      
+
           # modifies the color to be yellow
           magenta.hue(60)
-      
+
           # to see what it looks like
           canvas.drawRect
             color: magenta
@@ -11540,11 +11540,11 @@ Generate a random uuid.
             y: 30
             width: 80
             height: 80
-      
+
       @name hue
       @methodOf Color#
       @param {Number} [newVal] the new hue value
-      
+
       @returns {Color|Number} returns the color object if you pass a new hue value and returns the hue otherwise
       */
 
@@ -11562,15 +11562,15 @@ Generate a random uuid.
       /**
       A getter / setter for the lightness value of the color. Passing no argument returns the
       current lightness value. Passing a value will set the lightness to that value and return the color.
-      
+
           magenta = Color(255, 0, 255)
-      
+
           magenta.lightness()
           # => 0.9
-      
+
           # modifies magenta in place to be lighter
           magenta.lightness(0.75)
-      
+
           # to see what it looks like
           canvas.drawRect
             color: magenta
@@ -11578,11 +11578,11 @@ Generate a random uuid.
             y: 30
             width: 80
             height: 80
-      
+
       @name lightness
       @methodOf Color#
       @param {Number} [newVal] the new lightness value
-      
+
       @returns {Color|Number} returns the color object if you pass a new lightness value and returns the lightness otherwise
       */
 
@@ -11610,19 +11610,19 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color with its hue shifted by `degrees`. This differs from the hue setter in that it adds to the existing hue value and will wrap around 0 and 360.
-      
+
           magenta = Color(255, 0, 255)
-      
+
           magenta.hue()
           # => 300
-      
+
           yellow = magenta.shiftHue(120)
-      
+
           # since magenta's hue is 300 we have wrapped
           # around 360 to end up at 60
           yellow.hue()
           # => 60
-      
+
           # to see what they look like
           for color, index in [magenta, yellow]
             canvas.drawRect
@@ -11631,11 +11631,11 @@ Generate a random uuid.
               y: 20 + (60 * index)
               width: 60
               height: 60
-      
+
       @name shiftHue
       @methodOf Color#
       @param {Number} degrees number of degrees to shift the hue on the color wheel.
-      
+
       @returns {Color} A copy of the color with its hue shifted by `degrees`
       */
 
@@ -11644,27 +11644,27 @@ Generate a random uuid.
       },
       /**
       The calling color with its hue shifted by `degrees`. This differs from the hue setter in that it adds to the existing hue value and will wrap around 0 and 360.
-      
+
           magenta = Color(255, 0, 255)
-      
+
           magenta.hue()
           # => 300
-      
+
           magenta.shiftHue$(120)
-      
+
           # since magenta's hue is 300 we have wrapped
           # around 360 to end up at 60. Also we have
           # modified magenta in place to become yellow
           magenta.hue()
           # => 60
-      
+
           magenta.toString()
           # => 'rgba(255, 255, 0, 1)'
-      
+
       @name shiftHue$
       @methodOf Color#
       @param {Number} degrees number of degrees to shift the hue on the color wheel.
-      
+
       @returns {Color} The color with its hue shifted by `degrees`
       */
 
@@ -11677,11 +11677,11 @@ Generate a random uuid.
       },
       /**
       Returns a copy of the calling color lightened by `amount` (Lightness of the color ranges from 0 to 1).
-      
+
           green = Color(0, 255, 0)
-      
+
           lightGreen = green.lighten(0.3)
-      
+
           # to see what they look like
           for color, index in [green, lightGreen]
             canvas.drawRect
@@ -11690,11 +11690,11 @@ Generate a random uuid.
               y: 20 + (60 * index)
               width: 60
               height: 60
-      
+
       @name lighten
       @methodOf Color#
       @param {Number} amount Amount to lighten color by (between 0 to 1)
-      
+
       @returns {Color} A new color. The lightness value is increased by `amount` from the original.
       */
 
@@ -11703,20 +11703,20 @@ Generate a random uuid.
       },
       /**
       The calling color lightened by `amount` (Lightness of the color ranges from 0 to 1).
-      
+
           green = Color(0, 255, 0)
-      
+
           green.lighten$(0.2)
-      
+
           # we have modified green in place
           # to become lightGreen
           green.toString()
           # => 'rgba(102, 255, 102, 1)'
-      
+
       @name lighten$
       @methodOf Color#
       @param {Number} amount Amount to lighten color by (between 0 - 1)
-      
+
       @returns {Color} The calling color with its lightness value increased by `amount`.
       */
 
@@ -11730,16 +11730,16 @@ Generate a random uuid.
       /**
       A copy of the calling color mixed with `other` using `amount` as the
       mixing ratio. If amount is not passed, then the colors are mixed evenly.
-      
+
           red = Color(255, 0, 0)
           yellow = Color(255, 255, 0)
-      
+
           # With no amount argument the colors are mixed evenly
           orange = red.mixWith(yellow)
-      
+
           # With an amount of 0.3 we are mixing the color 30% red and 70% yellow
           somethingCloseToOrange = red.mixWith(yellow, 0.3)
-      
+
           # to see what they look like
           for color, index in [red, yellow, orange, somethingCloseToOrange]
             canvas.drawRect
@@ -11748,12 +11748,12 @@ Generate a random uuid.
               y: 20 + (60 * (if index > 1 then 1 else 0))
               width: 60
               height: 60
-      
+
       @name mixWith
       @methodOf Color#
       @param {Color} other the other color to mix
       @param {Number} [amount] the mixing ratio of the calling color to `other`
-      
+
       @returns {Color} A new color that is a mix of the calling color and `other`
       */
 
@@ -11763,30 +11763,30 @@ Generate a random uuid.
       /**
       A copy of the calling color mixed with `other` using `amount` as the
       mixing ratio. If amount is not passed, then the colors are mixed evenly.
-      
+
           red = Color(255, 0, 0)
           yellow = Color(255, 255, 0)
           anotherRed = Color(255, 0, 0)
-      
+
           # With no amount argument the colors are mixed evenly
           red.mixWith$(yellow)
-      
+
           # We have modified red in place to be orange
           red.toString()
           # => 'rgba(255, 128, 0, 1)'
-      
+
           # With an amount of 0.3 we are mixing the color 30% red and 70% yellow
           anotherRed.mixWith$(yellow, 0.3)
-      
+
           # We have modified `anotherRed` in place to be somethingCloseToOrange
           anotherRed.toString()
           # => rgba(255, 179, 0, 1)
-      
+
       @name mixWith$
       @methodOf Color#
       @param {Color} other the other color to mix
       @param {Number} [amount] the mixing ratio of the calling color to `other`
-      
+
       @returns {Color} The modified calling color after mixing it with `other`
       */
 
@@ -11803,17 +11803,17 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color with its saturation increased by `amount`.
-      
+
           color = Color(50, 50, 200)
-      
+
           color.saturation()
           # => 0.6
-      
+
           saturatedColor = color.saturate(0.2)
-      
+
           saturatedColor.saturation()
           # => 0.8
-      
+
           # to see what they look like
           for color, index in [color, saturatedColor]
             canvas.drawRect
@@ -11822,11 +11822,11 @@ Generate a random uuid.
               y: 20 + (60 * index)
               width: 60
               height: 60
-      
+
       @name saturate
       @methodOf Color#
       @param {Number} amount the amount to increase saturation by
-      
+
       @returns {Color} A copy of the calling color with its saturation increased by `amount`
       */
 
@@ -11835,25 +11835,25 @@ Generate a random uuid.
       },
       /**
       The calling color with its saturation increased by `amount`.
-      
+
           color = Color(50, 50, 200)
-      
+
           color.saturation()
           # => 0.6
-      
+
           color.saturate$(0.2)
-      
+
           # We have modified color in place and increased its saturation to 0.8
           color.saturation()
           # => 0.8
-      
+
           color.toString()
           # => rgba(25, 25, 225, 1)
-      
+
       @name saturate$
       @methodOf Color#
       @param {Number} amount the amount to increase saturation by
-      
+
       @returns {Color} The calling color with its saturation increased by `amount`
       */
 
@@ -11867,14 +11867,14 @@ Generate a random uuid.
       /**
       A getter / setter for the saturation value of the color. Passing no argument returns the
       current saturation value. Passing a value will set the saturation to that value and return the color.
-      
+
           yellow = Color('hsl(60, 0.5, 0.5)')
-      
+
           yellow.saturation()
           # => 0.5
-      
+
           yellow.saturation(0.8)
-      
+
           # to see what it looks like
           canvas.drawRect
             color: yellow
@@ -11882,11 +11882,11 @@ Generate a random uuid.
             y: 30
             width: 80
             height: 80
-      
+
       @name saturation
       @methodOf Color#
       @param {Number} [newVal] the new saturation value
-      
+
       @returns {Color|Number} returns the color object if you pass a new saturation value and returns the saturation otherwise
       */
 
@@ -11914,21 +11914,21 @@ Generate a random uuid.
       },
       /**
       returns the Hex representation of the color. Exclude the leading `#` by passing false.
-      
+
           color = Color('hsl(60, 1, 0.5)')
-      
+
           # passing nothing will leave the `#` intact
           color.toHex()
           # => '#ffff00'
-      
+
           # passing false will remove the `#`
           color.toHex(false)
           # => 'ffff00'
-      
+
       @name toHex
       @methodOf Color#
       @param {Boolean} [leadingHash] if passed as false excludes the leading `#` from the string
-      
+
       @returns {String} returns the Hex representation of the color
       */
 
@@ -11954,15 +11954,15 @@ Generate a random uuid.
       },
       /**
       returns an array of the hue, saturation, lightness, and alpha values of the color.
-      
+
           magenta = Color(255, 0, 255)
-      
+
           magenta.toHsl()
           # => [300, 1, 0.5, 1]
-      
+
       @name toHsl
       @methodOf Color#
-      
+
       @returns {Array} An array of the hue, saturation, lightness, and alpha values of the color.
       */
 
@@ -12028,15 +12028,15 @@ Generate a random uuid.
       },
       /**
       returns string rgba representation of the color.
-      
+
           red = Color('#ff0000')
-      
+
           red.toString()
           # => 'rgba(255, 0, 0, 1)'
-      
+
       @name toString
       @methodOf Color#
-      
+
       @returns {String} The rgba string representation of the color
       */
 
@@ -12045,17 +12045,17 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color with its alpha reduced by `amount`.
-      
+
           color = Color(0, 0, 0, 1)
-      
+
           color.a
           # => 1
-      
+
           transparentColor = color.transparentize(0.5)
-      
+
           transparentColor.a
           # => 0.5
-      
+
           # to see what they look like
           for color, index in [color, transparentColor]
             canvas.drawRect
@@ -12064,10 +12064,10 @@ Generate a random uuid.
               y: 20 + (60 * index)
               width: 60
               height: 60
-      
+
       @name transparentize
       @methodOf Color#
-      
+
       @returns {Color} A copy of the calling color with its alpha reduced by `amount`
       */
 
@@ -12076,21 +12076,21 @@ Generate a random uuid.
       },
       /**
       The calling color with its alpha reduced by `amount`.
-      
+
           color = Color(0, 0, 0, 1)
-      
+
           color.a
           # => 1
-      
+
           # We modify color in place
           color.transparentize$(0.5)
-      
+
           color.a
           # => 0.5
-      
+
       @name transparentize$
       @methodOf Color#
-      
+
       @returns {Color} The calling color with its alpha reduced by `amount`
       */
 
@@ -12100,17 +12100,17 @@ Generate a random uuid.
       },
       /**
       A copy of the calling color with its alpha increased by `amount`.
-      
+
           color = Color(0, 0, 0, 0.25)
-      
+
           color.a
           # => 0.25
-      
+
           opaqueColor = color.opacify(0.5)
-      
+
           opaqueColor.a
           # => 0.75
-      
+
           # to see what they look like
           for color, index in [color, opaqueColor]
             canvas.drawRect
@@ -12119,10 +12119,10 @@ Generate a random uuid.
               y: 20 + (60 * index)
               width: 60
               height: 60
-      
+
       @name opacify
       @methodOf Color#
-      
+
       @returns {Color} A copy of the calling color with its alpha increased by `amount`
       */
 
@@ -12131,21 +12131,21 @@ Generate a random uuid.
       },
       /**
       The calling color with its alpha increased by `amount`.
-      
+
           color = Color(0, 0, 0, 0)
-      
+
           color.a
           # => 0
-      
+
           # We modify color in place
           color.opacify$(0.25)
-      
+
           color.a
           # => 0.25
-      
+
       @name opacify$
       @methodOf Color#
-      
+
       @returns {Color} The calling color with its alpha increased by `amount`
       */
 
@@ -12156,16 +12156,16 @@ Generate a random uuid.
     };
     /**
     returns a random color.
-    
+
         Color.random().toString()
         # => 'rgba(213, 144, 202, 1)'
-    
+
         Color.random().toString()
         # => 'rgba(1, 211, 24, 1)'
-    
+
     @name random
     @methodOf Color
-    
+
     @returns {Color} A random color.
     */
 
@@ -12174,29 +12174,29 @@ Generate a random uuid.
     };
     /**
     Mix two colors. Behaves just like `#mixWith` except that you are passing two colors.
-    
+
         red = Color(255, 0, 0)
         yellow = Color(255, 255, 0)
-    
+
         # With no amount argument the colors are mixed evenly
         orange = Color.mix(red, yellow)
-    
+
         orange.toString()
         # => 'rgba(255, 128, 0, 1)'
-    
+
         # With an amount of 0.3 we are mixing the color 30% red and 70% yellow
         somethingCloseToOrange = Color.mix(red, yellow, 0.3)
-    
+
         somethingCloseToOrange.toString()
         # => rgba(255, 179, 0, 1)
-    
+
     @name mix
     @methodOf Color
     @see Color#mixWith
     @param {Color} color1 the first color to mix
     @param {Color} color2 the second color to mix
     @param {Number} amount the ratio to mix the colors
-    
+
     @returns {Color} A new color that is the two colors mixed at the ratio defined by `amount`
     */
 
@@ -13200,7 +13200,7 @@ Simple jQuery constructor wrappers for common elements.
           var context, maxDimension;
           context = document.createElement('canvas').getContext('2d');
           maxDimension = 256;
-          return Image({
+          img = Image({
             load: function() {
               var getColor, imageData;
               if (this.width * this.height < maxDimension * maxDimension) {
@@ -13219,9 +13219,16 @@ Simple jQuery constructor wrappers for common elements.
               } else {
                 alert("This image is too big for our editor to handle, try " + maxDimension + "x" + maxDimension + " and smaller");
               }
-            },
-            src: dataURL
-          });
+            }
+          }).get(0);
+
+          if(dataURL.startsWith("data:")) {
+            // Do Nothing
+          } else {
+            img.crossOrigin = "";
+          }
+
+          img.src = dataURL;
         },
         getNeighbors: function(x, y) {
           return [this.getPixel(x + 1, y), this.getPixel(x, y + 1), this.getPixel(x - 1, y), this.getPixel(x, y - 1)];
