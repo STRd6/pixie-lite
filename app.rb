@@ -2,7 +2,7 @@ require "coffee-script"
 require "digest/sha1"
 require "haml"
 require "fog"
-require "pry"
+require "pry" if ENV["RACK_ENV"] == "development"
 require "sinatra"
 require "tempfile"
 
