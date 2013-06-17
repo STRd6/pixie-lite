@@ -1,0 +1,581 @@
+/* Styles common to all editors and editor components (pixel, animation, etc.) */
+/* line 12, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/pixie_sass-9c4f7df796b0/lib/stylesheets/pixie/util/_contents_centered.sass */
+.contents_centered {
+  position: relative; }
+  /* line 4, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/pixie_sass-9c4f7df796b0/lib/stylesheets/pixie/util/_contents_centered.sass */
+  .contents_centered > * {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; }
+
+/* TODO: shouldn't apply this to all html, body elements */
+/* line 9, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+html, body {
+  height: 100%;
+  margin: 0;
+  min-height: 100%;
+  padding: 0; }
+
+/* line 15, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+ul {
+  padding-left: 0; }
+
+/* line 18, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+li {
+  list-style: none;
+  padding-left: 0; }
+
+/* TODO: Clean up and remove a bunch of this */
+/* line 23, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+#fullscreen {
+  height: 100%; }
+  /* line 26, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  #fullscreen header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0; }
+  /* line 32, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  #fullscreen nav.bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; }
+  /* line 38, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  #fullscreen nav.left {
+    left: 0;
+    position: absolute;
+    top: 0; }
+  /* line 43, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  #fullscreen nav.right {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    right: 0;
+    position: absolute;
+    top: 0; }
+  /* line 50, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  #fullscreen section {
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+    /* line 54, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+    #fullscreen section .screen {
+      width: 100%;
+      height: 100%;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: auto;
+      overflow: auto;
+      position: relative; }
+
+/* This is the real base editor style */
+/* line 64, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+.editor {
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 6px;
+  padding-top: 8px; }
+  /* line 71, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  .editor.json_editor {
+    padding: 0; }
+    /* line 74, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+    .editor.json_editor .module {
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      -ms-border-radius: 0;
+      -o-border-radius: 0;
+      border-radius: 0;
+      background-color: rgba(0, 0, 0, 0.3);
+      border: none;
+      height: 100%;
+      padding: 0.5em; }
+  /* line 82, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  .editor .cursor_position {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.05) 0 1px 1px inset;
+    -moz-box-shadow: rgba(0, 0, 0, 0.05) 0 1px 1px inset;
+    box-shadow: rgba(0, 0, 0, 0.05) 0 1px 1px inset;
+    font-size: 12px;
+    padding: 4px;
+    margin-bottom: 10px;
+    background-color: whitesmoke;
+    border: 1px solid #eeeeee;
+    border: 1px solid rgba(0, 0, 0, 0.1); }
+  /* line 93, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  #fullscreen > .editor {
+    padding: 0; }
+  /* line 96, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  .editor .content {
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative; }
+  /* line 102, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  .editor .module {
+    padding: 10px;
+    position: absolute; }
+    /* line 106, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+    .editor .module.bottom {
+      bottom: 0; }
+    /* line 108, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+    .editor .module.left {
+      left: 0;
+      top: 0; }
+    /* line 111, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+    .editor .module.right {
+      right: 0;
+      top: 0; }
+    /* line 114, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+    .editor .module.top {
+      top: 0; }
+  /* line 117, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  .editor button {
+    font-size: 13px; }
+  /* line 120, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  .editor .screen, .editor .viewport {
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative; }
+    /* line 4, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/pixie_sass-9c4f7df796b0/lib/stylesheets/pixie/util/_contents_centered.sass */
+    .editor .screen > *, .editor .viewport > * {
+      margin: auto;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0; }
+
+/* line 125, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+.module {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/* line 130, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+table.properties td img {
+  display: inline-block;
+  max-width: 24px;
+  max-height: 24px;
+  vertical-align: middle;
+  padding-left: 1em;
+  padding-top: 1px; }
+/* line 139, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+table.properties td:first-child input {
+  border-right: 1px dashed rgba(0, 0, 0, 0.3); }
+/* line 142, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+table.properties input, table.properties textarea {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  margin: 0;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.3); }
+  /* line 150, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  table.properties input:first-child, table.properties textarea:first-child {
+    vertical-align: top; }
+/* line 153, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+table.properties label {
+  margin: 0; }
+
+/* line 156, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+table.nested {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  padding-left: 1em; }
+  /* line 164, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  table.nested td:first-child input {
+    border-right: 1px dashed rgba(0, 0, 0, 0.3); }
+  /* line 167, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/EditorBase-769429b0dbab/lib/assets/stylesheets/pixie/editor_base.css.sass */
+  table.nested td:last-child input {
+    border-right: none; }
+
+/* line 12, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/pixie_sass-9c4f7df796b0/lib/stylesheets/pixie/util/_contents_centered.sass */
+.contents_centered {
+  position: relative; }
+  /* line 4, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/pixie_sass-9c4f7df796b0/lib/stylesheets/pixie/util/_contents_centered.sass */
+  .contents_centered > * {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; }
+
+/* line 12, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+header.navbar-fixed-top .navbar-inner .container {
+  width: auto;
+  margin: 0 10px; }
+
+/* line 16, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+.editor.pixie {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 0; }
+
+/* line 20, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+.pixie {
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+  /* line 28, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+  .pixie .content {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 100%;
+    padding-left: 50px;
+    padding-right: 150px;
+    padding-top: 34px;
+    position: relative; }
+    /* line 39, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+    .pixie .content .cursor_position {
+      bottom: 0;
+      left: 62px;
+      position: absolute; }
+  /* line 44, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+  .pixie .module.left {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+    width: 50px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: none;
+    padding: 0; }
+    /* line 52, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+    .pixie .module.left .tool {
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      border-radius: 3px;
+      width: 40px;
+      height: 40px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0 inset;
+      -moz-box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0 inset;
+      box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0 inset;
+      background-position: center;
+      background-repeat: no-repeat;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      margin: 5px auto 0;
+      padding-top: 9px;
+      text-align: center; }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .module.left .tool[data-tool=brush] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAAKBJREFUeJytkrsRgzAQRFeME6UXXwVUogKoRB2JmAagEEqBcB0ge/Dw0cm2ZpTd7tuTFqg/zBcA0NSKkwg6719G1WJSlUnkI4XZgCGQql+tQKoCbYt+WWrB2SDGA92aYKMD/6dbEjCJAPP8A73wbe5OnAuDYV1LsyfkEMgYi4W5ciW56Zxzt/THBR2YJmAcbXn34s77d+dh6Ps+2tlw8eGedfBU8rnbDOMAAAAASUVORK5CYII='); }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .module.left .tool[data-tool=dropper] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAAH1JREFUeJztjrsNhDAUBIfLTOiYsiClCHdEDUT0Q0rscElY3QkJOD4hI1nye/aOFm5S/Ny1sd/l43AdAqoq6hDWsr8aqIsRgLYsKcbRbzpq4wb0OQPQTJNXh+E18ulilFLyfBopJZmzEn+WhuGy5NvklWxKrgpYgrclFj3DDPqoerGlCYunAAAAAElFTkSuQmCC'); }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .module.left .tool[data-tool=eraser] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAAIdJREFUeJzNUsERwCAIw15n031wDt0Hl0s/9VoF9NnmZzRBCERfI2zusdOtDABmopRGVoRCrdviADNMiADM6L873Mql2NYiw3E2WItzVi2dSuw8JBHNvQyegcU4vmjNFesWZrHFTSlYQ/RhRDgatKZFnXPy7zMIoVaYa3fH5i3PTHira4r/gQv1W1E4p9FksQAAAABJRU5ErkJggg=='); }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .module.left .tool[data-tool=fill] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAARBJREFUeJyVUjuygkAQ7K16yRCOKSfwIm5ihilyBT0IZxBTXmZEyB0sT0AqoRv2C4B9/C2mimI/0z3dM2uwHOytzUreV/DcfhN4leBnI9Ek5rwRADJVPJwDABxFcK7rpfwpQabKSIQtGSMR0tpuv6qAkQjy3Q6mqkBrgculuSmKBpCmA1y/B8xUEScJ7rcbMlWcyhI5AOz3wOHg/Zk05bg4M1XSWv/n9eqtMAz9GYtiYGUyhThJmsXrhTgIAACn9xvo1LRK5gmez+Zr4/754OEcjiINUVki73oyIjDnuiYAX7UPjoMApqrGYmeDkYj3nqmSYdj3/LUH5te5wazbyv8db8fp75eULORw5mxTTF7iH1IhgqMoN2UVAAAAAElFTkSuQmCC'); }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .module.left .tool[data-tool=mirror_pencil] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAQCAYAAAD0xERiAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBNUU0NEE3OTBFQTkxMUUyQjdGN0U5RkIyNTFCOEM5RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBNUU0NEE3QTBFQTkxMUUyQjdGN0U5RkIyNTFCOEM5RCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkE1RTQ0QTc3MEVBOTExRTJCN0Y3RTlGQjI1MUI4QzlEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkE1RTQ0QTc4MEVBOTExRTJCN0Y3RTlGQjI1MUI4QzlEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+tUdsywAAAShJREFUeNqcVDESgjAQXBgbLal5gQ/wCUhj51DiG/RFSu0D5AvWjs+whDJmL4lGiMHxZhjI3e7mbgkkMKHwGQmmY8RJmdzO5zhlGVRZyj0AHAn5ePKZoxg2elEvFsByiXq1wi8hOOI1b2PEkH4g7ncBTHQnXREn+GFRt6lUnpurbZU6HFRMjHXBWQ75Pp67mWJZCpDrgKDBUYg4jfdx6Wjf2w1o26/eSV7XBTcIJ5bsHg80XRfzbuQV8eS5ozQL7d5crwCvUO14NB3y7f9wfox3zmTtjZhuvZT8wCsXwc5QVcB6DRSFWV8uwH7/XjNshyHP4Hsn4Yg027/bvO/V5Lgylh7JjSPjc0Q7dogUU1b2m8O57+E/f+OlEbHEEl8RE/rnVxPFPwUYACNCuNaNhFZKAAAAAElFTkSuQmCC'); }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .module.left .tool[data-tool=pencil] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAANdJREFUeJyNkrERgzAQBA+PExQqVgUUQAmMEmfEuAZUERC7AfXBUAYhhOdAeGwjCekSzQe/96f/AmnxVBe/xS3VPEoJao1RSrRl6QFTAHR1DVQVOiHwcIA/XQE4SglUFbAsKZ8wgMaQ1pJKkUqxLUvC/5Oou2vWmlSKo5TB5miErq4Ba4F5vnQKAbzs07bhua7AaYUAcI+Rp2FwkwhxOYHnTq1ddmMus8cn6Hugab71MUlM/h9Y694DEssek1ufMaTWWTs/k3ncO177nuUcvIPc5pCyT/WjN8gJXnXUUXMQAAAAAElFTkSuQmCC'); }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .module.left .tool[data-tool=zoom_in] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBNUU0NEE3RDBFQTkxMUUyQjdGN0U5RkIyNTFCOEM5RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBNUU0NEE3RTBFQTkxMUUyQjdGN0U5RkIyNTFCOEM5RCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkE1RTQ0QTdCMEVBOTExRTJCN0Y3RTlGQjI1MUI4QzlEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkE1RTQ0QTdDMEVBOTExRTJCN0Y3RTlGQjI1MUI4QzlEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+QcR+8wAAATpJREFUeNqUUjtOw0AQfYuWngqJhiZpQApVLkAsUtDF5hI5AVwBLhB6KFOkCoojSkoa0+ICCpCokCXHEo407M5mwcTJLnnSSDuanTefN4KIoCGEMI8lqLiAA9ImF70OqHkEeXKq0zCP74A04ZiPRCUHlGUZG2crs34RBmQaIayyLWZotnQlNgvrU6MFH+grnvxUXrZyGvs7qFauL9FdnQnKeIw8z9ksrD9XMS8BnpP1P9LEKbPWyMgYBrwwLaMeqJyOIdInDF/eoCccvb5j+PFZvwu7jHVLPNvdoZv2Ac16HbptH9YWKl0Xx20vGleiIjruItrf+3Nc0qmv+sQkwhCEik32zzFbjK3j0nsklsR4iK6vsN2/QGEOjbwEVRKzKjXK4JKvF7jHvwhWdTJ6ePyVcRNU70GTfgswACWo5anvVUBnAAAAAElFTkSuQmCC'); }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .module.left .tool[data-tool=zoom_out] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozNjc3NTY3MzBFQkIxMUUyOUExRjkyMUREQzFFN0E2RSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozNjc3NTY3NDBFQkIxMUUyOUExRjkyMUREQzFFN0E2RSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjM2Nzc1NjcxMEVCQjExRTI5QTFGOTIxRERDMUU3QTZFIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjM2Nzc1NjcyMEVCQjExRTI5QTFGOTIxRERDMUU3QTZFIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+utIHXwAAAUNJREFUeNqUUrFOwzAQfU7NzoTEwkIXkMrUAUZawcCWhp/oF4DEwAw/ACuCsRKdikjFyMgSVjLAABITS1qJFB32uRZBiR046WTZd/d89+4FRATtyqjKbdzlUlcKIWgadkDNDcidPa6dxTdAmnBMmYDDpCnuIr+45gdqNPj82tzicypCL0jARc2WTmK3Zu+02kKd0Wd8Sy4O8nHs5SKwvznRyf87k5jHI2RZVpkwOz7yAnAHeErcGWliOansRdNr1tjrMmF6jXqgfDyCSB8xeH6FnnD48obB+wdK26gT0v7SIl2212gSduiqvV4iVBaASkxy2/PG1VIRbe8iWln+pQvp3a9KYhBhAHoKTfYPMJmPreOyViQWxNwQnZ9ioX+oFMpCo1qAIoihSo1ydsLqBe7wJ4CqTob3Dz9r/I8V9aBBvwUYAG24273Cu/axAAAAAElFTkSuQmCC'); }
+      /* line 75, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+      .pixie .module.left .tool:hover {
+        background-color: rgba(255, 255, 255, 0.1); }
+      /* line 78, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+      .pixie .module.left .tool.active {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        border-radius: 3px;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 0 3px inset;
+        -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 0 3px inset;
+        box-shadow: rgba(0, 0, 0, 0.5) 0 0 3px inset;
+        background-color: rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(0, 0, 0, 0.4); }
+  /* line 85, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+  .pixie .module.right {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+    width: 150px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: none;
+    padding: 1em; }
+    /* line 93, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+    .pixie .module.right hr {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.15); }
+    /* line 98, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+    .pixie .module.right .preview {
+      width: 150px;
+      height: 150px;
+      background-color: white;
+      border: 1px solid #aaaaaa;
+      cursor: pointer;
+      margin: auto; }
+    /* line 106, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+    .pixie .module.right .swatches {
+      margin: 1em auto;
+      width: 86px; }
+    /* line 110, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+    .pixie .module.right .swatch {
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      -ms-border-radius: 2px;
+      -o-border-radius: 2px;
+      border-radius: 2px;
+      width: 40px;
+      height: 40px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      display: -moz-inline-stack;
+      display: inline-block;
+      vertical-align: middle;
+      *vertical-align: auto;
+      zoom: 1;
+      *display: inline;
+      cursor: pointer;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      margin-bottom: 6px; }
+      /* line 120, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+      .pixie .module.right .swatch:nth-child(even) {
+        margin-left: 6px; }
+    /* line 123, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+    .pixie .module.right .color_picker_holder {
+      width: 74px;
+      height: 76px;
+      margin: auto;
+      margin-bottom: 2em;
+      position: relative; }
+      /* line 130, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+      .pixie .module.right .color_picker_holder input.color {
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        -o-border-radius: 4px;
+        border-radius: 4px;
+        width: 50px;
+        height: 50px;
+        border: 2px solid;
+        border-color: rgba(255, 255, 255, 0.4);
+        position: absolute;
+        text-align: center; }
+        /* line 139, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+        .pixie .module.right .color_picker_holder input.color.primary {
+          left: 0;
+          top: 0;
+          z-index: 2; }
+        /* line 143, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+        .pixie .module.right .color_picker_holder input.color.secondary {
+          left: 20px;
+          top: 20px;
+          z-index: 1; }
+  /* line 148, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+  .pixie .canvas {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid black; }
+    /* line 6, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+    .pixie .canvas[data-tool=pencil] {
+      cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAANdJREFUeJyNkrERgzAQBA+PExQqVgUUQAmMEmfEuAZUERC7AfXBUAYhhOdAeGwjCekSzQe/96f/AmnxVBe/xS3VPEoJao1RSrRl6QFTAHR1DVQVOiHwcIA/XQE4SglUFbAsKZ8wgMaQ1pJKkUqxLUvC/5Oou2vWmlSKo5TB5miErq4Ba4F5vnQKAbzs07bhua7AaYUAcI+Rp2FwkwhxOYHnTq1ddmMus8cn6Hugab71MUlM/h9Y694DEssek1ufMaTWWTs/k3ncO177nuUcvIPc5pCyT/WjN8gJXnXUUXMQAAAAAElFTkSuQmCC') 4 14, default; }
+    /* line 6, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+    .pixie .canvas[data-tool=dropper] {
+      cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAAH1JREFUeJztjrsNhDAUBIfLTOiYsiClCHdEDUT0Q0rscElY3QkJOD4hI1nye/aOFm5S/Ny1sd/l43AdAqoq6hDWsr8aqIsRgLYsKcbRbzpq4wb0OQPQTJNXh+E18ulilFLyfBopJZmzEn+WhuGy5NvklWxKrgpYgrclFj3DDPqoerGlCYunAAAAAElFTkSuQmCC') 13 13, default; }
+    /* line 6, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+    .pixie .canvas[data-tool=mirror_pencil] {
+      cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAQCAYAAAD0xERiAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBNUU0NEE3OTBFQTkxMUUyQjdGN0U5RkIyNTFCOEM5RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBNUU0NEE3QTBFQTkxMUUyQjdGN0U5RkIyNTFCOEM5RCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkE1RTQ0QTc3MEVBOTExRTJCN0Y3RTlGQjI1MUI4QzlEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkE1RTQ0QTc4MEVBOTExRTJCN0Y3RTlGQjI1MUI4QzlEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+tUdsywAAAShJREFUeNqcVDESgjAQXBgbLal5gQ/wCUhj51DiG/RFSu0D5AvWjs+whDJmL4lGiMHxZhjI3e7mbgkkMKHwGQmmY8RJmdzO5zhlGVRZyj0AHAn5ePKZoxg2elEvFsByiXq1wi8hOOI1b2PEkH4g7ncBTHQnXREn+GFRt6lUnpurbZU6HFRMjHXBWQ75Pp67mWJZCpDrgKDBUYg4jfdx6Wjf2w1o26/eSV7XBTcIJ5bsHg80XRfzbuQV8eS5ozQL7d5crwCvUO14NB3y7f9wfox3zmTtjZhuvZT8wCsXwc5QVcB6DRSFWV8uwH7/XjNshyHP4Hsn4Yg027/bvO/V5Lgylh7JjSPjc0Q7dogUU1b2m8O57+E/f+OlEbHEEl8RE/rnVxPFPwUYACNCuNaNhFZKAAAAAElFTkSuQmCC') 9 14, default; }
+    /* line 6, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+    .pixie .canvas[data-tool=brush] {
+      cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAAKBJREFUeJytkrsRgzAQRFeME6UXXwVUogKoRB2JmAagEEqBcB0ge/Dw0cm2ZpTd7tuTFqg/zBcA0NSKkwg6719G1WJSlUnkI4XZgCGQql+tQKoCbYt+WWrB2SDGA92aYKMD/6dbEjCJAPP8A73wbe5OnAuDYV1LsyfkEMgYi4W5ciW56Zxzt/THBR2YJmAcbXn34s77d+dh6Ps+2tlw8eGedfBU8rnbDOMAAAAASUVORK5CYII=') 4 14, default; }
+    /* line 6, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+    .pixie .canvas[data-tool=eraser] {
+      cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAAIdJREFUeJzNUsERwCAIw15n031wDt0Hl0s/9VoF9NnmZzRBCERfI2zusdOtDABmopRGVoRCrdviADNMiADM6L873Mql2NYiw3E2WItzVi2dSuw8JBHNvQyegcU4vmjNFesWZrHFTSlYQ/RhRDgatKZFnXPy7zMIoVaYa3fH5i3PTHira4r/gQv1W1E4p9FksQAAAABJRU5ErkJggg==') 4 11, default; }
+    /* line 6, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+    .pixie .canvas[data-tool=fill] {
+      cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAARBJREFUeJyVUjuygkAQ7K16yRCOKSfwIm5ihilyBT0IZxBTXmZEyB0sT0AqoRv2C4B9/C2mimI/0z3dM2uwHOytzUreV/DcfhN4leBnI9Ek5rwRADJVPJwDABxFcK7rpfwpQabKSIQtGSMR0tpuv6qAkQjy3Q6mqkBrgculuSmKBpCmA1y/B8xUEScJ7rcbMlWcyhI5AOz3wOHg/Zk05bg4M1XSWv/n9eqtMAz9GYtiYGUyhThJmsXrhTgIAACn9xvo1LRK5gmez+Zr4/754OEcjiINUVki73oyIjDnuiYAX7UPjoMApqrGYmeDkYj3nqmSYdj3/LUH5te5wazbyv8db8fp75eULORw5mxTTF7iH1IhgqMoN2UVAAAAAElFTkSuQmCC') 12 13, default; }
+    /* line 6, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+    .pixie .canvas[data-tool=zoom_in] {
+      cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBNUU0NEE3RDBFQTkxMUUyQjdGN0U5RkIyNTFCOEM5RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBNUU0NEE3RTBFQTkxMUUyQjdGN0U5RkIyNTFCOEM5RCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkE1RTQ0QTdCMEVBOTExRTJCN0Y3RTlGQjI1MUI4QzlEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkE1RTQ0QTdDMEVBOTExRTJCN0Y3RTlGQjI1MUI4QzlEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+QcR+8wAAATpJREFUeNqUUjtOw0AQfYuWngqJhiZpQApVLkAsUtDF5hI5AVwBLhB6KFOkCoojSkoa0+ICCpCokCXHEo407M5mwcTJLnnSSDuanTefN4KIoCGEMI8lqLiAA9ImF70OqHkEeXKq0zCP74A04ZiPRCUHlGUZG2crs34RBmQaIayyLWZotnQlNgvrU6MFH+grnvxUXrZyGvs7qFauL9FdnQnKeIw8z9ksrD9XMS8BnpP1P9LEKbPWyMgYBrwwLaMeqJyOIdInDF/eoCccvb5j+PFZvwu7jHVLPNvdoZv2Ac16HbptH9YWKl0Xx20vGleiIjruItrf+3Nc0qmv+sQkwhCEik32zzFbjK3j0nsklsR4iK6vsN2/QGEOjbwEVRKzKjXK4JKvF7jHvwhWdTJ6ePyVcRNU70GTfgswACWo5anvVUBnAAAAAElFTkSuQmCC') 4 4, default; }
+    /* line 6, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+    .pixie .canvas[data-tool=zoom_out] {
+      cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozNjc3NTY3MzBFQkIxMUUyOUExRjkyMUREQzFFN0E2RSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozNjc3NTY3NDBFQkIxMUUyOUExRjkyMUREQzFFN0E2RSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjM2Nzc1NjcxMEVCQjExRTI5QTFGOTIxRERDMUU3QTZFIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjM2Nzc1NjcyMEVCQjExRTI5QTFGOTIxRERDMUU3QTZFIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+utIHXwAAAUNJREFUeNqUUrFOwzAQfU7NzoTEwkIXkMrUAUZawcCWhp/oF4DEwAw/ACuCsRKdikjFyMgSVjLAABITS1qJFB32uRZBiR046WTZd/d89+4FRATtyqjKbdzlUlcKIWgadkDNDcidPa6dxTdAmnBMmYDDpCnuIr+45gdqNPj82tzicypCL0jARc2WTmK3Zu+02kKd0Wd8Sy4O8nHs5SKwvznRyf87k5jHI2RZVpkwOz7yAnAHeErcGWliOansRdNr1tjrMmF6jXqgfDyCSB8xeH6FnnD48obB+wdK26gT0v7SIl2212gSduiqvV4iVBaASkxy2/PG1VIRbe8iWln+pQvp3a9KYhBhAHoKTfYPMJmPreOyViQWxNwQnZ9ioX+oFMpCo1qAIoihSo1ydsLqBe7wJ4CqTob3Dz9r/I8V9aBBvwUYAG24273Cu/axAAAAAElFTkSuQmCC') 4 4, default; }
+  /* line 163, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+  .pixie .viewport {
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    background: none;
+    display: inline-block;
+    overflow: auto;
+    position: relative; }
+    /* line 4, /Users/daniel/.rvm/gems/ruby-1.9.3-p429/bundler/gems/pixie_sass-9c4f7df796b0/lib/stylesheets/pixie/util/_contents_centered.sass */
+    .pixie .viewport > * {
+      margin: auto;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0; }
+    /* line 173, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+    .pixie .viewport .canvas {
+      margin-top: 0; }
+  /* line 176, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+  .pixie .layer {
+    position: absolute; }
+    /* line 179, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+    .pixie .layer:first-child {
+      background: white url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAC1JREFUeNpi/P//PwM+cPbsWbwKmBgoBKMGDAYDWAjFs7GxMeNoIA57AwACDADEewqFZuqAbgAAAABJRU5ErkJggg=='); }
+  /* line 182, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+  .pixie .actions {
+    position: absolute;
+    top: 0;
+    margin-left: 20px; }
+    /* line 188, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+    .pixie .actions button icon {
+      display: inline-block;
+      margin-right: 4px;
+      height: 16px;
+      width: 16px;
+      vertical-align: top; }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .actions button icon[data-tool=undo] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAIJSURBVDjLpVM9aJNRFD35GsRSoUKKzQ/B0NJJF3EQlKrVgijSCBmC4NBFKihIcXBwEZdSHVoUwUInFUEkQ1DQ4CKiFsQsTrb5xNpgaZHw2Uog5t5zn0NJNFaw0guX97hwzuPcc17IOYfNlIdNVrhxufR6xJkZjAbSQGXjNAorqixSWFDV3KPhJ+UGLtSQMPryrDscPwLnAHOEOQc6gkbUpIagGmApWIb/pZRX4fjj889nWiSQtgYyBZ1BTUEj6AjPa0P71nb0Jfqwa+futIheHrzRn2yRQCUK/lOQhApBJVQJChHfnkCqOwWEQ+iORJHckUyX5ksvAEyGNuJC+s6xCRXNHNxzKMmQ4luwgjfvZp69uvr2+IZcyJ8rjIporrxURggetnV0QET3rrPxzMNM2+n7p678jUTrCiWhphAjVHR9DlR0WkSzf4IHxg5MSF0zXZEuVKWKSlCBCostS8zeG7oV64wPqxInbw86lbVXKEQ8mkAqmUJ4SxieeVhcnANFC02C7N2h69HO2IXeWC8MDj2JnqaFNAMd8f3HKjx6+LxQRmnOz1OZaxKIaF1VISYwB9ARZoQaYY6o1WpYCVYxt+zDn/XzVBv/MOWXW5J44ubRyVgkelFpmF/4BJVfOVDlVyqLVBZI5manPjajDOdcswfG9k/3X9v3/vfZv7rFBanriIo++J/f+BMT+YWS6hXl7QAAAABJRU5ErkJggg=='); }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .actions button icon[data-tool=redo] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAIDSURBVDjLpZJPSJRRFMXPN46GWqRjZjkOhILU2lXUotzYqglmEQURZLtQbFEK2VLIlQVu2kXQIsOghDaFZS1yI4Vhf3CcwWSgNlmRY3z3nPu10GxEF2UXHo97ee/AuecXRFGE/6nYvzw+M5LpO3XnRNmWBRjqNI03S2dBqYXuZ50pp2ckdYhqE1VPCjKBFBprknAKc4XcjbELj3vWCXQ/7TwoqTdZ1ZSurUygurwa8VgcigS5w11gJJiIN9lpZD/ODTy59KI/DgBd4+dSLu/dnziQbqjeg2UWEQvKQBe0ejzSWm9G0FgBAHEAEJVJbm9K11ftBp0ISWQ/v0P+Ux5rFoxo3JWEJMzN54Ynrry8XCrQsXNbDYq2BMkx/nZ8QdToyNmxi6ULax88PC3j1ET/ZNe6FEi1VZZXIUAMhS8F0Ljh80oKvGvG86WzOADQCIoIggAmgiE3jfH51cmBTUFiqKnFH4tYtiISO+pgxsyx60eH/oaNIIoinLx9vKexNjnUsrcFihxLy0uYnZ9FfiEP2h8ORK30EmaGPwRrFsw4mivkjlSUVaTrEw0IEaK1uRXN+1rgkeDuoAsOh9zx8N7Yegv3Ox8tWMjBV+9fP5jJzuDb1+8o/iyu7EOCuaBI4CpQojZHuf3aoRRNGZIdMrWRqpMpJgqS4/ftcuRuzQcbBLZSvwCJx2jrjVn/uwAAAABJRU5ErkJggg=='); }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .actions button icon[data-tool=clear] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAFiSURBVBgZpcEhbpRRGIXh99x7IU0asGBJWEIdCLaAqcFiCArFCkjA0KRJF0EF26kkFbVVdEj6/985zJ0wBjfp8ygJD6G3n358fP3m5NvtJscJYBObchEHx6QKJ6SKsnn6eLm7urr5/PP76cU4eXVy/ujouD074hDHd5s6By7GZknb3P7mUH+WNLZGKnx595JDvf96zTQSM92vRYA4lMEEO5RNraHWUDH3FV48f0K5mAYJk5pQQpqIgixaE1JDKtRDd2OsYfJaTKNcTA2IBIIesMAOPdDUGYJSqGYml5lGHHYkSGhAJBBIkAoWREAT3Z3JLqZhF3uS2EloQCQ8xLBxoAEWO7aZxros7EgISIIkwlZCY6s1OlAJTWFal5VppMzUgbAlQcIkiT0DXSI2U2ymYZs9AWJL4n+df3pncsI0bn5dX344W05dhctUFbapZcE2ToiLVHBMbGymS7aUhIdoPNBf7Jjw/gQ77u4AAAAASUVORK5CYII='); }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .actions button icon[data-tool=resize] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAHbSURBVDjLpZM/a1RBFEfPnfciq4uChLgrWChaihBYbAxqBD+AgrGwVBDRxipgH1AMEQJpbawU9SvYCRaiEmOaBUkRDRYBwf3zZt691+K9DWuXxYELwzCce37MXHF3/mfJtYcv789d7jzZ7XvTHTDDzVBT3Bxzw1Uxd1wVNePIgdTb3NxefLuysJZ3LnRWpxrN0GpM1LjZ6+sqsJb3k4f+7p+J1QfJA0Du6izdOjMx4M7jLSqAGwCxVBxwc9TAcMwcNUNLr8qNqM6p9mHUtAJQv4IEQdzxILg4YkIIgkhARJHMySyQl9V9K2vAiBQAFwGBzMEEzJzMIUhGLqDiaKiMTa2OYPU/EAH3f0Ai4OqYgAsQhMyyCjCKMNpUDKk2YyDLhcV3t0mxJMZEGiZe3HyDWWUQypT2DEYAkbp9Ha0YJi6dnGf+9BUG/QKAMpV1hDpLBvhYlHGjYlBQlAVREw1psPlzA68N8pEKgNQ16r78folvP9aZOXiMYRmJGpk52uLB87ukvAXcIN/+vvXq3rO0YKqYGqqKmaEpYX6WeGKDQ9MFRRoSNbLza4fe7ymOl9dfA8h+pvHq8sUv7en2uRgT3W7388en67N71vsd5/OPZj+kYUqfVr7OjZ//BRjUGmnYsJxdAAAAAElFTkSuQmCC'); }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .actions button icon[data-tool=replay] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAEdSURBVDjLY/j//z8DJZiB6gY0rH7xpW7li3YKDHj1v2bli38lix61k2VA5fJn/9eeeP+/fcOL/wlT7/aRbEDegkf/Vxx/93/xobf/S5c8/u/ecm0eSQYkTX/4f+HBN/8nbX/xf+bul/8Tp9/9r1N0dgnRBgT33QZqfPW/YdXj/42rH//v2vjkv3fHtf9SScceEWWAc8u1/xO2Pv9fsvjB//IlD4CGPPrvXH/5v2Tksc1EGWBaful/+/on/4sW3gfGxsP/9lUX/ksEH1gj6rqdhSgDlPPO/q9b8fB/5bIH/23LL/wXD9i7kqRAlEo6+b908f3/NiXn/4t57V1EcjRKRB75b1145r+o684FZCUkMb8D/0Uct88euMxEKgYA7Ojrv4CgE7EAAAAASUVORK5CYII='); }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .actions button icon[data-tool=new] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGSSURBVDjLlZO7S8NQGMVb/weRgoI4iIuCVuoiuBfBwUFwaosPqJODk5OLBVutSlMsuDg4OVWkYO3o4Cha/BNS+qLP9K3HnEtT07f94HATcs8v33eSawBgUGtSlVmVZYimVY3Ro8nQBJgrlUq2Xq9/NxoN9JL6HD6f76oTogEsNBeLRSiK0lIul0Mmk0E8HheQWCwGSZLaICwjAdxQLpdRrVbFShUKBWSzWSQSCQEolUrgSwKBgIB0AWjWRAAN+XweyWSya6RmJsY2gDpGawOvObc2SiqVEp3Istwf0Ck9hJ0wj3Q6/X+AHsJxmAlBIwGoWq0mciGEGhnALkJvDzgK2LB3sQH7mRWrjtmbgQCaNAVf73HyYMdTVMK7HIb3xYkt7zxWDkyeoQC273BbEfy8RPDrGixPZBfeyD4B5aFfgVo/XkQoegt9PX5IBEAP+OmXwdrhDNxhB1xhmzC7nm1/HTR/x2U1ZUXd3PMw+YOn2PTM4Ty8I97MlfcigyZgipBBR3lhe/zO4jQpbJvrkn3CT+8vh7avwsYhJlIAAAAASUVORK5CYII='); }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .actions button icon[data-tool=download] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAH+SURBVBgZBcE9i11VGAbQtc/sO0OCkqhghEREAwpWAWUg8aMVf4KFaJEqQtAipTZWViKiCGOh2Ap2gmJhlSIWFsFOxUK0EsUM3pl79n4f12qHb3z3Fh7D83gC95GOJsDe0ixLk5Qq/+xv/Lw9Xd+78/HLX3Y8fXTr2nWapy4eCFKxG7Fby97SnDlYtMbxthyfzHO//nl85fNvfvnk8MbX5xa8IHx1518Vkrj54Q+qQms2vVmWZjdiu5ZR2rT01166/NCZg/2PFjwSVMU6yjoC1oq+x6Y3VbHdlXWExPd379nf7Nmejv2Os6OC2O4KLK0RNn3RNCdr2Z5GJSpU4o+/TkhaJ30mEk5HwNuvX7Hpi76wzvjvtIwqVUSkyjqmpHS0mki8+9mPWmuWxqYvGkbFGCUAOH/+QevYI9GFSqmaHr5wkUYTAlGhqiRRiaqiNes6SOkwJwnQEqBRRRJEgkRLJGVdm6R0GLMQENE0EkmkSkQSVVMqopyuIaUTs0J455VLAAAAAODW0U/GiKT0pTWziEj44PZ1AAAAcPPqkTmH3QiJrlEVDXDt0qsAAAAAapa5BqUnyaw0Am7//gUAAAB49tEXzTmtM5KkV/y2G/X4M5fPao03n/sUAAAAwIX7y5yBv9vhjW/fT/IkuSp5gJKElKRISYoUiSRIyD1tufs/IXxui20QsKIAAAAASUVORK5CYII='); }
+      /* line 2, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/_pixel_tool.css.sass */
+      .pixie .actions button icon[data-tool=save] {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAKFSURBVDjLhVNNaxNRFD3vzUwSJ622YEwgYoVaNBUVilZwqStBtJBNxC4EEel/sDsXLhRcVxSUQo07QVy0jbpQqiANsS5ciNpowBhM2kk7nWS+vPdJqi0tXjhz39x595zz7syIMAxRKBSilM8TLgZBcIjyAIGWwQfKnyjfIxRGRkZ8bAoxOzs7SJumEonE0VQqhXg8DtM0wcTLy8toNpsol8uo1WqvqJbLZrOVDQzT09MvFhcXWS7cLlzXDYvFYpjP5x8w8b+QdDmcTCbxv0in0yCRs5vrOhUVU7VaRSwWQzQahWEYqmbbNur1OiqVCvr7+5kA2xLouo5GowHHcdS953mwLAutVks949qWBJ2zaJqmHPBmxs0ndXRHe2G3PfR2RfBo/geEHEy8v1sKg1CgYa3hebFyct0BK9KwVBZCYM12cHr4IC4MdeHpm+8Yv5TZoPzwZY0cibeyQ+D7vmpm8Npuuag3PbV55l11vdGhktUCakttEgr+zoDVGdzMx5FSQAsB1w9we2yI1OioRKDR1dShZmOttv8QMDrqHcKYIeGQixv5ryAueEQUEJiEn/PCNAJIVuRXRV+ieoWd8Eix5XvQpEFWdZAfyho1SiIQcEmsTQNmB5fn5uYeZzKZeF9fnyLhITbtKgxqHDvXTWRtopRKNaRzx/QIbk2V8ctahZ7L5Z5NTk4eWVhYuF4qlbJSyl38L/hBijQNBFjD/flr2G3uIxcSNfsbrp64Q6sYDZpmwHZHR0e/ULrCmJiY6F5ZWTmg6+n5/Skg2dXEmWPD6ImklYklJ409cQ9mhD4icirUQLaI42Mzrwf27jjVE+0hyzvpGC4EDViEPgJh42P5M35aLn4DnlayCCcx84IAAAAASUVORK5CYII='); }
+  /* line 204, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+  .pixie .toggle_holder {
+    display: block;
+    margin-left: 70px; }
+  /* line 208, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+  .pixie .layers {
+    display: inline-block;
+    margin: 0;
+    margin-top: 1em;
+    width: 80px; }
+    /* line 214, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+    .pixie .layers h3 {
+      margin: 0; }
+    /* line 217, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+    .pixie .layers a.tool {
+      display: inline-block;
+      height: auto;
+      margin: 0;
+      margin-top: 5px;
+      width: auto; }
+      /* line 224, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+      .pixie .layers a.tool.active {
+        color: white; }
+  /* line 227, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+  .pixie .opacityLabel {
+    position: absolute;
+    top: 76px;
+    left: 5px; }
+  /* line 232, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+  .pixie .opacity {
+    cursor: pointer;
+    height: 20px;
+    position: absolute;
+    left: 60px;
+    top: 17px; }
+
+/* line 239, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
+#newCanvasModal {
+  width: 400px; }
+
+#gritter-notice-wrapper {
+  position: fixed;
+  bottom: 10px;
+  z-index: 9000;
+  left: 140px;
+}
+
+.gritter-item {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: inline-block;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.gritter-item img {
+  background-color: white;
+  display: block;
+  margin: auto;
+  width: 32px;
+  height: 32px;
+}
+
+.gritter-item p {
+  margin: 0;
+}
