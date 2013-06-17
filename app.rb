@@ -68,12 +68,14 @@ __END__
 !!!
 %html
   %head
+    %meta(charset="utf-8")
+
     %link(rel="stylesheet" type="text/css" href="/application.css")
 
     %script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js")
     %script(src="/jquery.gritter.min.js")
-    %script(src="/base64.js")
     %script(src="/sha1.js")
+    %script(src="/enc-base64-min.js")
     %script(src="/application.js")
 
   %body
@@ -87,7 +89,6 @@ __END__
 @@index
 
 :coffeescript
-
   displaySaved = (sha, imgData) ->
     if imgData
       url = "data:image/png;base64,\#{imgData}"
@@ -102,8 +103,14 @@ __END__
       time: ''
       sticky: true
 
-  displaySaved("86619e0a82cd663339cf92601ee2dac4b0125dfa")
-  displaySaved("2934869f591bb8dbdc40fb395aa159a213fea045")
+  try
+    if appData = JSON.parse(localStorage.pixieData)
+      appData.each (datum) ->
+        displaySaved(datum)
+    else
+      appData = []
+  catch e
+    appData = []
 
   $ ->
     pixelEditor = Pixie.Editor.Pixel.create
@@ -129,8 +136,13 @@ __END__
               data_base64: data
               type: "image/png"
 
-            sha = CryptoJS.SHA1(Base64.decode(data))
+            raw = CryptoJS.enc.Base64.parse(data)
+            sha = CryptoJS.SHA1(raw).toString()
             displaySaved(sha, data)
+
+            # Store address locally
+            appData.push(sha)
+            localStorage.pixieData = JSON.stringify(appData)
 
           undoable: false
 
