@@ -13223,12 +13223,12 @@ Simple jQuery constructor wrappers for common elements.
           }).get(0);
 
           if(dataURL.startsWith("data:")) {
-            // Do Nothing
+            img.src = dataURL;
           } else {
             img.crossOrigin = "";
+            img.src = dataURL + "?" + location.host;
           }
 
-          img.src = dataURL;
         },
         getNeighbors: function(x, y) {
           return [this.getPixel(x + 1, y), this.getPixel(x, y + 1), this.getPixel(x - 1, y), this.getPixel(x, y - 1)];

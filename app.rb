@@ -59,6 +59,9 @@ def store(file, content_type=nil)
       :body => file,
       :content_type => content_type,
       :public => true,
+      :metadata => {
+        'Cache-Control' => 'max-age=315576000'
+      }
     )
   end
 end
@@ -94,8 +97,8 @@ __END__
       url = "data:image/png;base64,\#{imgData}"
     else
       n = Math.floor(parseInt(sha.substring(0, 1), 16) / 4)
-      # url = "http://a\#{n}.pixiecdn.com/\#{sha}?\#{escape(location.origin)}"
-      url = "https://s3.amazonaws.com/addressable/\#{sha}"
+      url = "http://a\#{n}.pixiecdn.com/\#{sha}"
+      # url = "https://s3.amazonaws.com/addressable/\#{sha}"
 
     $.gritter.add
       title: ''
