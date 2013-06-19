@@ -18,12 +18,17 @@ configure do
   set :storage, storage
 end
 
-get "/" do
-  haml :index
+%w[
+  editor
+  slicer
+].each do |component|
+  get "/#{component}" do
+    haml component.to_sym
+  end
 end
 
-get "/upload" do
-  haml :upload
+get "/" do
+  haml :editor
 end
 
 post "/upload" do
@@ -81,6 +86,7 @@ __END__
     %script(src="/sha1.js")
     %script(src="/enc-base64-min.js")
     %script(src="/pixie.js")
+    %script(src="/main.js")
 
   %body
     = yield
@@ -90,5 +96,8 @@ __END__
   %input(type="file" name="data")
   %button Submit
 
-@@index
-%script(src="/main.js")
+@@editor
+%script(src="/editor.js")
+
+@@slicer
+%script(src="/slicer.js")
