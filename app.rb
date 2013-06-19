@@ -73,13 +73,14 @@ __END__
   %head
     %meta(charset="utf-8")
 
-    %link(rel="stylesheet" type="text/css" href="/application.css")
+    %link(rel="stylesheet" type="text/css" href="/pixie.css")
+    %link(rel="stylesheet" type="text/css" href="/main.css")
 
     %script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js")
     %script(src="/jquery.gritter.min.js")
     %script(src="/sha1.js")
     %script(src="/enc-base64-min.js")
-    %script(src="/application.js")
+    %script(src="/pixie.js")
 
   %body
     = yield
@@ -90,69 +91,4 @@ __END__
   %button Submit
 
 @@index
-
-:coffeescript
-  displaySaved = (sha, imgData) ->
-    if imgData
-      url = "data:image/png;base64,\#{imgData}"
-    else
-      n = Math.floor(parseInt(sha.substring(0, 1), 16) / 4)
-      url = "http://a\#{n}.pixiecdn.com/\#{sha}"
-      # url = "https://s3.amazonaws.com/addressable/\#{sha}"
-
-    $.gritter.add
-      title: ''
-      text: ''
-      image: url
-      time: ''
-      sticky: true
-
-  try
-    if appData = JSON.parse(localStorage.pixieData)
-      appData.each (datum) ->
-        displaySaved(datum)
-    else
-      appData = []
-  catch e
-    appData = []
-
-  _canvas = null
-
-  $ ->
-    $(document).on "click", ".gritter-item", ->
-      src = $(this).find("img").attr("src")
-      _canvas.fromDataURL(src)
-
-    pixelEditor = Pixie.Editor.Pixel.create
-      width: 32
-      height: 32
-      initializer: (canvas) ->
-        _canvas = canvas
-
-        canvas.addAction
-          name: "download"
-          perform: (canvas) ->
-            w = window.open()
-            w.document.location = canvas.toDataURL()
-          undoable: false
-
-        canvas.addAction
-          name: "save"
-          perform: (canvas) ->
-            data = canvas.toBase64()
-
-            $.post '/upload',
-              data_base64: data
-              type: "image/png"
-
-            raw = CryptoJS.enc.Base64.parse(data)
-            sha = CryptoJS.SHA1(raw).toString()
-            displaySaved(sha, data)
-
-            # Store address locally
-            appData.push(sha)
-            localStorage.pixieData = JSON.stringify(appData)
-
-          undoable: false
-
-    pixelEditor.appendTo($('body'))
+%script(src="/main.js")

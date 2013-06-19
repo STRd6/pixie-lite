@@ -8,7 +8,11 @@ gem "unicorn"
 
 group :development do
   gem "foreman"
+  gem 'guard'
+  gem 'guard-rake'
   gem "pry"
+  gem "rake"
+  gem 'rb-fsevent', '~> 0.9.1'
   gem "shotgun"
   gem "thin"
 end

@@ -552,30 +552,3 @@ header.navbar-fixed-top .navbar-inner .container {
 /* line 239, /Users/daniel/apps/PixelEditor/lib/assets/stylesheets/pixie/editor/pixel/main.css.sass */
 #newCanvasModal {
   width: 400px; }
-
-#gritter-notice-wrapper {
-  position: fixed;
-  bottom: 10px;
-  z-index: 9000;
-  left: 140px;
-}
-
-.gritter-item {
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: inline-block;
-  padding: 5px;
-  margin-right: 5px;
-}
-
-.gritter-item img {
-  background-color: white;
-  display: block;
-  margin: auto;
-  width: 32px;
-  height: 32px;
-}
-
-.gritter-item p {
-  margin: 0;
-}
