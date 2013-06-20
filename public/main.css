@@ -1,3 +1,9 @@
+textarea {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: auto;
+}
 #gritter-notice-wrapper {
   position: fixed;
   bottom: 10px;

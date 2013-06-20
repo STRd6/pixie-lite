@@ -90,6 +90,7 @@ __END__
     %link(rel="stylesheet" type="text/css" href="/main.css")
 
     %script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js")
+    %script(src="/coffee-script.js")
     %script(src="/jquery.gritter.min.js")
     %script(src="/sha1.js")
     %script(src="/enc-base64-min.js")

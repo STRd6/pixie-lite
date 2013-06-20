@@ -8,9 +8,15 @@ Map = ->
   canvas = $("<canvas width=#{width} height=#{height}>")
     .css
       display: "block"
+      margin: "auto"
     .appendTo("body")
 
   canvasElement = canvas.get(0)
+
+  layersElement = $("<div id='layers'>").appendTo("body")
+
+  5.times ->
+    layersElement.append("<textarea>")
 
   context = canvasElement.getContext("2d")
 
@@ -40,11 +46,12 @@ Map = ->
   console.log layers
 
   drawTile = (tile, x, y) ->
-    img = $("img").get(tile)
+    if img = $("img").get(tile)
 
-    context.drawImage(img, x, y + height/2)
+      context.drawImage(img, x, y + height/2)
 
   render: ->
+    context.clearRect(0, 0, width, height)
     layers.each (layer, z) ->
       layer.length.times (i) ->
         row = layer[i]
@@ -59,6 +66,8 @@ Map = ->
 
           if tile?
             drawTile(tile, x, y - (tileHeight * z))
+
+    return this
 
 Tiler = ->
   tileShas = Storage.list("tiles")
@@ -86,6 +95,8 @@ Tiler = ->
     page += delta
 
     render()
+    map.render()
+
 
 window.Tiler = Tiler
 
@@ -93,8 +104,10 @@ $("<div id='tiles'>").appendTo("body")
 
 tiler = Tiler()
 
+map = null
+
 setTimeout ->
-  Map().render()
+  map = Map().render()
 , 1000
 
 $(document).bind "keydown", "=", ->

@@ -13,6 +13,5 @@ task :build do
     sh "coffee", "-bcj", "public/#{subdir}.js", *src_files
   end
 
-  styl_files = Dir["source/*.styl"]
-  sh "stylus < #{styl_files.join(' ')} > public/main.css"
+  sh "cat source/*.styl | stylus > public/main.css"
 end

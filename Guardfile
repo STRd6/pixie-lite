@@ -3,4 +3,5 @@
 
 guard 'rake', :task => 'build' do
   watch(%r{source\/.*\.coffee})
+  watch(%r{source\/.*\.styl})
 end
