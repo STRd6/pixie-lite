@@ -120,18 +120,23 @@ window.Slicer = Slicer
 $ ->
   slicer = null
 
-  sha = Storage.list("extractions")[0]
-  url = Resource.url(sha, true)
+  window.loadExtraction = (sha) ->
+    $("body").empty()
 
-  img = $ "<img>",
-    crossOrigin: ""
-    load: ->
-      window.slicer = slicer = Slicer
-        width: @width
-        height: @height
-        image: this
+    url = Resource.url(sha, true)
 
-    src: url
+    img = $ "<img>",
+      crossOrigin: ""
+      load: ->
+        window.slicer = slicer = Slicer
+          width: @width
+          height: @height
+          image: this
+
+      src: url
+
+  if sha = Storage.list("extractions")[0]
+    loadExtraction(sha)
 
   startPosition = null
 

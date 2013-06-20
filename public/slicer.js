@@ -119,21 +119,27 @@ Slicer = function(I) {
 window.Slicer = Slicer;
 
 $(function() {
-  var img, pos, sha, slicer, startPosition, url;
+  var pos, sha, slicer, startPosition;
   slicer = null;
-  sha = Storage.list("extractions")[0];
-  url = Resource.url(sha, true);
-  img = $("<img>", {
-    crossOrigin: "",
-    load: function() {
-      return window.slicer = slicer = Slicer({
-        width: this.width,
-        height: this.height,
-        image: this
-      });
-    },
-    src: url
-  });
+  window.loadExtraction = function(sha) {
+    var img, url;
+    $("body").empty();
+    url = Resource.url(sha, true);
+    return img = $("<img>", {
+      crossOrigin: "",
+      load: function() {
+        return window.slicer = slicer = Slicer({
+          width: this.width,
+          height: this.height,
+          image: this
+        });
+      },
+      src: url
+    });
+  };
+  if (sha = Storage.list("extractions")[0]) {
+    loadExtraction(sha);
+  }
   startPosition = null;
   pos = function(event) {
     var offset;
