@@ -7,6 +7,7 @@ task :build do
   %w[
     editor
     slicer
+    tiler
   ].each do |subdir|
     src_files = Dir["source/#{subdir}/*.coffee"]
     sh "coffee", "-bcj", "public/#{subdir}.js", *src_files

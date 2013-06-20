@@ -121,18 +121,30 @@ window.Slicer = Slicer;
 $(function() {
   var pos, sha, slicer, startPosition;
   slicer = null;
-  window.loadExtraction = function(sha) {
+  window.extractTiles = function(extractions) {
+    return extractions.each(function(extraction) {
+      return loadExtraction(extraction, function(slicer) {
+        var shas;
+        shas = slicer.extractAll();
+        return shas.each(function(sha) {
+          return Storage.pushData("tiles", sha);
+        });
+      });
+    });
+  };
+  window.loadExtraction = function(sha, cb) {
     var img, url;
     $("body").empty();
     url = Resource.url(sha, true);
     return img = $("<img>", {
       crossOrigin: "",
       load: function() {
-        return window.slicer = slicer = Slicer({
+        window.slicer = slicer = Slicer({
           width: this.width,
           height: this.height,
           image: this
         });
+        return typeof cb === "function" ? cb(slicer) : void 0;
       },
       src: url
     });

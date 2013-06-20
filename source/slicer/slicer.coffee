@@ -120,7 +120,14 @@ window.Slicer = Slicer
 $ ->
   slicer = null
 
-  window.loadExtraction = (sha) ->
+  window.extractTiles = (extractions) ->
+    extractions.each (extraction) ->
+      loadExtraction extraction, (slicer) ->
+        shas = slicer.extractAll()
+        shas.each (sha) ->
+          Storage.pushData("tiles", sha)
+
+  window.loadExtraction = (sha, cb) ->
     $("body").empty()
 
     url = Resource.url(sha, true)
@@ -132,6 +139,8 @@ $ ->
           width: @width
           height: @height
           image: this
+
+        cb?(slicer)
 
       src: url
 

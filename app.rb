@@ -21,9 +21,10 @@ end
 %w[
   editor
   slicer
+  tiler
 ].each do |component|
   get "/#{component}" do
-    haml component.to_sym
+    haml "%script(src='/#{component}.js')"
   end
 end
 
@@ -91,13 +92,5 @@ __END__
   %body
     = yield
 
-@@upload
-%form(method="POST" enctype="multipart/form-data")
-  %input(type="file" name="data")
-  %button Submit
-
 @@editor
 %script(src="/editor.js")
-
-@@slicer
-%script(src="/slicer.js")
