@@ -14,33 +14,51 @@ Map = ->
 
   context = canvasElement.getContext("2d")
 
-  layer = [
-    [0, 0, 0, 0]
-    [0, 0, 0, 0]
-    [0, 0, 0, 0]
-    [0, 0, 0, 0]
-  ]
+  parseLayer = (text) ->
+    text.split("\n").map (row) ->
+      row.split('').map (n) ->
+        res = parseInt(n, 10)
+
+        if res != 0
+          res || undefined
+        else
+          res
+
+  layers = ["""
+    0000
+    0000
+    0000
+    0000
+  """, """
+    3  3
+
+
+    3  3
+  """
+  ].map parseLayer
+
+  console.log layers
 
   drawTile = (tile, x, y) ->
-    img = $("img").get(0)
-
-    debugger
+    img = $("img").get(tile)
 
     context.drawImage(img, x, y + height/2)
 
   render: ->
-    layer.length.times (i) ->
-      row = layer[i]
+    layers.each (layer, z) ->
+      layer.length.times (i) ->
+        row = layer[i]
 
-      size = row.length
-      size.times (j) ->
-        j = (size - 1) - j
+        size = row.length
+        size.times (j) ->
+          j = (size - 1) - j
 
-        tile = row[j]
-        x = (j * tileWidth / 2) + (i * tileWidth / 2)
-        y = (i * tileHeight / 2) - (j * tileHeight / 2)
+          tile = row[j]
+          x = (j * tileWidth / 2) + (i * tileWidth / 2)
+          y = (i * tileHeight / 2) - (j * tileHeight / 2)
 
-        drawTile(tile, x, y)
+          if tile?
+            drawTile(tile, x, y - (tileHeight * z))
 
 Tiler = ->
   tileShas = Storage.list("tiles")

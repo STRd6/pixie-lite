@@ -2,7 +2,7 @@
 var Map, Tiler, tiler;
 
 Map = function() {
-  var canvas, canvasElement, context, drawTile, height, layer, tileHeight, tileWidth, width;
+  var canvas, canvasElement, context, drawTile, height, layers, parseLayer, tileHeight, tileWidth, width;
   tileWidth = 64;
   tileHeight = 32;
   width = 640;
@@ -12,26 +12,43 @@ Map = function() {
   }).appendTo("body");
   canvasElement = canvas.get(0);
   context = canvasElement.getContext("2d");
-  layer = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+  parseLayer = function(text) {
+    return text.split("\n").map(function(row) {
+      return row.split('').map(function(n) {
+        var res;
+        res = parseInt(n, 10);
+        if (res !== 0) {
+          return res || void 0;
+        } else {
+          return res;
+        }
+      });
+    });
+  };
+  layers = ["0000\n0000\n0000\n0000", "3  3\n\n\n3  3"].map(parseLayer);
+  console.log(layers);
   drawTile = function(tile, x, y) {
     var img;
-    img = $("img").get(0);
-    debugger;
+    img = $("img").get(tile);
     return context.drawImage(img, x, y + height / 2);
   };
   return {
     render: function() {
-      return layer.length.times(function(i) {
-        var row, size;
-        row = layer[i];
-        size = row.length;
-        return size.times(function(j) {
-          var tile, x, y;
-          j = (size - 1) - j;
-          tile = row[j];
-          x = (j * tileWidth / 2) + (i * tileWidth / 2);
-          y = (i * tileHeight / 2) - (j * tileHeight / 2);
-          return drawTile(tile, x, y);
+      return layers.each(function(layer, z) {
+        return layer.length.times(function(i) {
+          var row, size;
+          row = layer[i];
+          size = row.length;
+          return size.times(function(j) {
+            var tile, x, y;
+            j = (size - 1) - j;
+            tile = row[j];
+            x = (j * tileWidth / 2) + (i * tileWidth / 2);
+            y = (i * tileHeight / 2) - (j * tileHeight / 2);
+            if (tile != null) {
+              return drawTile(tile, x, y - (tileHeight * z));
+            }
+          });
         });
       });
     }
