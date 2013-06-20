@@ -77,15 +77,63 @@ Object.extend(Storage, {
     return value;
   },
   list: function(name) {
-    var existing, list;
+    var existing;
     if (existing = localStorage[name]) {
-      list = JSON.parse(existing);
+      return JSON.parse(existing);
     } else {
-      list = [];
+      return [];
     }
-    return list;
+  },
+  hash: function(name) {
+    var existing;
+    if (existing = localStorage[name]) {
+      return JSON.parse(existing);
+    } else {
+      return {};
+    }
+  },
+  filetree: function() {
+    return this.hash("filetree");
+  },
+  mergeTree: function(tree) {
+    var key, mergedTree;
+    key = "filetree";
+    mergedTree = Object.extend(this.hash(key), tree);
+    return this.store(key, mergedTree);
   }
 });
+
+window.CAS = {
+  storeJSON: function(data, type) {
+    var jsonData;
+    if (type == null) {
+      type = "application/json";
+    }
+    jsonData = JSON.stringify(data);
+    $.post('/upload', {
+      data: jsonData,
+      type: type
+    });
+    return CryptoJS.SHA1(jsonData).toString();
+  },
+  storeBase64: function(data, type) {
+    var raw;
+    if (type == null) {
+      type = "image/png";
+    }
+    $.post('/upload', {
+      data_base64: data,
+      type: type
+    });
+    raw = CryptoJS.enc.Base64.parse(data);
+    return CryptoJS.SHA1(raw).toString();
+  },
+  getJSON: function(sha, callback) {
+    var url;
+    url = Resource.url(sha, true);
+    return $.getJSON(url, callback);
+  }
+};
 
 window.Resource = {
   url: function(sha, crossOrigin) {

@@ -17,7 +17,7 @@ Map = ->
   parseLayer = (text) ->
     text.split("\n").map (row) ->
       row.split('').map (n) ->
-        res = parseInt(n, 10)
+        res = parseInt(n, 16)
 
         if res != 0
           res || undefined
@@ -30,10 +30,10 @@ Map = ->
     0000
     0000
   """, """
-    3  3
-
-
-    3  3
+    8  8
+       A
+    88
+     A
   """
   ].map parseLayer
 
@@ -102,3 +102,13 @@ $(document).bind "keydown", "=", ->
 
 $(document).bind "keydown", "-", ->
   tiler.changePage(-1)
+
+window.saveTilesets = ->
+  tree = {}
+  n = 0
+
+  Storage.list("tiles").eachSlice 113, (shas) ->
+    tree["tileset#{n}"] = CAS.storeJSON(shas)
+    n += 1
+
+  Storage.mergeTree(tree)

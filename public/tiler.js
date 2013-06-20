@@ -16,7 +16,7 @@ Map = function() {
     return text.split("\n").map(function(row) {
       return row.split('').map(function(n) {
         var res;
-        res = parseInt(n, 10);
+        res = parseInt(n, 16);
         if (res !== 0) {
           return res || void 0;
         } else {
@@ -25,7 +25,7 @@ Map = function() {
       });
     });
   };
-  layers = ["0000\n0000\n0000\n0000", "3  3\n\n\n3  3"].map(parseLayer);
+  layers = ["0000\n0000\n0000\n0000", "8  8\n   A\n88\n A"].map(parseLayer);
   console.log(layers);
   drawTile = function(tile, x, y) {
     var img;
@@ -99,3 +99,14 @@ $(document).bind("keydown", "=", function() {
 $(document).bind("keydown", "-", function() {
   return tiler.changePage(-1);
 });
+
+window.saveTilesets = function() {
+  var n, tree;
+  tree = {};
+  n = 0;
+  Storage.list("tiles").eachSlice(113, function(shas) {
+    tree["tileset" + n] = CAS.storeJSON(shas);
+    return n += 1;
+  });
+  return Storage.mergeTree(tree);
+};

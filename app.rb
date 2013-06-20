@@ -34,8 +34,15 @@ end
 
 post "/upload" do
   if data = params[:data]
-    file = data[:tempfile]
-    content_type = data[:type]
+    if data.is_a? String
+      content_type = params[:type]
+      file = Tempfile.new ["data", ".json"]
+      file.write data
+      file.rewind
+    else
+      file = data[:tempfile]
+      content_type = data[:type]
+    end
   elsif data = params[:data_base64]
     content_type = params[:type]
     file = Tempfile.new ["image", ".png"], :encoding => 'ascii-8bit'

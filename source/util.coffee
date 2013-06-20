@@ -24,11 +24,49 @@ Object.extend Storage,
 
   list: (name) ->
     if existing = localStorage[name]
-      list = JSON.parse(existing)
+      JSON.parse(existing)
     else
-      list = []
+      []
 
-    return list
+  hash: (name) ->
+    if existing = localStorage[name]
+      JSON.parse(existing)
+    else
+      {}
+
+  filetree: ->
+    @hash("filetree")
+
+  mergeTree: (tree) ->
+    key = "filetree"
+
+    mergedTree = Object.extend @hash(key), tree
+
+    @store(key, mergedTree)
+
+window.CAS =
+  storeJSON: (data, type="application/json") ->
+    jsonData = JSON.stringify(data)
+
+    $.post '/upload',
+      data: jsonData
+      type: type
+
+    return CryptoJS.SHA1(jsonData).toString()
+
+  storeBase64: (data, type="image/png") ->
+    $.post '/upload',
+      data_base64: data
+      type: type
+
+    raw = CryptoJS.enc.Base64.parse(data)
+
+    return CryptoJS.SHA1(raw).toString()
+
+  getJSON: (sha, callback) ->
+    url = Resource.url(sha, true)
+
+    $.getJSON url, callback
 
 window.Resource =
   # If you call crossOrigin, but use the url in a normal request rather than a cross
