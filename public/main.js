@@ -66,7 +66,7 @@ $(function() {
 })(jQuery);
 
 window.Map = function(drawAt) {
-  var canvas, canvasElement, cellsLong, cellsTall, cellsWide, context, drawTile, height, layerData, layers, loadLayers, parseLayer, render, tileHeight, tileWidth, tiles, width;
+  var canvas, canvasElement, cellsLong, cellsTall, cellsWide, context, drawCell, drawObject, height, layerData, layers, loadLayers, parseLayer, render, tileAt, tileHeight, tileWidth, tiles, width;
   if (drawAt == null) {
     drawAt = function() {};
   }
@@ -95,18 +95,16 @@ window.Map = function(drawAt) {
   };
   render = function() {
     context.clearRect(0, 0, width, height);
-    cellsTall.times(function(z) {
+    cellsTall.times(function(k) {
       return cellsWide.times(function(i) {
         return cellsLong.times(function(j) {
-          var tile, x, y, _ref, _ref1;
+          var tile;
           j = (cellsLong - 1) - j;
-          tile = (_ref = layers[z]) != null ? (_ref1 = _ref[i]) != null ? _ref1[j] : void 0 : void 0;
-          if (tile != null) {
-            x = (j * tileWidth / 2) + (i * tileWidth / 2);
-            y = (i * tileHeight / 2) - (j * tileHeight / 2);
-            drawTile(tile, x, y - (tileHeight * z));
+          tile = tileAt(i, j, k);
+          if (tile) {
+            drawCell(tile, i, j, k);
           }
-          return drawAt(i, j, z);
+          return drawAt(i, j, k, tile);
         });
       });
     });
@@ -120,10 +118,12 @@ window.Map = function(drawAt) {
       return loadLayers(data);
     }
   });
-  drawTile = function(tile, x, y) {
-    if (tile = tiles[tile]) {
-      return tile.draw(context, x, y + height / 2);
-    }
+  tileAt = function(i, j, k) {
+    var _ref, _ref1;
+    return tiles[(_ref = layers[k]) != null ? (_ref1 = _ref[i]) != null ? _ref1[j] : void 0 : void 0];
+  };
+  drawObject = function(object, x, y) {
+    return object.draw(context, x, y + height / 2);
   };
   loadLayers = function(data) {
     layerData = data;
@@ -133,7 +133,15 @@ window.Map = function(drawAt) {
     });
     return render();
   };
+  drawCell = function(object, i, j, k) {
+    var x, y, z;
+    x = (j * tileWidth / 2) + (i * tileWidth / 2);
+    y = (i * tileHeight / 2) - (j * tileHeight / 2);
+    z = k * tileHeight;
+    return drawObject(object, x, y - z);
+  };
   return {
+    drawCell: drawCell,
     tiles: function(newTiles) {
       tiles = newTiles;
       return render();
@@ -144,6 +152,12 @@ window.Map = function(drawAt) {
       sha = CAS.storeJSON(layerData);
       return Filetree.set("tilemap", sha);
     },
+    isClear: function(i, j, k) {
+      var tile;
+      tile = tileAt(i, j, k);
+      return !tile || (tile.solid === false);
+    },
+    tileAt: tileAt,
     "eval": function(code) {
       return eval(code);
     },
@@ -171,6 +185,9 @@ window.Tile = function(I) {
 };
 
 Tile.prototype = {
+  toJSON: function() {
+    return _.omit(this, "img");
+  },
   draw: function(canvas, x, y) {
     var offset;
     offset = 64 - this.height;
@@ -183,9 +200,13 @@ window.Tileset = function(loaded) {
   tiles = [];
   Filetree.load("tileset", function(data) {
     tiles = data.map(function(sha) {
-      return Tile({
-        sha: sha
-      });
+      if (_.isString(sha)) {
+        return Tile({
+          sha: sha
+        });
+      } else {
+        return Tile(sha);
+      }
     });
     return loaded();
   });
@@ -201,10 +222,28 @@ window.Tileset = function(loaded) {
     tiles: function() {
       return tiles;
     },
+    save: function(name) {
+      if (name == null) {
+        name = "tileset";
+      }
+      return Filetree.save(name, tiles);
+    },
+    lookup: function(sha) {
+      return tiles.select(function(tile) {
+        return tile.sha === sha;
+      }).first();
+    },
     "eval": function(code) {
       return eval(code);
     }
   };
+};
+
+window.TileProtos = {
+  stairs: {
+    offset: 32,
+    stair: true
+  }
 };
 
 Object.extend(Storage, {
@@ -262,6 +301,11 @@ window.Filetree = {
     tree[name] = sha;
     return Storage.store("filetree", tree);
   },
+  save: function(name, data) {
+    var sha;
+    sha = CAS.storeJSON(data);
+    return this.set(name, sha);
+  },
   load: function(name, callback) {
     var sha;
     if (sha = Storage.filetree()[name]) {
@@ -313,6 +357,15 @@ window.CAS = {
 window.Util = {
   dataFromDataURL: function(dataURL) {
     return dataURL.substr(dataURL.indexOf(',') + 1);
+  },
+  toCSON: function(obj) {
+    var representation;
+    representation = JSON.parse(JSON.stringify(obj));
+    return Object.keys(representation).map(function(key) {
+      var value;
+      value = representation[key];
+      return "" + key + ": " + (JSON.stringify(value));
+    }).join("\n");
   }
 };
 
@@ -329,5 +382,21 @@ window.Resource = {
     } else {
       return url;
     }
+  },
+  imageFor: function(sha) {
+    return $("<img>", {
+      src: this.url(sha)
+    }).get(0);
   }
 };
+
+["x", "y", "z"].each(function(dim, i) {
+  return Object.defineProperty(Array.prototype, dim, {
+    get: function() {
+      return this[i];
+    },
+    set: function(x) {
+      return this[i] = x;
+    }
+  });
+});

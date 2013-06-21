@@ -15,6 +15,8 @@ window.Tile = (I={}) ->
   , I
 
 Tile:: =
+  toJSON: ->
+    _.omit(@, "img")
   draw: (canvas, x, y) ->
     offset = 64 - @height
 

@@ -51,6 +51,11 @@ window.Filetree =
 
     Storage.store("filetree", tree)
 
+  save: (name, data) ->
+    sha = CAS.storeJSON data
+
+    @set name, sha
+
   load: (name, callback) ->
     if sha = Storage.filetree()[name]
       CAS.getJSON sha, callback
@@ -91,6 +96,15 @@ window.Util =
   dataFromDataURL: (dataURL) ->
     dataURL.substr(dataURL.indexOf(',') + 1)
 
+  toCSON: (obj) ->
+    representation = JSON.parse(JSON.stringify(obj))
+
+    Object.keys(representation).map (key) ->
+      value = representation[key]
+      "#{key}: #{JSON.stringify(value)}"
+    .join("\n")
+
+
 window.Resource =
   # If you call crossOrigin, but use the url in a normal request rather than a cross
   # origin request CloudFront will cache the wrong headers making it unusable, so don't
@@ -104,3 +118,18 @@ window.Resource =
       "#{url}?#{location.host}"
     else
       url
+
+  imageFor: (sha) ->
+    $ "<img>",
+      src: @url(sha)
+    .get(0)
+
+
+# Array madness!!
+
+["x", "y", "z"].each (dim, i) ->
+  Object.defineProperty Array::, dim,
+    get: ->
+      @[i]
+    set: (x) ->
+      @[i] = x

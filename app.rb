@@ -96,9 +96,10 @@ __END__
     %script(src="/sha1.js")
     %script(src="/enc-base64-min.js")
     %script(src="/pixie.js")
+    %script(src="/underscore-min.js")
     %script(src="/main.js")
 
-  %body(oncontextmenu="return false;")
+  %body
     = yield
 
     %form#console

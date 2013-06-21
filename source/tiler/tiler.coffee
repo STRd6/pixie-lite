@@ -1,6 +1,5 @@
 
 $("<div id='tiles'>").appendTo("body")
-$("<div id='coolTiles'>").appendTo("body")
 
 layersElement = $("<div id='layers'>").appendTo("body")
 
@@ -22,20 +21,7 @@ $(document).bind "keydown", "-", ->
 $(document).bind "keydown", "s", ->
   map.saveLayerData()
 
-tileProps =
-  default:
-    hflip: false
-    offset: 0
-
-window.saveTilesets = ->
-  tree = {}
-  n = 0
-
-  Storage.list("tiles").eachSlice 113, (shas) ->
-    tree["tileset#{n}"] = CAS.storeJSON(shas)
-    n += 1
-
-  Storage.mergeTree(tree)
+activeTile = null
 
 refreshLayers = ->
   data = $("#layers textarea").map ->
@@ -51,16 +37,23 @@ $(document).on
 
 $(document).on
   mousedown: (e) ->
-    $(this).appendTo("#coolTiles")
+    sha = $(this).attr("src").split("/").last()
+    activeTile = tileset.lookup(sha)
+
+    $("#props").val(Util.toCSON(activeTile))
 
     return false
 
 , "#tiles img"
 
-$(document).on
-  mousedown: (e) ->
-    $(this).appendTo("#tiles")
+$("<textarea id='props'>")
+  .appendTo "body"
 
-    return false
+$("#props").on
+  blur: ->
+    val = $(this).val()
 
-, "#coolTiles img"
+    code = CoffeeScript.compile(val, bare: true)
+    data = eval code
+
+    Object.extend activeTile, data

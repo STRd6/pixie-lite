@@ -3,8 +3,11 @@ window.Tileset = (loaded) ->
 
   Filetree.load "tileset", (data) ->
     tiles = data.map (sha) ->
-      Tile
-        sha: sha
+      if _.isString sha
+        Tile
+          sha: sha
+      else
+        Tile sha
 
     loaded()
 
@@ -19,5 +22,18 @@ window.Tileset = (loaded) ->
   tiles: ->
     tiles
 
+  save: (name="tileset") ->
+    Filetree.save name, tiles
+
+  lookup: (sha) ->
+    tiles.select (tile) ->
+      tile.sha is sha
+    .first()
+
   eval: (code) ->
     eval(code)
+
+window.TileProtos =
+  stairs:
+    offset: 32 # Adjusts things on top
+    stair: true

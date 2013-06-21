@@ -28,20 +28,17 @@ window.Map = (drawAt=->) ->
 
   render = ->
     context.clearRect(0, 0, width, height)
-    cellsTall.times (z) ->
+    cellsTall.times (k) ->
       cellsWide.times (i) ->
         cellsLong.times (j) ->
           j = (cellsLong - 1) - j
 
-          tile = layers[z]?[i]?[j]
+          tile = tileAt(i, j, k)
 
-          if tile?
-            x = (j * tileWidth / 2) + (i * tileWidth / 2)
-            y = (i * tileHeight / 2) - (j * tileHeight / 2)
+          if tile
+            drawCell(tile, i, j, k)
 
-            drawTile(tile, x, y - (tileHeight * z))
-
-          drawAt(i, j, z)
+          drawAt(i, j, k, tile)
 
     return this
 
@@ -53,9 +50,11 @@ window.Map = (drawAt=->) ->
     if data
       loadLayers(data)
 
-  drawTile = (tile, x, y) ->
-    if tile = tiles[tile]
-      tile.draw(context, x, y + height/2)
+  tileAt = (i, j, k) ->
+    tiles[layers[k]?[i]?[j]]
+
+  drawObject = (object, x, y) ->
+    object.draw(context, x, y + height/2)
 
   loadLayers = (data) ->
     layerData = data
@@ -65,6 +64,15 @@ window.Map = (drawAt=->) ->
       $(this).val(layerData[i])
 
     render()
+
+  drawCell = (object, i, j, k) ->
+    x = (j * tileWidth / 2) + (i * tileWidth / 2)
+    y = (i * tileHeight / 2) - (j * tileHeight / 2)
+    z = k * tileHeight
+
+    drawObject(object, x, y - z)
+
+  drawCell: drawCell
 
   tiles: (newTiles) ->
     tiles = newTiles
@@ -77,6 +85,13 @@ window.Map = (drawAt=->) ->
     sha = CAS.storeJSON(layerData)
 
     Filetree.set "tilemap", sha
+
+  isClear: (i, j, k) ->
+    tile = tileAt(i, j, k)
+
+    !tile or (tile.solid is false)
+
+  tileAt: tileAt
 
   eval: (code) ->
     eval(code)
