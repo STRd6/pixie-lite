@@ -196,9 +196,9 @@ Tile.prototype = {
 };
 
 window.Tileset = function(loaded) {
-  var render, tiles;
+  var complete, render, sha, tiles;
   tiles = [];
-  Filetree.load("tileset", function(data) {
+  complete = function(data) {
     tiles = data.map(function(sha) {
       if (_.isString(sha)) {
         return Tile({
@@ -209,7 +209,13 @@ window.Tileset = function(loaded) {
       }
     });
     return loaded();
-  });
+  };
+  if (Filetree.sha("tileset")) {
+    Filetree.load("tileset", complete);
+  } else {
+    sha = "fb5eadfdbba50cddf5a8e1cedcfbc9184f0b0fd0";
+    CAS.getJSON(sha, complete);
+  }
   render = function() {
     var $tiles;
     $tiles = $("#tiles").empty();
@@ -300,6 +306,9 @@ window.Filetree = {
     tree = Storage.filetree();
     tree[name] = sha;
     return Storage.store("filetree", tree);
+  },
+  sha: function(name) {
+    return Storage.filetree()[name];
   },
   save: function(name, data) {
     var sha;

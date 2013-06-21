@@ -51,6 +51,9 @@ window.Filetree =
 
     Storage.store("filetree", tree)
 
+  sha: (name) ->
+    Storage.filetree()[name]
+
   save: (name, data) ->
     sha = CAS.storeJSON data
 

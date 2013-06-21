@@ -1,7 +1,7 @@
 window.Tileset = (loaded) ->
   tiles = []
 
-  Filetree.load "tileset", (data) ->
+  complete = (data) ->
     tiles = data.map (sha) ->
       if _.isString sha
         Tile
@@ -10,6 +10,13 @@ window.Tileset = (loaded) ->
         Tile sha
 
     loaded()
+
+  if Filetree.sha "tileset"
+    Filetree.load "tileset", complete
+  else
+    sha = "fb5eadfdbba50cddf5a8e1cedcfbc9184f0b0fd0"
+
+    CAS.getJSON sha, complete
 
   render = ->
     $tiles = $("#tiles").empty()
