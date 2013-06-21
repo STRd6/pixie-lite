@@ -46,8 +46,12 @@ window.Map = (drawAt=->) ->
   layers = []
   tiles = []
 
-  Filetree.load "tilemap", (data) ->
-    if data
+  if Filetree.sha "tilemap"
+    Filetree.load "tilemap", (data) ->
+      if data
+        loadLayers(data)
+  else
+    CAS.getJSON "a296b41fb709d9d0e0433754546400e5f003f17a", (data) ->
       loadLayers(data)
 
   tileAt = (i, j, k) ->

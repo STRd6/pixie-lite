@@ -113,11 +113,17 @@ window.Map = function(drawAt) {
   layerData = [];
   layers = [];
   tiles = [];
-  Filetree.load("tilemap", function(data) {
-    if (data) {
+  if (Filetree.sha("tilemap")) {
+    Filetree.load("tilemap", function(data) {
+      if (data) {
+        return loadLayers(data);
+      }
+    });
+  } else {
+    CAS.getJSON("a296b41fb709d9d0e0433754546400e5f003f17a", function(data) {
       return loadLayers(data);
-    }
-  });
+    });
+  }
   tileAt = function(i, j, k) {
     var _ref, _ref1;
     return tiles[(_ref = layers[k]) != null ? (_ref1 = _ref[i]) != null ? _ref1[j] : void 0 : void 0];
