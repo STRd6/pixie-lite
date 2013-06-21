@@ -23,34 +23,14 @@ Map = ->
   parseLayer = (text) ->
     text.split("\n").map (row) ->
       row.split('').map (n) ->
-        res = parseInt(n, 16)
+        res = parseInt(n, 36)
 
         if res != 0
           res || undefined
         else
           res
 
-  layers = ["""
-    0000
-    0000
-    0000
-    0000
-  """, """
-    8  8
-       A
-    88
-     A
-  """
-  ].map parseLayer
-
-  console.log layers
-
-  drawTile = (tile, x, y) ->
-    if img = $("img").get(tile)
-
-      context.drawImage(img, x, y + height/2)
-
-  render: ->
+  render = ->
     context.clearRect(0, 0, width, height)
     layers.each (layer, z) ->
       layer.length.times (i) ->
@@ -69,13 +49,44 @@ Map = ->
 
     return this
 
+  layerData = []
+  layers = []
+
+  Filetree.load "tilemap", (data) ->
+    if data
+      loadLayers(data)
+
+  drawTile = (tile, x, y) ->
+    if img = $("img").get(tile)
+
+      context.drawImage(img, x, y + height/2)
+
+  loadLayers = (data) ->
+    layerData = data
+    layers = layerData.map parseLayer
+
+    $("#layers textarea").each (i) ->
+      $(this).val(layerData[i])
+
+    render()
+
+  loadLayers: loadLayers
+
+  saveLayerData: ->
+    sha = CAS.storeJSON(layerData)
+
+    Filetree.set "tilemap", sha
+
+  eval: (code) ->
+    eval(code)
+
+  render: render
+
 Tiler = ->
   tileShas = Storage.list("tiles")
 
   perPage = 113
   page = 0
-
-  console.log tileShas
 
   render = ->
     $("#tiles").empty()
@@ -91,12 +102,14 @@ Tiler = ->
 
   render()
 
+  eval: (code) ->
+    eval(code)
+
   changePage: (delta) ->
     page += delta
 
     render()
     map.render()
-
 
 window.Tiler = Tiler
 
@@ -116,6 +129,9 @@ $(document).bind "keydown", "=", ->
 $(document).bind "keydown", "-", ->
   tiler.changePage(-1)
 
+$(document).bind "keydown", "s", ->
+  map.saveLayerData()
+
 window.saveTilesets = ->
   tree = {}
   n = 0
@@ -125,3 +141,15 @@ window.saveTilesets = ->
     n += 1
 
   Storage.mergeTree(tree)
+
+refreshLayers = ->
+  data = $("#layers textarea").map ->
+    $(this).val()
+  .get()
+
+  map.loadLayers data
+
+$(document).on
+  keyup: refreshLayers
+  blur: refreshLayers
+, "#layers textarea"

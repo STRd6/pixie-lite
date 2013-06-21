@@ -100,5 +100,9 @@ __END__
   %body
     = yield
 
+    %form#console
+      %textarea
+      %button Run
+
 @@editor
 %script(src="/editor.js")

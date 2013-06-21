@@ -44,6 +44,19 @@ Object.extend Storage,
 
     @store(key, mergedTree)
 
+window.Filetree =
+  set: (name, sha) ->
+    tree = Storage.filetree()
+    tree[name] = sha
+
+    Storage.store("filetree", tree)
+
+  load: (name, callback) ->
+    if sha = Storage.filetree()[name]
+      CAS.getJSON sha, callback
+    else
+      setTimeout callback
+
 window.CAS =
   storeJSON: (data, type="application/json") ->
     jsonData = JSON.stringify(data)
