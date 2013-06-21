@@ -67,10 +67,16 @@ window.CAS =
 
     return CryptoJS.SHA1(jsonData).toString()
 
-  storeBase64: (data, type="image/png") ->
+  storeBase64: (data, options={}) ->
+    Object.reverseMerge options,
+      type: "image/png"
+      callback: ->
+
     $.post '/upload',
       data_base64: data
-      type: type
+      type: options.type
+    , ->
+      options.callback()
 
     raw = CryptoJS.enc.Base64.parse(data)
 
@@ -80,6 +86,10 @@ window.CAS =
     url = Resource.url(sha, true)
 
     $.getJSON url, callback
+
+window.Util =
+  dataFromDataURL: (dataURL) ->
+    dataURL.substr(dataURL.indexOf(',') + 1)
 
 window.Resource =
   # If you call crossOrigin, but use the url in a normal request rather than a cross

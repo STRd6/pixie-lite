@@ -20,6 +20,7 @@ end
 
 %w[
   editor
+  game
   slicer
   tiler
 ].each do |component|
@@ -97,7 +98,7 @@ __END__
     %script(src="/pixie.js")
     %script(src="/main.js")
 
-  %body
+  %body(oncontextmenu="return false;")
     = yield
 
     %form#console

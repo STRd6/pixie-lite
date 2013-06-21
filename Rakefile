@@ -6,6 +6,7 @@ task :build do
 
   %w[
     editor
+    game
     slicer
     tiler
   ].each do |subdir|

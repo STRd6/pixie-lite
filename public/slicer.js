@@ -3,7 +3,7 @@ var Slicer,
   __slice = [].slice;
 
 Slicer = function(I) {
-  var canvas, canvasElement, context, drawGuides, drawSelection, guidesX, guidesY, height, image, offsetX, offsetY, overlayCanvas, overlayContext, selection, selectionData, selections, snap, snapSelection, update, width;
+  var canvas, canvasElement, context, drawGuides, drawSelection, height, image, offsetX, offsetY, overlayCanvas, overlayContext, selection, selectionData, selections, snap, snapSelection, update, width;
   if (I == null) {
     I = {};
   }
@@ -24,8 +24,6 @@ Slicer = function(I) {
   overlayContext = overlayCanvas.get(0).getContext("2d");
   offsetX = 0;
   offsetY = 0;
-  guidesX = [];
-  guidesY = [];
   selection = null;
   snap = 16;
   selections = Storage.list("selections");
@@ -78,6 +76,9 @@ Slicer = function(I) {
         return selection;
       }
     },
+    clearSelections: function() {
+      return selections = [];
+    },
     remember: function() {
       if (selection) {
         selections.push(selection);
@@ -110,6 +111,18 @@ Slicer = function(I) {
         return extract(selection, i * 500);
       });
     },
+    extractAllByGrid: function() {
+      var extract;
+      extract = this.extract;
+      return (height / snap).times(function(j) {
+        return (width / snap).times(function(i) {
+          var x, y;
+          x = i * snap;
+          y = j * snap;
+          return extract([x, y, x + snap, y + snap]);
+        });
+      });
+    },
     "eval": function(code) {
       return eval(code);
     }
@@ -119,7 +132,7 @@ Slicer = function(I) {
 window.Slicer = Slicer;
 
 $(function() {
-  var pos, sha, slicer, startPosition;
+  var pos, slicer, startPosition;
   slicer = null;
   window.extractTiles = function(extractions) {
     return extractions.each(function(extraction) {
@@ -149,15 +162,23 @@ $(function() {
       src: url
     });
   };
-  if (sha = Storage.list("extractions")[0]) {
-    loadExtraction(sha);
-  }
+  loadExtraction("8f0d890af45f0dd5abf51db7aa1ee6d172cd843b");
   startPosition = null;
   pos = function(event) {
     var offset;
     offset = $(event.currentTarget).offset();
     return [event.pageX - offset.left, event.pageY - offset.top];
   };
+  $("body").dropImageReader(function(_arg) {
+    var data, dataURL, sha;
+    dataURL = _arg.dataURL;
+    data = Util.dataFromDataURL(dataURL);
+    return sha = CAS.storeBase64(data, {
+      callback: function() {
+        return loadExtraction(sha);
+      }
+    });
+  });
   $(document).on({
     mousedown: function(e) {
       return startPosition = pos(e);

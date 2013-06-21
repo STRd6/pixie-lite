@@ -22,9 +22,6 @@ Slicer = (I={}) ->
   offsetX = 0
   offsetY = 0
 
-  guidesX = []
-  guidesY = []
-
   selection = null
   snap = 16
 
@@ -82,6 +79,9 @@ Slicer = (I={}) ->
     else
       selection
 
+  clearSelections: ->
+    selections = []
+
   remember: ->
     if selection
       selections.push(selection)
@@ -111,6 +111,15 @@ Slicer = (I={}) ->
     extract = @extract
     selections.map (selection, i) ->
       extract(selection, i * 500)
+
+  extractAllByGrid: ->
+    extract = @extract
+
+    (height / snap).times (j) ->
+      (width / snap).times (i) ->
+        x = i * snap
+        y = j * snap
+        extract [x, y, x + snap, y + snap]
 
   eval: (code) ->
     eval(code)
@@ -144,8 +153,7 @@ $ ->
 
       src: url
 
-  if sha = Storage.list("extractions")[0]
-    loadExtraction(sha)
+  loadExtraction("8f0d890af45f0dd5abf51db7aa1ee6d172cd843b")
 
   startPosition = null
 
@@ -156,6 +164,13 @@ $ ->
       event.pageX - offset.left
       event.pageY - offset.top
     ]
+
+  $("body").dropImageReader ({dataURL}) ->
+    data = Util.dataFromDataURL(dataURL)
+
+    sha = CAS.storeBase64 data,
+      callback: ->
+        loadExtraction(sha)
 
   $(document).on
     mousedown: (e) ->

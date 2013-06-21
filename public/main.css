@@ -5,7 +5,8 @@ textarea {
   font-family: "Lucida Console", Monaco, monospace;
 }
 #layers {
-  width: 640px;
+  display: inline-block;
+  width: 400px;
   margin: auto;
 }
 #console {
@@ -14,6 +15,9 @@ textarea {
   right: 0;
   width: 200px;
   height: 200px;
+}
+#tiles img:nth-child(n+37) {
+  border: 2px solid #f00;
 }
 #gritter-notice-wrapper {
   position: fixed;

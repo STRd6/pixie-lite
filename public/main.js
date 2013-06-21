@@ -65,6 +65,148 @@ $(function() {
   };
 })(jQuery);
 
+window.Map = function(drawAt) {
+  var canvas, canvasElement, cellsLong, cellsTall, cellsWide, context, drawTile, height, layerData, layers, loadLayers, parseLayer, render, tileHeight, tileWidth, tiles, width;
+  if (drawAt == null) {
+    drawAt = function() {};
+  }
+  tileWidth = 64;
+  tileHeight = 32;
+  width = 640;
+  height = 480;
+  cellsWide = 8;
+  cellsLong = 8;
+  cellsTall = 8;
+  canvas = $("<canvas width=" + width + " height=" + height + " id='map'>").appendTo("body");
+  canvasElement = canvas.get(0);
+  context = canvasElement.getContext("2d");
+  parseLayer = function(text) {
+    return text.split("\n").map(function(row) {
+      return row.split('').map(function(n) {
+        var res;
+        res = parseInt(n, 36);
+        if (res !== 0) {
+          return res || void 0;
+        } else {
+          return res;
+        }
+      });
+    });
+  };
+  render = function() {
+    context.clearRect(0, 0, width, height);
+    cellsTall.times(function(z) {
+      return cellsWide.times(function(i) {
+        return cellsLong.times(function(j) {
+          var tile, x, y, _ref, _ref1;
+          j = (cellsLong - 1) - j;
+          tile = (_ref = layers[z]) != null ? (_ref1 = _ref[i]) != null ? _ref1[j] : void 0 : void 0;
+          if (tile != null) {
+            x = (j * tileWidth / 2) + (i * tileWidth / 2);
+            y = (i * tileHeight / 2) - (j * tileHeight / 2);
+            drawTile(tile, x, y - (tileHeight * z));
+          }
+          return drawAt(i, j, z);
+        });
+      });
+    });
+    return this;
+  };
+  layerData = [];
+  layers = [];
+  tiles = [];
+  Filetree.load("tilemap", function(data) {
+    if (data) {
+      return loadLayers(data);
+    }
+  });
+  drawTile = function(tile, x, y) {
+    if (tile = tiles[tile]) {
+      return tile.draw(context, x, y + height / 2);
+    }
+  };
+  loadLayers = function(data) {
+    layerData = data;
+    layers = layerData.map(parseLayer);
+    $("#layers textarea").each(function(i) {
+      return $(this).val(layerData[i]);
+    });
+    return render();
+  };
+  return {
+    tiles: function(newTiles) {
+      tiles = newTiles;
+      return render();
+    },
+    loadLayers: loadLayers,
+    saveLayerData: function() {
+      var sha;
+      sha = CAS.storeJSON(layerData);
+      return Filetree.set("tilemap", sha);
+    },
+    "eval": function(code) {
+      return eval(code);
+    },
+    render: render
+  };
+};
+
+window.Tile = function(I) {
+  var img, self, sha, url;
+  if (I == null) {
+    I = {};
+  }
+  sha = I.sha;
+  url = Resource.url(sha);
+  img = $("<img>", {
+    src: url,
+    load: function() {
+      return self.height = this.height;
+    }
+  }).get(0);
+  return self = Object.extend({}, {
+    __proto__: Tile.prototype,
+    img: img
+  }, I);
+};
+
+Tile.prototype = {
+  draw: function(canvas, x, y) {
+    var offset;
+    offset = 64 - this.height;
+    return canvas.drawImage(this.img, x, y + offset);
+  }
+};
+
+window.Tileset = function(loaded) {
+  var render, tiles;
+  tiles = [];
+  Filetree.load("tileset", function(data) {
+    tiles = data.map(function(sha) {
+      return Tile({
+        sha: sha
+      });
+    });
+    return loaded();
+  });
+  render = function() {
+    var $tiles;
+    $tiles = $("#tiles").empty();
+    return tiles.each(function(tile) {
+      return $tiles.append(tile.img);
+    });
+  };
+  return {
+    render: render,
+    tiles: function() {
+      return tiles;
+    },
+    "eval": function(code) {
+      return eval(code);
+    }
+  };
+};
+
 Object.extend(Storage, {
   pushData: function(name, value) {
     var list;
@@ -143,14 +285,20 @@ window.CAS = {
     });
     return CryptoJS.SHA1(jsonData).toString();
   },
-  storeBase64: function(data, type) {
+  storeBase64: function(data, options) {
     var raw;
-    if (type == null) {
-      type = "image/png";
+    if (options == null) {
+      options = {};
     }
+    Object.reverseMerge(options, {
+      type: "image/png",
+      callback: function() {}
+    });
     $.post('/upload', {
       data_base64: data,
-      type: type
+      type: options.type
+    }, function() {
+      return options.callback();
     });
     raw = CryptoJS.enc.Base64.parse(data);
     return CryptoJS.SHA1(raw).toString();
@@ -159,6 +307,12 @@ window.CAS = {
     var url;
     url = Resource.url(sha, true);
     return $.getJSON(url, callback);
+  }
+};
+
+window.Util = {
+  dataFromDataURL: function(dataURL) {
+    return dataURL.substr(dataURL.indexOf(',') + 1);
   }
 };
 
