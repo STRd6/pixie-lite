@@ -9,6 +9,7 @@ task :build do
     game
     slicer
     tiler
+    uploader
   ].each do |subdir|
     src_files = Dir["source/#{subdir}/*.coffee"]
     sh "coffee", "-bcj", "public/#{subdir}.js", *src_files

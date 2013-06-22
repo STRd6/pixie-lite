@@ -127,6 +127,20 @@ window.Resource =
       src: @url(sha)
     .get(0)
 
+window.UI =
+  buttons: (buttons, selector="body") ->
+    _.each buttons, (fn, name) ->
+      $("<button>",
+        text: name
+        click: fn
+      ).appendTo(selector)
+
+  actions: (actions) ->
+    _.each actions, (fn, key) ->
+      $(document).bind "keydown", key, ->
+        fn()
+
+        return false
 
 # Array madness!!
 

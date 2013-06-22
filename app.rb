@@ -23,6 +23,7 @@ end
   game
   slicer
   tiler
+  uploader
 ].each do |component|
   get "/#{component}" do
     haml "%script(src='/#{component}.js')"

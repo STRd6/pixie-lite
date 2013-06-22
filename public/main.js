@@ -405,6 +405,28 @@ window.Resource = {
   }
 };
 
+window.UI = {
+  buttons: function(buttons, selector) {
+    if (selector == null) {
+      selector = "body";
+    }
+    return _.each(buttons, function(fn, name) {
+      return $("<button>", {
+        text: name,
+        click: fn
+      }).appendTo(selector);
+    });
+  },
+  actions: function(actions) {
+    return _.each(actions, function(fn, key) {
+      return $(document).bind("keydown", key, function() {
+        fn();
+        return false;
+      });
+    });
+  }
+};
+
 ["x", "y", "z"].each(function(dim, i) {
   return Object.defineProperty(Array.prototype, dim, {
     get: function() {

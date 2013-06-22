@@ -89,9 +89,4 @@ actions = {
   }
 };
 
-_.each(actions, function(fn, key) {
-  return $(document).bind("keydown", key, function() {
-    fn();
-    return false;
-  });
-});
+UI.actions(actions);

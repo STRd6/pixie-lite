@@ -78,8 +78,4 @@ actions =
     slime.move [1, 0, 0]
     slime.fall()
 
-_.each actions, (fn, key) ->
-  $(document).bind "keydown", key, ->
-    fn()
-
-    return false
+UI.actions actions
