@@ -30,17 +30,8 @@ wizard = PlayerCharacter
 objects = [slime, wizard]
 activeIndex = 0
 
-objectsAt = (i, j, k) ->
-  inCell = objects.select (object) ->
-    object.position.x == i &&
-    object.position.y == j &&
-    object.position.z == k
-
-map = Map (x, y, z, tile) ->
-  inCell = objectsAt(x, y, z)
-
-  inCell.each (object) ->
-    map.drawCell object, x, y, z
+map = Map
+  objects: objects
 
 tileset = Tileset ->
   tileset.render()
@@ -74,6 +65,8 @@ next = ->
 
   activeIndex += 1
 
+  map.setTopLayer activeCharacter().position.z + 1
+
   displayOverlays()
 
 act = (dir) ->
@@ -96,6 +89,10 @@ displayOverlays = ->
     $overlays.append(object.renderOverlay())
 
 actions =
+  "[": ->
+    map.changeCameraAngle (-1/4).turns
+  "]": ->
+    map.changeCameraAngle (+1/4).turns
   up: ->
     act [0, 1, 0]
   down: ->

@@ -1,4 +1,4 @@
-window.Map = (drawAt=->) ->
+window.Map = (I={}) ->
   tileWidth = 64 # pixels
   tileHeight = 32 # pixels
 
@@ -9,6 +9,8 @@ window.Map = (drawAt=->) ->
   cellsLong = 8
   cellsTall = 8
 
+  objects = I.objects
+
   cameraAngle = 0.turns
   cameraRotation = Matrix.rotation(cameraAngle, Point(3.5,3.5))
   topLayer = 1
@@ -16,6 +18,12 @@ window.Map = (drawAt=->) ->
   canvas = $("<canvas width=#{width} height=#{height} id='map'>")
     .appendTo("body")
     .pixieCanvas()
+
+  objectsAt = (i, j, k) ->
+    objects.select (object) ->
+      object.position.x == i &&
+      object.position.y == j &&
+      object.position.z == k
 
   parseLayer = (text) ->
     text.split("\n").map (row) ->
@@ -47,7 +55,8 @@ window.Map = (drawAt=->) ->
           if tile
             drawCell(tile, i, j, k)
 
-          drawAt(p.x, p.y, k, tile)
+          objectsAt(p.x, p.y, k).each (object) ->
+            drawCell object, i, j, k
 
     return this
 

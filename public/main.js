@@ -66,10 +66,10 @@ $(function() {
   };
 })(jQuery);
 
-window.Map = function(drawAt) {
-  var cameraAngle, cameraRotation, canvas, cellsLong, cellsTall, cellsWide, drawCell, drawObject, height, layerData, layers, loadLayers, parseLayer, render, setData, tileAt, tileHeight, tileWidth, tiles, topLayer, width;
-  if (drawAt == null) {
-    drawAt = function() {};
+window.Map = function(I) {
+  var cameraAngle, cameraRotation, canvas, cellsLong, cellsTall, cellsWide, drawCell, drawObject, height, layerData, layers, loadLayers, objects, objectsAt, parseLayer, render, setData, tileAt, tileHeight, tileWidth, tiles, topLayer, width;
+  if (I == null) {
+    I = {};
   }
   tileWidth = 64;
   tileHeight = 32;
@@ -78,10 +78,16 @@ window.Map = function(drawAt) {
   cellsWide = 8;
   cellsLong = 8;
   cellsTall = 8;
+  objects = I.objects;
   cameraAngle = 0..turns;
   cameraRotation = Matrix.rotation(cameraAngle, Point(3.5, 3.5));
   topLayer = 1;
   canvas = $("<canvas width=" + width + " height=" + height + " id='map'>").appendTo("body").pixieCanvas();
+  objectsAt = function(i, j, k) {
+    return objects.select(function(object) {
+      return object.position.x === i && object.position.y === j && object.position.z === k;
+    });
+  };
   parseLayer = function(text) {
     return text.split("\n").map(function(row) {
       return row.split('').map(function(n) {
@@ -112,7 +118,9 @@ window.Map = function(drawAt) {
           if (tile) {
             drawCell(tile, i, j, k);
           }
-          return drawAt(p.x, p.y, k, tile);
+          return objectsAt(p.x, p.y, k).each(function(object) {
+            return drawCell(object, i, j, k);
+          });
         });
       });
     });
