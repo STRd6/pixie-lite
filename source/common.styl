@@ -28,3 +28,24 @@ textarea
   top 0
   width 200px
   height 200px
+
+#overlays
+  position fixed
+  right 0
+  top 0
+
+  progress
+    background-color: #f3f3f3;
+    border 0
+    width 100px
+    height 18px
+    border-radius 9px
+
+progress::-webkit-progress-bar
+  background-color #f3f3f3
+  border-radius 9px
+
+progress::-webkit-progress-value
+  background #cdeb8e
+  background -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cdeb8e), color-stop(100%,#a5c956))
+  border-radius 9px

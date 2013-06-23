@@ -1,3 +1,7 @@
+UI.buttons
+  Save: ->
+    tileset.save()
+    map.saveLayerData()
 
 $("<div id='tiles'>").appendTo("body")
 
@@ -11,15 +15,6 @@ map = Map()
 tileset = Tileset ->
   tileset.render()
   map.tiles(tileset.tiles())
-
-$(document).bind "keydown", "=", ->
-  tiler.changePage(+1)
-
-$(document).bind "keydown", "-", ->
-  tiler.changePage(-1)
-
-$(document).bind "keydown", "s", ->
-  map.saveLayerData()
 
 activeTile = null
 
@@ -37,8 +32,7 @@ $(document).on
 
 $(document).on
   mousedown: (e) ->
-    sha = $(this).attr("src").split("/").last()
-    activeTile = tileset.lookup(sha)
+    activeTile = tileset.get($(this).index())
 
     $("#props").val(Util.toCSON(activeTile))
 
@@ -57,3 +51,13 @@ $("#props").on
     data = eval code
 
     Object.extend activeTile, data
+
+UI.actions
+  "[": ->
+    map.changeCameraAngle (-1/4).turns
+  "]": ->
+    map.changeCameraAngle (+1/4).turns
+  "up": ->
+    map.changeTopLayer(+1)
+  "down": ->
+    map.changeTopLayer(-1)

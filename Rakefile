@@ -16,4 +16,6 @@ task :build do
   end
 
   sh "cat source/*.styl | stylus > public/main.css"
+
+  sh "haml-coffee -i source/templates/ -o public/templates.js -b true"
 end

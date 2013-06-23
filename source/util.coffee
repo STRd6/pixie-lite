@@ -142,6 +142,10 @@ window.UI =
 
         return false
 
+window.Effect =
+  flash: ->
+    $("canvas").css("opacity", 0).animate({opacity: 1}, "fast")
+
 # Array madness!!
 
 ["x", "y", "z"].each (dim, i) ->
@@ -150,3 +154,9 @@ window.UI =
       @[i]
     set: (x) ->
       @[i] = x
+
+Point::round = ->
+  Point(
+    @x.round()
+    @y.round()
+  )

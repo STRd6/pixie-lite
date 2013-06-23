@@ -99,6 +99,7 @@ __END__
     %script(src="/pixie.js")
     %script(src="/underscore-min.js")
     %script(src="/main.js")
+    %script(src="/templates.js")
 
   %body
     = yield

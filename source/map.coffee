@@ -9,12 +9,13 @@ window.Map = (drawAt=->) ->
   cellsLong = 8
   cellsTall = 8
 
+  cameraAngle = 0.turns
+  cameraRotation = Matrix.rotation(cameraAngle, Point(3.5,3.5))
+  topLayer = 1
+
   canvas = $("<canvas width=#{width} height=#{height} id='map'>")
     .appendTo("body")
-
-  canvasElement = canvas.get(0)
-
-  context = canvasElement.getContext("2d")
+    .pixieCanvas()
 
   parseLayer = (text) ->
     text.split("\n").map (row) ->
@@ -27,18 +28,26 @@ window.Map = (drawAt=->) ->
           res
 
   render = ->
-    context.clearRect(0, 0, width, height)
+    canvas.clear()
+
     cellsTall.times (k) ->
+      if k >= topLayer
+        canvas.globalAlpha 0.25
+      else
+        canvas.globalAlpha 1
+
       cellsWide.times (i) ->
         cellsLong.times (j) ->
           j = (cellsLong - 1) - j
 
-          tile = tileAt(i, j, k)
+          # Rotate i, j through camera rotation to select correct tile to draw
+          p = cameraRotation.transformPoint(Point(i, j)).round()
+          tile = tileAt(p.x, p.y, k)
 
           if tile
             drawCell(tile, i, j, k)
 
-          drawAt(i, j, k, tile)
+          drawAt(p.x, p.y, k, tile)
 
     return this
 
@@ -57,8 +66,11 @@ window.Map = (drawAt=->) ->
   tileAt = (i, j, k) ->
     tiles[layers[k]?[i]?[j]]
 
+  setData = (i, j, k, id) ->
+    ((layers[k] ||= [])[i] ||= [])[j] = id
+
   drawObject = (object, x, y) ->
-    object.draw(context, x, y + height/2)
+    object.draw(canvas, x, y + height/2, cameraRotation)
 
   loadLayers = (data) ->
     layerData = data
@@ -77,6 +89,31 @@ window.Map = (drawAt=->) ->
     drawObject(object, x, y - z)
 
   drawCell: drawCell
+
+  setData: setData
+
+  changeCameraAngle: (delta) ->
+    cameraAngle += delta
+    cameraRotation = Matrix.rotation(cameraAngle, Point(3.5,3.5))
+    @render()
+
+  changeTopLayer: (delta) ->
+    topLayer = (topLayer + delta).clamp(0, 7)
+    @render()
+
+  setTopLayer: (n) ->
+    topLayer = n.clamp(0, 7)
+    @render()
+
+  adjacentTiles: (i, j, k) ->
+    [
+      @tileAt(i, j, k - 1)
+      @tileAt(i, j, k + 1)
+      @tileAt(i, j - 1, k)
+      @tileAt(i, j + 1, k)
+      @tileAt(i - 1, j, k)
+      @tileAt(i + 1, j, k)
+    ].compact()
 
   tiles: (newTiles) ->
     tiles = newTiles

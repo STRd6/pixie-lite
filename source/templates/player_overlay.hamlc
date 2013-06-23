@@ -1,0 +1,7 @@
+.player-overlay
+  .name= @name
+  .health
+    = @health
+    \/
+    = @healthMax
+  %progress.health(value=@health max=@healthMax)
