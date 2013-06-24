@@ -43,6 +43,16 @@ $ ->
         undoable: false
 
       canvas.addAction
+        name: "load"
+        perform: (canvas) ->
+          if sha = prompt "SHA"
+            url = Resource.url sha, true
+
+            debugger
+
+            canvas.fromDataURL(url)
+
+      canvas.addAction
         name: "save"
         perform: (canvas) ->
           data = canvas.toBase64()

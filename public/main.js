@@ -78,7 +78,7 @@ window.Map = function(I) {
   cellsWide = 8;
   cellsLong = 8;
   cellsTall = 8;
-  objects = I.objects;
+  objects = I.objects || [];
   cameraAngle = 0..turns;
   cameraRotation = Matrix.rotation(cameraAngle, Point(3.5, 3.5));
   topLayer = 1;
@@ -1252,6 +1252,9 @@ window.Filetree = {
     } else {
       return setTimeout(callback);
     }
+  },
+  files: function() {
+    return Object.keys(Storage.filetree());
   }
 };
 

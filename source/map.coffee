@@ -9,7 +9,7 @@ window.Map = (I={}) ->
   cellsLong = 8
   cellsTall = 8
 
-  objects = I.objects
+  objects = I.objects || []
 
   cameraAngle = 0.turns
   cameraRotation = Matrix.rotation(cameraAngle, Point(3.5,3.5))

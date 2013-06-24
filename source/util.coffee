@@ -65,6 +65,9 @@ window.Filetree =
     else
       setTimeout callback
 
+  files: ->
+    Object.keys Storage.filetree()
+
 window.CAS =
   storeJSON: (data, type="application/json") ->
     jsonData = JSON.stringify(data)

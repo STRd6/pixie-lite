@@ -8,6 +8,7 @@ task :build do
     editor
     game
     slicer
+    sifter
     tiler
     uploader
   ].each do |subdir|

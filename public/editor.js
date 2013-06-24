@@ -53,6 +53,17 @@ $(function() {
         },
         undoable: false
       });
+      canvas.addAction({
+        name: "load",
+        perform: function(canvas) {
+          var sha, url;
+          if (sha = prompt("SHA")) {
+            url = Resource.url(sha, true);
+            debugger;
+            return canvas.fromDataURL(url);
+          }
+        }
+      });
       return canvas.addAction({
         name: "save",
         perform: function(canvas) {

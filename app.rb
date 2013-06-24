@@ -21,6 +21,7 @@ end
 %w[
   editor
   game
+  sifter
   slicer
   tiler
   uploader
