@@ -25,6 +25,10 @@ Tile:: =
   toJSON: ->
     _.omit(@, "img", "backImg")
 
+  present: ->
+    frontUrl: Resource.url @sha
+    backUrl: Resource.url(@back || @sha)
+
   draw: (canvas, x, y, cameraRotation=Matrix.IDENTITY) ->
     imgHeight = imgWidth = 64 # TODO real size
     orientation = cameraRotation.deltaTransformPoint(@orientation).round()

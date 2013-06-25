@@ -1,0 +1,6 @@
+.tiledata
+  .images
+    %img(src=@frontUrl)
+    %img.flip(src=@frontUrl)
+    %img(src=@backUrl)
+    %img.flip(src=@backUrl)

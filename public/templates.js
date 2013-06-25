@@ -59,3 +59,30 @@
   };
 
 }).call(this);
+(function() {
+  if (window.HAML == null) {
+    window.HAML = {};
+  }
+
+  window.HAML['tiledata'] = function(context) {
+    return (function() {
+      var $c, $o;
+      $c = function(text) {
+        switch (text) {
+          case null:
+          case void 0:
+            return '';
+          case true:
+          case false:
+            return '' + text;
+          default:
+            return text;
+        }
+      };
+      $o = [];
+      $o.push("<div class='tiledata'>\n  <div class='images'>\n    <img src='" + ($c(this.frontUrl)) + "'>\n    <img class='flip' src='" + ($c(this.frontUrl)) + "'>\n    <img src='" + ($c(this.backUrl)) + "'>\n    <img class='flip' src='" + ($c(this.backUrl)) + "'>\n  </div>\n</div>");
+      return $o.join("\n").replace(/\s(\w+)='true'/mg, ' $1').replace(/\s(\w+)='false'/mg, '').replace(/\s(?:id|class)=(['"])(\1)/mg, "");
+    }).call(context);
+  };
+
+}).call(this);

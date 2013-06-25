@@ -6,6 +6,13 @@ textarea
 
   font-family "Lucida Console", Monaco, monospace
 
+transform()
+  -webkit-transform arguments
+  transform arguments
+
+.flip
+  transform scaleX(-1)
+
 #layers
   display inline-block
   width 400px
@@ -18,11 +25,17 @@ textarea
   width 200px
   height 200px
 
+#map
+  position relative
+
+  canvas
+    position absolute
+
 #tiles
   img
     border 1px solid gray
 
-#props
+#preview
   position fixed
   right 0
   top 0

@@ -15,9 +15,17 @@ window.Map = (I={}) ->
   cameraRotation = Matrix.rotation(cameraAngle, Point(3.5,3.5))
   topLayer = 1
 
-  canvas = $("<canvas width=#{width} height=#{height} id='map'>")
-    .appendTo("body")
+  viewport = $("<viewport id='map'>")
+
+  canvas = $("<canvas width=#{width} height=#{height}>")
+    .appendTo(viewport)
     .pixieCanvas()
+
+  upperCanvas = $("<canvas width=#{width} height=#{height}>")
+    .appendTo(viewport)
+    .pixieCanvas()
+
+  viewport.appendTo "body"
 
   objectsAt = (i, j, k) ->
     objects.select (object) ->
@@ -39,11 +47,6 @@ window.Map = (I={}) ->
     canvas.clear()
 
     cellsTall.times (k) ->
-      if k >= topLayer
-        canvas.globalAlpha 0.25
-      else
-        canvas.globalAlpha 1
-
       cellsWide.times (i) ->
         cellsLong.times (j) ->
           j = (cellsLong - 1) - j
@@ -53,7 +56,16 @@ window.Map = (I={}) ->
           tile = tileAt(p.x, p.y, k)
 
           if tile
-            drawCell(tile, i, j, k)
+            if k >= topLayer
+              upperCanvas.globalAlpha 1
+              upperCanvas.globalCompositeOperation "destination-out"
+              drawCell(tile, i, j, k, upperCanvas) # Erase to prevent ghosties
+
+              upperCanvas.globalCompositeOperation "source-over"
+              upperCanvas.globalAlpha 0.25
+              drawCell(tile, i, j, k, upperCanvas)
+            else
+              drawCell(tile, i, j, k)
 
           objectsAt(p.x, p.y, k).each (object) ->
             drawCell object, i, j, k
@@ -78,8 +90,8 @@ window.Map = (I={}) ->
   setData = (i, j, k, id) ->
     ((layers[k] ||= [])[i] ||= [])[j] = id
 
-  drawObject = (object, x, y) ->
-    object.draw(canvas, x, y + height/2, cameraRotation)
+  drawObject = (object, x, y, context=canvas) ->
+    object.draw(context, x, y + height/2, cameraRotation)
 
   loadLayers = (data) ->
     layerData = data
@@ -90,14 +102,12 @@ window.Map = (I={}) ->
 
     render()
 
-  drawCell = (object, i, j, k) ->
+  drawCell = (object, i, j, k, context=canvas) ->
     x = (j * tileWidth / 2) + (i * tileWidth / 2)
     y = (i * tileHeight / 2) - (j * tileHeight / 2)
     z = k * tileHeight
 
-    drawObject(object, x, y - z)
-
-  drawCell: drawCell
+    drawObject(object, x, y - z, context)
 
   setData: setData
 

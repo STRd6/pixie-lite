@@ -48,8 +48,6 @@ $ ->
           if sha = prompt "SHA"
             url = Resource.url sha, true
 
-            debugger
-
             canvas.fromDataURL(url)
 
       canvas.addAction

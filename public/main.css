@@ -4,6 +4,10 @@ textarea {
   height: 150px;
   font-family: "Lucida Console", Monaco, monospace;
 }
+.flip {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
 #layers {
   display: inline-block;
   width: 400px;
@@ -16,10 +20,16 @@ textarea {
   width: 200px;
   height: 200px;
 }
+#map {
+  position: relative;
+}
+#map canvas {
+  position: absolute;
+}
 #tiles img {
   border: 1px solid #808080;
 }
-#props {
+#preview {
   position: fixed;
   right: 0;
   top: 0;

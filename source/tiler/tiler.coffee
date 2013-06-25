@@ -4,10 +4,11 @@ UI.buttons
     map.saveLayerData()
 
 $("<div id='tiles'>").appendTo("body")
+$("<div id='preview'>").appendTo("body")
 
 layersElement = $("<div id='layers'>").appendTo("body")
 
-5.times ->
+8.times ->
   layersElement.append("<textarea>")
 
 map = Map()
@@ -36,12 +37,15 @@ $(document).on
 
     $("#props").val(Util.toCSON(activeTile))
 
+    $("#preview .tiledata").remove()
+    $("#preview").append HAML.tiledata activeTile.present()
+
     return false
 
 , "#tiles img"
 
 $("<textarea id='props'>")
-  .appendTo "body"
+  .appendTo "#preview"
 
 $("#props").on
   blur: ->
@@ -51,6 +55,9 @@ $("#props").on
     data = eval code
 
     Object.extend activeTile, data
+
+    $("#preview .tiledata").remove()
+    $("#preview").append HAML.tiledata activeTile.present()
 
 UI.actions
   "[": ->
