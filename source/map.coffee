@@ -45,6 +45,7 @@ window.Map = (I={}) ->
 
   render = ->
     canvas.clear()
+    upperCanvas.clear()
 
     cellsTall.times (k) ->
       cellsWide.times (i) ->

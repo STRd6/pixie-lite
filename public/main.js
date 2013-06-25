@@ -106,6 +106,7 @@ window.Map = function(I) {
   };
   render = function() {
     canvas.clear();
+    upperCanvas.clear();
     cellsTall.times(function(k) {
       return cellsWide.times(function(i) {
         return cellsLong.times(function(j) {
