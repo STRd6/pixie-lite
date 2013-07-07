@@ -21,7 +21,9 @@ textarea {
   height: 200px;
 }
 #map {
-  position: relative;
+  position: absolute;
+  width: 640px;
+  height: 480px;
 }
 #map canvas {
   position: absolute;

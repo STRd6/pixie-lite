@@ -48,9 +48,12 @@ map = Map({
   objects: objects
 });
 
-tileset = Tileset(function() {
-  tileset.render();
-  return map.tiles(tileset.tiles());
+tileset = Tileset({
+  name: "tileset",
+  loaded: function() {
+    tileset.render();
+    return map.tiles(tileset.tiles());
+  }
 });
 
 setInterval(function() {

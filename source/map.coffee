@@ -15,6 +15,17 @@ window.Map = (I={}) ->
   cameraRotation = Matrix.rotation(cameraAngle, Point(3.5,3.5))
   topLayer = 1
 
+  activePosition = undefined
+  cursor =
+    draw: (canvas, x, y) ->
+      canvas.drawRect
+        x: x
+        y: y - 16
+        width: tileWidth
+        height: tileHeight
+        color: "rgba(255, 0, 0, 0.5)"
+
+
   viewport = $("<viewport id='map'>")
 
   canvas = $("<canvas width=#{width} height=#{height}>")
@@ -68,6 +79,9 @@ window.Map = (I={}) ->
             else
               drawCell(tile, i, j, k)
 
+          if activePosition
+            drawActive(i, j, k) if activePosition.x is i and activePosition.y is j
+
           objectsAt(p.x, p.y, k).each (object) ->
             drawCell object, i, j, k
 
@@ -103,6 +117,19 @@ window.Map = (I={}) ->
 
     render()
 
+  ###
+  2x/c - i = j
+  2y/d + j = i
+
+  x/c + y/d = i
+  x/c - y/d = j
+
+  ###
+
+  drawActive = (i, j, k) ->
+    debugger
+    drawCell(cursor, i, j, k)
+
   drawCell = (object, i, j, k, context=canvas) ->
     x = (j * tileWidth / 2) + (i * tileWidth / 2)
     y = (i * tileHeight / 2) - (j * tileHeight / 2)
@@ -134,6 +161,17 @@ window.Map = (I={}) ->
       @tileAt(i - 1, j, k)
       @tileAt(i + 1, j, k)
     ].compact()
+
+  mousePosition: ({x, y}) ->
+    y = y - height/2 - 16
+
+    x = x/tileWidth
+    y = y/tileHeight
+
+    i = (x + y).floor()
+    j = (x - y).floor()
+
+    activePosition = [i, j, 0]
 
   tiles: (newTiles) ->
     tiles = newTiles

@@ -20,9 +20,11 @@ layersElement = $("<div id='layers'>").appendTo("body");
 
 map = Map();
 
-tileset = Tileset(function() {
-  tileset.render();
-  return map.tiles(tileset.tiles());
+tileset = Tileset({
+  loaded: function() {
+    tileset.render();
+    return map.tiles(tileset.tiles());
+  }
 });
 
 activeTile = null;
@@ -49,6 +51,12 @@ $(document).on({
     return false;
   }
 }, "#tiles img");
+
+$(document).on({
+  mousemove: function(e) {
+    return map.mousePosition(localPosition(e));
+  }
+}, "#map");
 
 $("<textarea id='props'>").appendTo("#preview");
 
@@ -80,3 +88,7 @@ UI.actions({
     return map.changeTopLayer(-1);
   }
 });
+
+setInterval(function() {
+  return map.render();
+}, 33);

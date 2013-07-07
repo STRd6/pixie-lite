@@ -163,3 +163,7 @@ Point::round = ->
     @x.round()
     @y.round()
   )
+
+window.localPosition = (event) ->
+  x: event.offsetX
+  y: event.offsetY

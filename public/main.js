@@ -67,7 +67,7 @@ $(function() {
 })(jQuery);
 
 window.Map = function(I) {
-  var cameraAngle, cameraRotation, canvas, cellsLong, cellsTall, cellsWide, drawCell, drawObject, height, layerData, layers, loadLayers, objects, objectsAt, parseLayer, render, setData, tileAt, tileHeight, tileWidth, tiles, topLayer, upperCanvas, viewport, width;
+  var activePosition, cameraAngle, cameraRotation, canvas, cellsLong, cellsTall, cellsWide, cursor, drawActive, drawCell, drawObject, height, layerData, layers, loadLayers, objects, objectsAt, parseLayer, render, setData, tileAt, tileHeight, tileWidth, tiles, topLayer, upperCanvas, viewport, width;
   if (I == null) {
     I = {};
   }
@@ -82,6 +82,18 @@ window.Map = function(I) {
   cameraAngle = 0..turns;
   cameraRotation = Matrix.rotation(cameraAngle, Point(3.5, 3.5));
   topLayer = 1;
+  activePosition = void 0;
+  cursor = {
+    draw: function(canvas, x, y) {
+      return canvas.drawRect({
+        x: x,
+        y: y - 16,
+        width: tileWidth,
+        height: tileHeight,
+        color: "rgba(255, 0, 0, 0.5)"
+      });
+    }
+  };
   viewport = $("<viewport id='map'>");
   canvas = $("<canvas width=" + width + " height=" + height + ">").appendTo(viewport).pixieCanvas();
   upperCanvas = $("<canvas width=" + width + " height=" + height + ">").appendTo(viewport).pixieCanvas();
@@ -124,6 +136,11 @@ window.Map = function(I) {
               drawCell(tile, i, j, k, upperCanvas);
             } else {
               drawCell(tile, i, j, k);
+            }
+          }
+          if (activePosition) {
+            if (activePosition.x === i && activePosition.y === j) {
+              drawActive(i, j, k);
             }
           }
           return objectsAt(p.x, p.y, k).each(function(object) {
@@ -170,6 +187,18 @@ window.Map = function(I) {
     });
     return render();
   };
+  /*
+  2x/c - i = j
+  2y/d + j = i
+  
+  x/c + y/d = i
+  x/c - y/d = j
+  */
+
+  drawActive = function(i, j, k) {
+    debugger;
+    return drawCell(cursor, i, j, k);
+  };
   drawCell = function(object, i, j, k, context) {
     var x, y, z;
     if (context == null) {
@@ -197,6 +226,16 @@ window.Map = function(I) {
     },
     adjacentTiles: function(i, j, k) {
       return [this.tileAt(i, j, k - 1), this.tileAt(i, j, k + 1), this.tileAt(i, j - 1, k), this.tileAt(i, j + 1, k), this.tileAt(i - 1, j, k), this.tileAt(i + 1, j, k)].compact();
+    },
+    mousePosition: function(_arg) {
+      var i, j, x, y;
+      x = _arg.x, y = _arg.y;
+      y = y - height / 2 - 16;
+      x = x / tileWidth;
+      y = y / tileHeight;
+      i = (x + y).floor();
+      j = (x - y).floor();
+      return activePosition = [i, j, 0];
     },
     tiles: function(newTiles) {
       tiles = newTiles;
@@ -1014,8 +1053,8 @@ window.PlayerCharacter = function(I) {
   }
   return Object.extend({}, {
     __proto__: PlayerCharacter.prototype,
-    health: 10,
-    healthMax: 10
+    health: 5,
+    healthMax: 5
   }, I);
 };
 
@@ -1138,8 +1177,10 @@ TODO: Have front and back SHA so we can rotate the world
 */
 
 
-window.Tileset = function(loaded) {
-  var complete, loadSha, render, tiles;
+window.Tileset = function(_arg) {
+  var complete, loadSha, loaded, name, render, tiles;
+  loaded = _arg.loaded, name = _arg.name;
+  name || (name = "tileset");
   tiles = [];
   complete = function(data) {
     tiles = data.map(function(sha) {
@@ -1156,8 +1197,8 @@ window.Tileset = function(loaded) {
   loadSha = function(sha) {
     return CAS.getJSON(sha, complete);
   };
-  if (Filetree.sha("tileset")) {
-    Filetree.load("tileset", complete);
+  if (Filetree.sha(name)) {
+    Filetree.load(name, complete);
   } else {
     loadSha("fb5eadfdbba50cddf5a8e1cedcfbc9184f0b0fd0");
   }
@@ -1174,11 +1215,14 @@ window.Tileset = function(loaded) {
     tiles: function() {
       return tiles;
     },
-    save: function(name) {
-      if (name == null) {
-        name = "tileset";
+    save: function() {
+      return this.saveAs(name);
+    },
+    saveAs: function(fileName) {
+      if (fileName == null) {
+        fileName = "tileset";
       }
-      return Filetree.save(name, tiles);
+      return Filetree.save(fileName, tiles);
     },
     get: function(n) {
       return tiles[n];
@@ -1394,4 +1438,11 @@ window.Effect = {
 
 Point.prototype.round = function() {
   return Point(this.x.round(), this.y.round());
+};
+
+window.localPosition = function(event) {
+  return {
+    x: event.offsetX,
+    y: event.offsetY
+  };
 };

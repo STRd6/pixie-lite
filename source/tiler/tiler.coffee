@@ -45,6 +45,11 @@ $(document).on
 
 , "#tiles img"
 
+$(document).on
+  mousemove: (e) ->
+    map.mousePosition(localPosition(e))
+, "#map"
+
 $("<textarea id='props'>")
   .appendTo "#preview"
 
@@ -69,3 +74,7 @@ UI.actions
     map.changeTopLayer(+1)
   "down": ->
     map.changeTopLayer(-1)
+
+setInterval ->
+  map.render()
+, 33

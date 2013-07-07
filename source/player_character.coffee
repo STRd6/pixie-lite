@@ -1,8 +1,8 @@
 window.PlayerCharacter = (I={}) ->
   Object.extend {},
     __proto__: PlayerCharacter::
-    health: 10
-    healthMax: 10
+    health: 5
+    healthMax: 5
   , I
 
 PlayerCharacter:: =

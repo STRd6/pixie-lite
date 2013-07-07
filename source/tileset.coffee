@@ -1,4 +1,4 @@
-window.Tileset = ({loaded, name}}) ->
+window.Tileset = ({loaded, name}) ->
   name ||= "tileset"
   tiles = []
 
