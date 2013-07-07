@@ -1,4 +1,5 @@
-window.Tileset = (loaded) ->
+window.Tileset = ({loaded, name}}) ->
+  name ||= "tileset"
   tiles = []
 
   complete = (data) ->
@@ -14,8 +15,8 @@ window.Tileset = (loaded) ->
   loadSha = (sha) ->
     CAS.getJSON sha, complete
 
-  if Filetree.sha "tileset"
-    Filetree.load "tileset", complete
+  if Filetree.sha name
+    Filetree.load name, complete
   else
     loadSha "fb5eadfdbba50cddf5a8e1cedcfbc9184f0b0fd0"
 
@@ -32,8 +33,11 @@ window.Tileset = (loaded) ->
   tiles: ->
     tiles
 
-  save: (name="tileset") ->
-    Filetree.save name, tiles
+  save: ->
+    @saveAs(name)
+
+  saveAs: (fileName="tileset") ->
+    Filetree.save fileName, tiles
 
   get: (n) ->
     tiles[n]

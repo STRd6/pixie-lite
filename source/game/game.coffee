@@ -33,9 +33,11 @@ activeIndex = 0
 map = Map
   objects: objects
 
-tileset = Tileset ->
-  tileset.render()
-  map.tiles(tileset.tiles())
+tileset = Tileset
+  name: "tileset"
+  loaded: ->
+    tileset.render()
+    map.tiles(tileset.tiles())
 
 setInterval ->
   map.render()

@@ -13,9 +13,10 @@ layersElement = $("<div id='layers'>").appendTo("body")
 
 map = Map()
 
-tileset = Tileset ->
-  tileset.render()
-  map.tiles(tileset.tiles())
+tileset = Tileset
+  loaded: ->
+    tileset.render()
+    map.tiles(tileset.tiles())
 
 activeTile = null
 
